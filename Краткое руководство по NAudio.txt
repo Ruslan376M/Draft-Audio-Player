@@ -1,0 +1,69 @@
+using NAudio.Wave;
+using NAudio.Wave.SampleProviders;
+
+public class MainForm : Form
+{
+    private WaveOutEvent outputDevice;//Объявление устройства вывода
+    private AudioFileReader audioFile;//Объявление читателя звукового файла (mp3, wav и т.д., но не flac!)
+
+    public MainForm()
+    {
+        InitializeComponent();//Иницализация компонентов в форме
+    }
+
+    private void InitializeComponent()//Этой функции лучше существовать в другом (отдельном) файле
+    {
+        var flowPanel = new FlowLayoutPanel();//Настраиваемая группировка объектов на форме при изменении размера формы
+        flowPanel.FlowDirection = FlowDirection.LeftToRight;
+        flowPanel.Margin = new Padding(10);
+
+        var buttonPlay = new Button();//Кнопка проигрывания
+        buttonPlay.Text = "Play";
+        buttonPlay.Click += OnButtonPlayClick;
+        flowPanel.Controls.Add(buttonPlay);
+
+        var buttonStop = new Button();//Кнопка остановки
+        buttonStop.Text = "Stop";
+        buttonStop.Click += OnButtonStopClick;
+        flowPanel.Controls.Add(buttonStop);
+
+        this.Controls.Add(flowPanel);
+
+        this.FormClosing += OnButtonStopClick;
+    }
+	
+	private void OnButtonPlayClick(object sender, EventArgs args)//Событие нажатии кнопки проигрывания
+	{
+		if (outputDevice == null)//Проверка на инициализирование устройства вывода
+		{
+			outputDevice = new WaveOutEvent();//Инициализирование устройства вывода
+			outputDevice.PlaybackStopped += OnPlaybackStopped;//Привязка остановки проигрывания к событию "проигрывание остановлено"
+		}
+		if (audioFile == null)//Проверка на инициализирование аудиофайла
+		{
+			audioFile = new AudioFileReader(@"D:\example.mp3");//Инициализация аудиофайла
+			outputDevice.Init(audioFile);//Иницализация. Передать звуковому устройству аудиофайл
+		}
+		outputDevice.Play();//Начать воспроизведение (внимание! устройству не передаётся сам аудиофайл, потому что файл уже был инициализирован аудиоустройством)
+	}
+	
+	private void OnButtonStopClick(object sender, EventArgs args)
+	{
+		outputDevice?.Stop();//?. обрабатывают исключение, если outputDevice == null. А так проигрывание на устройстве остановится.
+	}
+	
+	private void OnPlaybackStopped(object sender, StoppedEventArgs args)//Обработка события остановки проигрывания. Может быть вызвана:
+	//1. Если была нажата кнопка stop
+	//2. Если был достигнут конец файла
+	//3. Произошла ошибка (к примеру, были отключены наушники)
+	//Здесь обрабатывается событие полной остановки, то есть никакой паузы, предыдущее положение не запоминается. В противном случае, избавляться от устройства и читателя нельзя. Но если файл достиг конца, то следует очистить читатель.
+	{
+		outputDevice.Dispose();
+		outputDevice = null;
+		audioFile.Dispose();
+		audioFile = null;
+	}
+	//Перед закрытием формы следует избавляться от всех источников - читателя и проигрывателя.
+	
+}
+
