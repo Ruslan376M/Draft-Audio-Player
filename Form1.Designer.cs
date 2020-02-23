@@ -32,6 +32,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DraftAudioPlayerMainForm));
             this.splitNavigation = new System.Windows.Forms.SplitContainer();
             this.getFileNameButton = new System.Windows.Forms.Button();
+            this.directoryChooseButton = new System.Windows.Forms.Button();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.maximumDuration = new System.Windows.Forms.Label();
             this.durationOfPlayback = new System.Windows.Forms.Label();
@@ -42,7 +44,9 @@
             this.playButton = new System.Windows.Forms.Button();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.timerOfPlayback = new System.Windows.Forms.Timer(this.components);
+            this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
             ((System.ComponentModel.ISupportInitialize)(this.splitNavigation)).BeginInit();
+            this.splitNavigation.Panel1.SuspendLayout();
             this.splitNavigation.Panel2.SuspendLayout();
             this.splitNavigation.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -56,9 +60,14 @@
             this.splitNavigation.Location = new System.Drawing.Point(2, 0);
             this.splitNavigation.Name = "splitNavigation";
             // 
+            // splitNavigation.Panel1
+            // 
+            this.splitNavigation.Panel1.Controls.Add(this.getFileNameButton);
+            this.splitNavigation.Panel1.Controls.Add(this.directoryChooseButton);
+            // 
             // splitNavigation.Panel2
             // 
-            this.splitNavigation.Panel2.Controls.Add(this.getFileNameButton);
+            this.splitNavigation.Panel2.Controls.Add(this.panel2);
             this.splitNavigation.Size = new System.Drawing.Size(883, 567);
             this.splitNavigation.SplitterDistance = 262;
             this.splitNavigation.TabIndex = 0;
@@ -68,13 +77,34 @@
             this.getFileNameButton.BackColor = System.Drawing.Color.Teal;
             this.getFileNameButton.FlatAppearance.BorderSize = 0;
             this.getFileNameButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.getFileNameButton.Location = new System.Drawing.Point(148, 502);
+            this.getFileNameButton.Location = new System.Drawing.Point(112, 458);
             this.getFileNameButton.Name = "getFileNameButton";
             this.getFileNameButton.Size = new System.Drawing.Size(75, 23);
             this.getFileNameButton.TabIndex = 0;
             this.getFileNameButton.Text = "Choose File";
             this.getFileNameButton.UseVisualStyleBackColor = false;
             this.getFileNameButton.Click += new System.EventHandler(this.getFileNameButton_Click);
+            // 
+            // directoryChooseButton
+            // 
+            this.directoryChooseButton.BackColor = System.Drawing.Color.Teal;
+            this.directoryChooseButton.FlatAppearance.BorderSize = 0;
+            this.directoryChooseButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.directoryChooseButton.Location = new System.Drawing.Point(73, 377);
+            this.directoryChooseButton.Name = "directoryChooseButton";
+            this.directoryChooseButton.Size = new System.Drawing.Size(131, 23);
+            this.directoryChooseButton.TabIndex = 1;
+            this.directoryChooseButton.Text = "Choose Directory";
+            this.directoryChooseButton.UseVisualStyleBackColor = false;
+            this.directoryChooseButton.Click += new System.EventHandler(this.directoryChooseButton_Click);
+            // 
+            // panel2
+            // 
+            this.panel2.AutoScroll = true;
+            this.panel2.Location = new System.Drawing.Point(17, 30);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(587, 518);
+            this.panel2.TabIndex = 0;
             // 
             // panel1
             // 
@@ -183,13 +213,16 @@
             // openFileDialog
             // 
             this.openFileDialog.Filter = "MP3 |*.mp3|WAV |*.wav";
-            this.openFileDialog.InitialDirectory = "C:\\Users\\студент\\Music";
             this.openFileDialog.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog_FileOk);
             // 
             // timerOfPlayback
             // 
             this.timerOfPlayback.Interval = 1000;
             this.timerOfPlayback.Tick += new System.EventHandler(this.timerOfPlayback_Tick);
+            // 
+            // folderBrowserDialog
+            // 
+            this.folderBrowserDialog.Description = "Выберите папку с музыкой";
             // 
             // DraftAudioPlayerMainForm
             // 
@@ -204,6 +237,7 @@
             this.MaximizeBox = false;
             this.Name = "DraftAudioPlayerMainForm";
             this.Text = "Draft Audio Player";
+            this.splitNavigation.Panel1.ResumeLayout(false);
             this.splitNavigation.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitNavigation)).EndInit();
             this.splitNavigation.ResumeLayout(false);
@@ -228,6 +262,9 @@
         private System.Windows.Forms.Timer timerOfPlayback;
         private System.Windows.Forms.Label durationOfPlayback;
         private System.Windows.Forms.Label maximumDuration;
+        private System.Windows.Forms.Button directoryChooseButton;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog;
     }
 }
 
