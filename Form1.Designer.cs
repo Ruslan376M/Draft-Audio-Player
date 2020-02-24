@@ -45,12 +45,16 @@
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.timerOfPlayback = new System.Windows.Forms.Timer(this.components);
             this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.volumeTrackBar = new System.Windows.Forms.TrackBar();
+            this.volumePercentLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitNavigation)).BeginInit();
             this.splitNavigation.Panel1.SuspendLayout();
             this.splitNavigation.Panel2.SuspendLayout();
             this.splitNavigation.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.musicTrackBar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.volumeTrackBar)).BeginInit();
             this.SuspendLayout();
             // 
             // splitNavigation
@@ -105,9 +109,12 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(587, 518);
             this.panel2.TabIndex = 0;
+            this.panel2.Scroll += new System.Windows.Forms.ScrollEventHandler(this.panel2_Scroll);
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.volumePercentLabel);
+            this.panel1.Controls.Add(this.volumeTrackBar);
             this.panel1.Controls.Add(this.maximumDuration);
             this.panel1.Controls.Add(this.durationOfPlayback);
             this.panel1.Controls.Add(this.cycleButton);
@@ -152,6 +159,7 @@
             this.cycleButton.TabIndex = 4;
             this.cycleButton.Text = "\r\n";
             this.cycleButton.UseVisualStyleBackColor = false;
+            this.cycleButton.Click += new System.EventHandler(this.cycleButton_Click);
             // 
             // musicTrackBar
             // 
@@ -224,6 +232,27 @@
             // 
             this.folderBrowserDialog.Description = "Выберите папку с музыкой";
             // 
+            // volumeTrackBar
+            // 
+            this.volumeTrackBar.BackColor = System.Drawing.Color.White;
+            this.volumeTrackBar.Location = new System.Drawing.Point(743, 31);
+            this.volumeTrackBar.Maximum = 100;
+            this.volumeTrackBar.Name = "volumeTrackBar";
+            this.volumeTrackBar.Size = new System.Drawing.Size(127, 45);
+            this.volumeTrackBar.TabIndex = 7;
+            this.volumeTrackBar.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.volumeTrackBar.Value = 100;
+            this.volumeTrackBar.Scroll += new System.EventHandler(this.volumeTrackBar_Scroll);
+            // 
+            // volumePercentLabel
+            // 
+            this.volumePercentLabel.AutoSize = true;
+            this.volumePercentLabel.Location = new System.Drawing.Point(703, 39);
+            this.volumePercentLabel.Name = "volumePercentLabel";
+            this.volumePercentLabel.Size = new System.Drawing.Size(33, 13);
+            this.volumePercentLabel.TabIndex = 8;
+            this.volumePercentLabel.Text = "100%";
+            // 
             // DraftAudioPlayerMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -244,6 +273,7 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.musicTrackBar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.volumeTrackBar)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -265,6 +295,9 @@
         private System.Windows.Forms.Button directoryChooseButton;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.Windows.Forms.Label volumePercentLabel;
+        private System.Windows.Forms.TrackBar volumeTrackBar;
     }
 }
 
