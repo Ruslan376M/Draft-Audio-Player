@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Forms;
 using Syroot.Windows.IO;
-
+using System.Runtime.InteropServices;
 using NAudio.Wave;
 using NAudio.Wave.SampleProviders;
 
@@ -19,7 +19,7 @@ namespace Draft_Audio_Player
     public partial class DraftAudioPlayerMainForm : Form
     {
         WaveOutEvent outputDevice;
-        AudioFileReader fileReader;
+        MediaFoundationReader fileReader;
         bool musicIsPlaying = false;
         string audioPath = "";
         string musicFolderPath = "";
@@ -29,6 +29,8 @@ namespace Draft_Audio_Player
         System.Windows.Forms.Label[] musicListPanelsLabelDurations;
         System.Windows.Forms.Button[] musicListPanelsButton;
         System.Windows.Forms.CheckBox[] musicListPanelsCheckBox;
+        bool repeatButton = false;
+
 
         public DraftAudioPlayerMainForm()
         {
@@ -70,7 +72,7 @@ namespace Draft_Audio_Player
         private void openFileDialog_FileOk(object sender, CancelEventArgs e)
         {
             audioPath = openFileDialog.FileName;
-            fileReader = new AudioFileReader(audioPath);
+            fileReader = new MediaFoundationReader(audioPath);
             outputDevice = new WaveOutEvent();
             outputDevice.Init(fileReader);
             musicTrackBar.Maximum = fileReader.TotalTime.Minutes * 60 + fileReader.TotalTime.Seconds;
@@ -81,6 +83,16 @@ namespace Draft_Audio_Player
         {
             musicTrackBar.Value = fileReader.CurrentTime.Minutes * 60 + fileReader.CurrentTime.Seconds;
             durationOfPlayback.Text = fileReader.CurrentTime.Minutes.ToString("00") + ":" + fileReader.CurrentTime.Seconds.ToString("00");
+            if ((fileReader.CurrentTime.Seconds + fileReader.CurrentTime.Minutes) == (fileReader.TotalTime.Minutes + fileReader.TotalTime.Seconds) && repeatButton == true)
+            {
+                outputDevice.Stop();
+                fileReader.Position = 0;
+                timerOfPlayback.Stop();
+                outputDevice.Play();
+                timerOfPlayback.Start();
+                musicIsPlaying = true;
+                timerOfPlayback.Enabled = true;
+            }
         }
 
         private void musicTrackBar_MouseUp(object sender, MouseEventArgs e)
@@ -101,7 +113,7 @@ namespace Draft_Audio_Player
             durationOfPlayback.Text = (musicTrackBar.Value / 60).ToString("00") + ":" + (musicTrackBar.Value % 60).ToString("00");
         }
 
-        private void directoryChooseButton_Click(object sender, EventArgs e)
+        private  void directoryChooseButton_Click(object sender, EventArgs e)
         {
             
             if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
@@ -111,6 +123,7 @@ namespace Draft_Audio_Player
 
                 for (int i = fileNames.Length - 1; i >= 0; i--)
                 {
+                    
                     musicListPanels = new System.Windows.Forms.Panel[fileNames.Length];
                     musicListPanelsLabelNames = new System.Windows.Forms.Label[fileNames.Length];
                     musicListPanelsLabelDurations = new System.Windows.Forms.Label[fileNames.Length];
@@ -120,11 +133,11 @@ namespace Draft_Audio_Player
                     
 
                     musicListPanels[i] = new System.Windows.Forms.Panel();
-                    panel2.Controls.Add(musicListPanels[i]);
                     musicListPanels[i].Location = new System.Drawing.Point(0, i*32);
                     musicListPanels[i].Name = "musicListPanel" + i.ToString();
                     musicListPanels[i].Size = new System.Drawing.Size(panel2.Width-20, 32);
                     musicListPanels[i].TabIndex = 1;
+                    panel2.Controls.Add(musicListPanels[i]);
 
                     musicListPanelsCheckBox[i] = new System.Windows.Forms.CheckBox();
                     musicListPanels[i].Controls.Add(musicListPanelsCheckBox[i]);
@@ -136,17 +149,15 @@ namespace Draft_Audio_Player
                     musicListPanelsCheckBox[i].TabIndex = 0;
 
                     musicListPanelsLabelNames[i] = new System.Windows.Forms.Label();
-                    musicListPanels[i].Controls.Add(this.musicListPanelsLabelNames[i]);
                     musicListPanelsLabelNames[i].Location = new System.Drawing.Point(34, 10);
                     musicListPanelsLabelNames[i].Name = "label1";
                     musicListPanelsLabelNames[i].Size = new System.Drawing.Size(172, 13);
                     musicListPanelsLabelNames[i].TabIndex = 1;
                     musicListPanelsLabelNames[i].Text = fileNames[i].Substring(fileNames[i].LastIndexOf("\\") + 1);
-
+                    musicListPanels[i].Controls.Add(this.musicListPanelsLabelNames[i]);
 
 
                     musicListPanelsButton[i] = new System.Windows.Forms.Button();
-                    musicListPanels[i].Controls.Add(musicListPanelsButton[i]);
                     musicListPanelsButton[i].BackColor = System.Drawing.Color.Transparent;
                     musicListPanelsButton[i].BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
                     musicListPanelsButton[i].FlatAppearance.BorderColor = System.Drawing.SystemColors.ActiveCaption;
@@ -160,14 +171,15 @@ namespace Draft_Audio_Player
                     musicListPanelsButton[i].Text = "";
                     musicListPanelsButton[i].UseVisualStyleBackColor = false;
                     musicListPanelsButton[i].Click += new System.EventHandler(musicListPanelsButton_Click);
+                    musicListPanels[i].Controls.Add(musicListPanelsButton[i]);
 
                     musicListPanelsLabelDurations[i] = new System.Windows.Forms.Label();
-                    musicListPanels[i].Controls.Add(musicListPanelsLabelDurations[i]);
                     musicListPanelsLabelDurations[i].Location = new System.Drawing.Point(247, 10);
                     musicListPanelsLabelDurations[i].Name = "musicListPanelsLabelNames" + i.ToString();
                     musicListPanelsLabelDurations[i].Size = new System.Drawing.Size(172, 13);
                     musicListPanelsLabelDurations[i].TabIndex = 3;
                     musicListPanelsLabelDurations[i].Text = "00:00";
+                    musicListPanels[i].Controls.Add(musicListPanelsLabelDurations[i]);
 
 
 
@@ -180,11 +192,13 @@ namespace Draft_Audio_Player
         {
             audioPath = fileNames[Convert.ToInt32((sender as System.Windows.Forms.Button).Name)];
             if (fileReader == null)
-                fileReader = new AudioFileReader(audioPath);
+                fileReader = new MediaFoundationReader(audioPath);
             else
             {
+                fileReader.Close();
                 fileReader.Dispose();
-                fileReader = new AudioFileReader(audioPath);
+                fileReader = new MediaFoundationReader(audioPath);
+                
             }
             if (outputDevice == null)
                 outputDevice = new WaveOutEvent();
@@ -199,5 +213,30 @@ namespace Draft_Audio_Player
             maximumDuration.Text = fileReader.TotalTime.Minutes.ToString("00") + ":" + fileReader.TotalTime.Seconds.ToString("00");
             playButton_Click(null, null);
         }
-    }
+
+        private void cycleButton_Click(object sender, EventArgs e)
+        {
+            if (repeatButton == false)
+            {
+                repeatButton = true;
+                cycleButton.BackColor = Color.Red;
+            }
+            else
+            {
+                repeatButton = false;
+                cycleButton.BackColor = Color.White;
+            }
+        }
+
+        private void panel2_Scroll(object sender, ScrollEventArgs e)
+        {
+            panel2.Update();
+        }
+
+        private void volumeTrackBar_Scroll(object sender, EventArgs e)
+        {
+            outputDevice.Volume = volumeTrackBar.Value / 100f;
+            volumePercentLabel.Text = volumeTrackBar.Value.ToString() + "%";
+        }
+    }   
 }
