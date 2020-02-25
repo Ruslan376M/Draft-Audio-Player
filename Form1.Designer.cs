@@ -48,6 +48,7 @@
             this.timerOfPlayback = new System.Windows.Forms.Timer(this.components);
             this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+
             ((System.ComponentModel.ISupportInitialize)(this.splitNavigation)).BeginInit();
             this.splitNavigation.Panel1.SuspendLayout();
             this.splitNavigation.Panel2.SuspendLayout();
@@ -113,6 +114,7 @@
             // 
             // panel1
             // 
+            
             this.panel1.Controls.Add(this.volumePercentLabel);
             this.panel1.Controls.Add(this.volumeTrackBar);
             this.panel1.Controls.Add(this.maximumDuration);
@@ -254,6 +256,8 @@
             // folderBrowserDialog
             // 
             this.folderBrowserDialog.Description = "Выберите папку с музыкой";
+            
+            
             // 
             // DraftAudioPlayerMainForm
             // 
@@ -300,6 +304,7 @@
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.Label volumePercentLabel;
         private System.Windows.Forms.TrackBar volumeTrackBar;
+        
     }
 }
 
