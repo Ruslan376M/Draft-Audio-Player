@@ -85,6 +85,8 @@ namespace Draft_Audio_Player
             durationOfPlayback.Text = fileReader.CurrentTime.Minutes.ToString("00") + ":" + fileReader.CurrentTime.Seconds.ToString("00");
             if (((fileReader.CurrentTime.Seconds + fileReader.CurrentTime.Minutes*60) == (fileReader.TotalTime.Minutes *60 + fileReader.TotalTime.Seconds)) && repeatButton == true)
             {
+                durationOfPlayback.Text = "00:00";
+                musicTrackBar.Value = 0;
                 outputDevice.Stop();
                 timerOfPlayback.Stop();
                 fileReader.Position = 0;
@@ -248,6 +250,8 @@ namespace Draft_Audio_Player
         {
             if (outputDevice == null)
                 return;
+            musicTrackBar.Value = 0;
+            durationOfPlayback.Text = "00:00";
             fileNames = Directory.GetFileSystemEntries(musicFolderPath, "*.mp3", SearchOption.AllDirectories);
             for (int i = 0; i< fileNames.Length; i++)
             {
@@ -280,6 +284,8 @@ namespace Draft_Audio_Player
         {
             if (outputDevice == null)
                 return;
+            musicTrackBar.Value = 0;
+            durationOfPlayback.Text = "00:00";
             fileNames = Directory.GetFileSystemEntries(musicFolderPath, "*.mp3", SearchOption.AllDirectories);
             for (int i = fileNames.Length - 1; i >= 0; i--)
             {
