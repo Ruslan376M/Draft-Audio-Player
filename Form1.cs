@@ -235,8 +235,73 @@ namespace Draft_Audio_Player
 
         private void volumeTrackBar_Scroll(object sender, EventArgs e)
         {
+            if (outputDevice == null)
+            {
+                volumePercentLabel.Text = volumeTrackBar.Value.ToString() + "%";
+                return;
+            }
             outputDevice.Volume = volumeTrackBar.Value / 100f;
             volumePercentLabel.Text = volumeTrackBar.Value.ToString() + "%";
         }
+
+        private void backwardButton_Click(object sender, EventArgs e)
+        {
+            if (outputDevice == null)
+                return;
+            fileNames = Directory.GetFileSystemEntries(musicFolderPath, "*.mp3", SearchOption.AllDirectories);
+            for (int i = 0; i< fileNames.Length; i++)
+            {
+                if (fileNames[i] == audioPath)
+                    if (i==0)
+                  {
+                        return;
+                    }
+                    else
+                        audioPath = fileNames[i-1];
+            }
+            
+            
+            outputDevice.Dispose();
+              fileReader = new MediaFoundationReader(audioPath);
+              
+              
+              outputDevice = new WaveOutEvent();
+              outputDevice.Init(fileReader);
+              outputDevice.Play();
+              timerOfPlayback.Start();
+              musicIsPlaying = true;
+              timerOfPlayback.Enabled = true;
+        }
+
+        private void forwardButton_Click(object sender, EventArgs e)
+        {
+            if (outputDevice == null)
+                return;
+            fileNames = Directory.GetFileSystemEntries(musicFolderPath, "*.mp3", SearchOption.AllDirectories);
+            for (int i = fileNames.Length - 1; i >= 0; i--)
+            {
+                if (fileNames[i] == audioPath)
+                    if (i == (fileNames.Length - 1))
+                    {
+                        return;
+                    }
+                    else
+                        audioPath = fileNames[i + 1];
+            }
+            
+            
+            outputDevice.Dispose();
+            fileReader = new MediaFoundationReader(audioPath);
+
+            
+            outputDevice = new WaveOutEvent();
+            outputDevice.Init(fileReader);
+            outputDevice.Play();
+            timerOfPlayback.Start();
+            musicIsPlaying = true;
+            timerOfPlayback.Enabled = true;
+        }
+
+        
     }   
 }
