@@ -83,11 +83,11 @@ namespace Draft_Audio_Player
         {
             musicTrackBar.Value = fileReader.CurrentTime.Minutes * 60 + fileReader.CurrentTime.Seconds;
             durationOfPlayback.Text = fileReader.CurrentTime.Minutes.ToString("00") + ":" + fileReader.CurrentTime.Seconds.ToString("00");
-            if ((fileReader.CurrentTime.Seconds + fileReader.CurrentTime.Minutes) == (fileReader.TotalTime.Minutes + fileReader.TotalTime.Seconds) && repeatButton == true)
+            if (((fileReader.CurrentTime.Seconds + fileReader.CurrentTime.Minutes*60) == (fileReader.TotalTime.Minutes *60 + fileReader.TotalTime.Seconds)) && repeatButton == true)
             {
                 outputDevice.Stop();
-                fileReader.Position = 0;
                 timerOfPlayback.Stop();
+                fileReader.Position = 0;
                 outputDevice.Play();
                 timerOfPlayback.Start();
                 musicIsPlaying = true;
@@ -237,7 +237,7 @@ namespace Draft_Audio_Player
         {
             if (outputDevice == null)
             {
-                volumePercentLabel.Text = volumeTrackBar.Value.ToString() + "%";
+
                 return;
             }
             outputDevice.Volume = volumeTrackBar.Value / 100f;
@@ -252,12 +252,15 @@ namespace Draft_Audio_Player
             for (int i = 0; i< fileNames.Length; i++)
             {
                 if (fileNames[i] == audioPath)
-                    if (i==0)
-                  {
+                    if (i == 0)
+                    {
                         return;
                     }
                     else
-                        audioPath = fileNames[i-1];
+                    {
+                        audioPath = fileNames[i - 1];
+                        break;
+                    }
             }
 
             outputDevice.Dispose();
@@ -269,7 +272,6 @@ namespace Draft_Audio_Player
             maximumDuration.Text = fileReader.TotalTime.Minutes.ToString("00") + ":" + fileReader.TotalTime.Seconds.ToString("00");
             outputDevice.Play();
             timerOfPlayback.Start();
-
             musicIsPlaying = true;
             timerOfPlayback.Enabled = true;
         }
@@ -287,7 +289,10 @@ namespace Draft_Audio_Player
                         return;
                     }
                     else
+                    {
                         audioPath = fileNames[i + 1];
+                        break;
+                    }
             }
          
             outputDevice.Dispose();
