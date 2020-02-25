@@ -259,18 +259,19 @@ namespace Draft_Audio_Player
                     else
                         audioPath = fileNames[i-1];
             }
-            
-            
+
             outputDevice.Dispose();
-              fileReader = new MediaFoundationReader(audioPath);
-              
-              
-              outputDevice = new WaveOutEvent();
-              outputDevice.Init(fileReader);
-              outputDevice.Play();
-              timerOfPlayback.Start();
-              musicIsPlaying = true;
-              timerOfPlayback.Enabled = true;
+            fileReader = new MediaFoundationReader(audioPath);
+            timerOfPlayback.Stop();
+            outputDevice = new WaveOutEvent();
+            outputDevice.Init(fileReader);
+            musicTrackBar.Maximum = fileReader.TotalTime.Minutes * 60 + fileReader.TotalTime.Seconds;
+            maximumDuration.Text = fileReader.TotalTime.Minutes.ToString("00") + ":" + fileReader.TotalTime.Seconds.ToString("00");
+            outputDevice.Play();
+            timerOfPlayback.Start();
+
+            musicIsPlaying = true;
+            timerOfPlayback.Enabled = true;
         }
 
         private void forwardButton_Click(object sender, EventArgs e)
@@ -288,14 +289,14 @@ namespace Draft_Audio_Player
                     else
                         audioPath = fileNames[i + 1];
             }
-            
-            
+         
             outputDevice.Dispose();
             fileReader = new MediaFoundationReader(audioPath);
-
-            
+            timerOfPlayback.Stop();
             outputDevice = new WaveOutEvent();
             outputDevice.Init(fileReader);
+            musicTrackBar.Maximum = fileReader.TotalTime.Minutes * 60 + fileReader.TotalTime.Seconds;
+            maximumDuration.Text = fileReader.TotalTime.Minutes.ToString("00") + ":" + fileReader.TotalTime.Seconds.ToString("00");
             outputDevice.Play();
             timerOfPlayback.Start();
             musicIsPlaying = true;
