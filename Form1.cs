@@ -66,7 +66,7 @@ namespace Draft_Audio_Player
 
         private void getFileNameButton_Click(object sender, EventArgs e)
         {
-            openFileDialog.ShowDialog();
+            //openFileDialog.ShowDialog();
         }
 
         private void openFileDialog_FileOk(object sender, CancelEventArgs e)
