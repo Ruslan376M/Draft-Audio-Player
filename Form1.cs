@@ -250,8 +250,7 @@ namespace Draft_Audio_Player
         {
             if (outputDevice == null)
                 return;
-            musicTrackBar.Value = 0;
-            durationOfPlayback.Text = "00:00";
+            
             fileNames = Directory.GetFileSystemEntries(musicFolderPath, "*.mp3", SearchOption.AllDirectories);
             for (int i = 0; i< fileNames.Length; i++)
             {
@@ -266,7 +265,8 @@ namespace Draft_Audio_Player
                         break;
                     }
             }
-
+            musicTrackBar.Value = 0;
+            durationOfPlayback.Text = "00:00";
             outputDevice.Dispose();
             fileReader = new MediaFoundationReader(audioPath);
             timerOfPlayback.Stop();
@@ -284,8 +284,7 @@ namespace Draft_Audio_Player
         {
             if (outputDevice == null)
                 return;
-            musicTrackBar.Value = 0;
-            durationOfPlayback.Text = "00:00";
+            
             fileNames = Directory.GetFileSystemEntries(musicFolderPath, "*.mp3", SearchOption.AllDirectories);
             for (int i = fileNames.Length - 1; i >= 0; i--)
             {
@@ -300,7 +299,8 @@ namespace Draft_Audio_Player
                         break;
                     }
             }
-         
+            musicTrackBar.Value = 0;
+            durationOfPlayback.Text = "00:00";
             outputDevice.Dispose();
             fileReader = new MediaFoundationReader(audioPath);
             timerOfPlayback.Stop();
