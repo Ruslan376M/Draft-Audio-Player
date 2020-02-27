@@ -13,6 +13,7 @@ using Syroot.Windows.IO;
 using System.Runtime.InteropServices;
 using NAudio.Wave;
 using NAudio.Wave.SampleProviders;
+using TagLib;
 
 namespace Draft_Audio_Player
 {
@@ -32,12 +33,20 @@ namespace Draft_Audio_Player
         bool repeatButton = false;
 
 
-        public DraftAudioPlayerMainForm()
+public DraftAudioPlayerMainForm()
         {
             InitializeComponent();
         }
         private void playButton_Click(object sender, EventArgs e)
         {
+            var tfile = TagLib.File.Create(audioPath);
+            lbTitle.Text = tfile.Tag.Title;
+            if (tfile.Tag.Pictures.Length >= 1)
+            {
+                var bin = (byte[])(tfile.Tag.Pictures[0].Data.Data);
+                pictCover.Image = System.Drawing.Image.FromStream(new MemoryStream(bin)).GetThumbnailImage(100, 100, null, IntPtr.Zero);
+            }
+
             if (musicIsPlaying == true)
             {
                 outputDevice.Pause();
@@ -77,6 +86,7 @@ namespace Draft_Audio_Player
             outputDevice.Init(fileReader);
             musicTrackBar.Maximum = fileReader.TotalTime.Minutes * 60 + fileReader.TotalTime.Seconds;
             maximumDuration.Text = fileReader.TotalTime.Minutes.ToString("00") + ":" + fileReader.TotalTime.Seconds.ToString("00");
+
         }
 
         private void timerOfPlayback_Tick(object sender, EventArgs e)
@@ -268,6 +278,7 @@ namespace Draft_Audio_Player
             }
 
             outputDevice.Dispose();
+            pictCover.Dispose(); 
             fileReader = new MediaFoundationReader(audioPath);
             timerOfPlayback.Stop();
             outputDevice = new WaveOutEvent();
@@ -302,6 +313,7 @@ namespace Draft_Audio_Player
             }
          
             outputDevice.Dispose();
+            pictCover.Dispose();
             fileReader = new MediaFoundationReader(audioPath);
             timerOfPlayback.Stop();
             outputDevice = new WaveOutEvent();

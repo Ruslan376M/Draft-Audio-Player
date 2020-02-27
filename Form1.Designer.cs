@@ -35,6 +35,7 @@
             this.directoryChooseButton = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lbTitle = new System.Windows.Forms.Label();
             this.volumePercentLabel = new System.Windows.Forms.Label();
             this.volumeTrackBar = new System.Windows.Forms.TrackBar();
             this.maximumDuration = new System.Windows.Forms.Label();
@@ -48,6 +49,7 @@
             this.timerOfPlayback = new System.Windows.Forms.Timer(this.components);
             this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.pictCover = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitNavigation)).BeginInit();
             this.splitNavigation.Panel1.SuspendLayout();
             this.splitNavigation.Panel2.SuspendLayout();
@@ -55,6 +57,7 @@
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.volumeTrackBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.musicTrackBar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictCover)).BeginInit();
             this.SuspendLayout();
             // 
             // splitNavigation
@@ -66,6 +69,7 @@
             // 
             // splitNavigation.Panel1
             // 
+            this.splitNavigation.Panel1.Controls.Add(this.pictCover);
             this.splitNavigation.Panel1.Controls.Add(this.getFileNameButton);
             this.splitNavigation.Panel1.Controls.Add(this.directoryChooseButton);
             // 
@@ -113,6 +117,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.lbTitle);
             this.panel1.Controls.Add(this.volumePercentLabel);
             this.panel1.Controls.Add(this.volumeTrackBar);
             this.panel1.Controls.Add(this.maximumDuration);
@@ -126,6 +131,16 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(883, 87);
             this.panel1.TabIndex = 1;
+            // 
+            // lbTitle
+            // 
+            this.lbTitle.AutoSize = true;
+            this.lbTitle.Location = new System.Drawing.Point(20, 5);
+            this.lbTitle.Name = "lbTitle";
+            this.lbTitle.Size = new System.Drawing.Size(0, 13);
+            this.lbTitle.TabIndex = 9;
+            this.lbTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lbTitle.UseWaitCursor = true;
             // 
             // volumePercentLabel
             // 
@@ -255,6 +270,14 @@
             // 
             this.folderBrowserDialog.Description = "Выберите папку с музыкой";
             // 
+            // pictCover
+            // 
+            this.pictCover.Location = new System.Drawing.Point(87, 235);
+            this.pictCover.Name = "pictCover";
+            this.pictCover.Size = new System.Drawing.Size(100, 100);
+            this.pictCover.TabIndex = 10;
+            this.pictCover.TabStop = false;
+            // 
             // DraftAudioPlayerMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -276,6 +299,7 @@
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.volumeTrackBar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.musicTrackBar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictCover)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -300,6 +324,8 @@
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.Label volumePercentLabel;
         private System.Windows.Forms.TrackBar volumeTrackBar;
+        private System.Windows.Forms.Label lbTitle;
+        private System.Windows.Forms.PictureBox pictCover;
     }
 }
 
