@@ -283,6 +283,8 @@
             // folderBrowserDialog
             // 
             this.folderBrowserDialog.Description = "Выберите папку с музыкой";
+            
+            
             // 
             // lbArtist
             // 

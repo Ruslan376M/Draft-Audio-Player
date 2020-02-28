@@ -86,7 +86,7 @@ public DraftAudioPlayerMainForm()
 
         private void getFileNameButton_Click(object sender, EventArgs e)
         {
-            //openFileDialog.ShowDialog();
+            openFileDialog.ShowDialog();
         }
 
         private void openFileDialog_FileOk(object sender, CancelEventArgs e)
@@ -302,8 +302,7 @@ public DraftAudioPlayerMainForm()
         {
             if (outputDevice == null)
                 return;
-            musicTrackBar.Value = 0;
-            durationOfPlayback.Text = "00:00";
+            
             fileNames = Directory.GetFileSystemEntries(musicFolderPath, "*.mp3", SearchOption.AllDirectories);
             for (int i = 0; i< fileNames.Length; i++)
             {
@@ -319,7 +318,8 @@ public DraftAudioPlayerMainForm()
                         break;
                     }
             }
-
+            musicTrackBar.Value = 0;
+            durationOfPlayback.Text = "00:00";
             outputDevice.Dispose();
             fileReader = new MediaFoundationReader(audioPath);
             timerOfPlayback.Stop();
@@ -337,8 +337,7 @@ public DraftAudioPlayerMainForm()
         {
             if (outputDevice == null)
                 return;
-            musicTrackBar.Value = 0;
-            durationOfPlayback.Text = "00:00";
+            
             fileNames = Directory.GetFileSystemEntries(musicFolderPath, "*.mp3", SearchOption.AllDirectories);
             for (int i = fileNames.Length - 1; i >= 0; i--)
             {
@@ -354,7 +353,8 @@ public DraftAudioPlayerMainForm()
                         break;
                     }
             }
-         
+            musicTrackBar.Value = 0;
+            durationOfPlayback.Text = "00:00";
             outputDevice.Dispose();
             fileReader = new MediaFoundationReader(audioPath);
             timerOfPlayback.Stop();
