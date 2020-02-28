@@ -44,6 +44,7 @@ public DraftAudioPlayerMainForm()
         {
             var tfile = TagLib.File.Create(audioPath);
             lbTitle.Text = tfile.Tag.Title;
+            lbArtist.Text = tfile.Tag.FirstPerformer;
             if (tfile.Tag.Pictures.Length >= 1)
             {
                 var bin = (byte[])(tfile.Tag.Pictures[0].Data.Data);
@@ -235,7 +236,6 @@ public DraftAudioPlayerMainForm()
                     if (musicListPanelsLabelGenre[i].Text == "")
                         musicListPanelsLabelGenre[i].Text = "  ---  ";
                     musicListPanels[i].Controls.Add(this.musicListPanelsLabelGenre[i]);
-
 
                 }
             }

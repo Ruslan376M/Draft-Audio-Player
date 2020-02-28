@@ -50,6 +50,7 @@
             this.timerOfPlayback = new System.Windows.Forms.Timer(this.components);
             this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.lbArtist = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitNavigation)).BeginInit();
             this.splitNavigation.Panel1.SuspendLayout();
             this.splitNavigation.Panel2.SuspendLayout();
@@ -128,6 +129,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.lbArtist);
             this.panel1.Controls.Add(this.lbTitle);
             this.panel1.Controls.Add(this.volumePercentLabel);
             this.panel1.Controls.Add(this.pictCover);
@@ -282,6 +284,14 @@
             // 
             this.folderBrowserDialog.Description = "Выберите папку с музыкой";
             // 
+            // lbArtist
+            // 
+            this.lbArtist.AutoSize = true;
+            this.lbArtist.Location = new System.Drawing.Point(81, 54);
+            this.lbArtist.Name = "lbArtist";
+            this.lbArtist.Size = new System.Drawing.Size(0, 13);
+            this.lbArtist.TabIndex = 0;
+            // 
             // DraftAudioPlayerMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -330,6 +340,7 @@
         private System.Windows.Forms.TrackBar volumeTrackBar;
         private System.Windows.Forms.Label lbTitle;
         private System.Windows.Forms.PictureBox pictCover;
+        private System.Windows.Forms.Label lbArtist;
     }
 }
 
