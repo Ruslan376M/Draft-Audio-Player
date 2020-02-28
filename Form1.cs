@@ -13,6 +13,7 @@ using Syroot.Windows.IO;
 using System.Runtime.InteropServices;
 using NAudio.Wave;
 using NAudio.Wave.SampleProviders;
+using TagLib;
 
 namespace Draft_Audio_Player
 {
@@ -26,18 +27,37 @@ namespace Draft_Audio_Player
         string[] fileNames;
         System.Windows.Forms.Panel[] musicListPanels;
         System.Windows.Forms.Label[] musicListPanelsLabelNames;
+        System.Windows.Forms.Label[] musicListPanelsLabelAlbum;
+        System.Windows.Forms.Label[] musicListPanelsLabelYear;
         System.Windows.Forms.Label[] musicListPanelsLabelDurations;
+        System.Windows.Forms.Label[] musicListPanelsLabelGenre;
         System.Windows.Forms.Button[] musicListPanelsButton;
         System.Windows.Forms.CheckBox[] musicListPanelsCheckBox;
         bool repeatButton = false;
 
 
-        public DraftAudioPlayerMainForm()
+public DraftAudioPlayerMainForm()
         {
             InitializeComponent();
         }
+        private void coverAndTitle()
+        {
+            var tfile = TagLib.File.Create(audioPath);
+            lbTitle.Text = tfile.Tag.Title;
+            lbArtist.Text = tfile.Tag.FirstPerformer;
+            if (tfile.Tag.Pictures.Length >= 1)
+            {
+                var bin = (byte[])(tfile.Tag.Pictures[0].Data.Data);
+                pictCover.Image = System.Drawing.Image.FromStream(new MemoryStream(bin)).GetThumbnailImage(100, 100, null, IntPtr.Zero);
+            }
+            else
+                pictCover.Image = pictCover.ErrorImage;
+        }
+
         private void playButton_Click(object sender, EventArgs e)
         {
+            
+            coverAndTitle();
             if (musicIsPlaying == true)
             {
                 outputDevice.Pause();
@@ -77,6 +97,7 @@ namespace Draft_Audio_Player
             outputDevice.Init(fileReader);
             musicTrackBar.Maximum = fileReader.TotalTime.Minutes * 60 + fileReader.TotalTime.Seconds;
             maximumDuration.Text = fileReader.TotalTime.Minutes.ToString("00") + ":" + fileReader.TotalTime.Seconds.ToString("00");
+
         }
 
         private void timerOfPlayback_Tick(object sender, EventArgs e)
@@ -125,19 +146,25 @@ namespace Draft_Audio_Player
 
                 for (int i = fileNames.Length - 1; i >= 0; i--)
                 {
-                    
+
+                    var tfile = TagLib.File.Create(fileNames[i]);
+                    var duration = tfile.Properties.Duration;
+
                     musicListPanels = new System.Windows.Forms.Panel[fileNames.Length];
                     musicListPanelsLabelNames = new System.Windows.Forms.Label[fileNames.Length];
                     musicListPanelsLabelDurations = new System.Windows.Forms.Label[fileNames.Length];
                     musicListPanelsButton = new System.Windows.Forms.Button[fileNames.Length];
                     musicListPanelsCheckBox = new System.Windows.Forms.CheckBox[fileNames.Length];
+                    musicListPanelsLabelAlbum = new System.Windows.Forms.Label[fileNames.Length];
+                    musicListPanelsLabelYear = new System.Windows.Forms.Label[fileNames.Length];
+                    musicListPanelsLabelGenre = new System.Windows.Forms.Label[fileNames.Length];
 
-                    
+
 
                     musicListPanels[i] = new System.Windows.Forms.Panel();
                     musicListPanels[i].Location = new System.Drawing.Point(0, i*32);
                     musicListPanels[i].Name = "musicListPanel" + i.ToString();
-                    musicListPanels[i].Size = new System.Drawing.Size(panel2.Width-20, 32);
+                    musicListPanels[i].Size = new System.Drawing.Size(panel2.Width, 32);
                     musicListPanels[i].TabIndex = 1;
                     panel2.Controls.Add(musicListPanels[i]);
 
@@ -152,10 +179,10 @@ namespace Draft_Audio_Player
 
                     musicListPanelsLabelNames[i] = new System.Windows.Forms.Label();
                     musicListPanelsLabelNames[i].Location = new System.Drawing.Point(34, 10);
-                    musicListPanelsLabelNames[i].Name = "label1";
+                    musicListPanelsLabelNames[i].Name = "lblName";
                     musicListPanelsLabelNames[i].Size = new System.Drawing.Size(172, 13);
                     musicListPanelsLabelNames[i].TabIndex = 1;
-                    musicListPanelsLabelNames[i].Text = fileNames[i].Substring(fileNames[i].LastIndexOf("\\") + 1);
+                    musicListPanelsLabelNames[i].Text = tfile.Tag.Title;
                     musicListPanels[i].Controls.Add(this.musicListPanelsLabelNames[i]);
 
 
@@ -178,12 +205,37 @@ namespace Draft_Audio_Player
                     musicListPanelsLabelDurations[i] = new System.Windows.Forms.Label();
                     musicListPanelsLabelDurations[i].Location = new System.Drawing.Point(247, 10);
                     musicListPanelsLabelDurations[i].Name = "musicListPanelsLabelNames" + i.ToString();
-                    musicListPanelsLabelDurations[i].Size = new System.Drawing.Size(172, 13);
+                    musicListPanelsLabelDurations[i].Size = new System.Drawing.Size(50, 13);
                     musicListPanelsLabelDurations[i].TabIndex = 3;
-                    musicListPanelsLabelDurations[i].Text = "00:00";
+                    musicListPanelsLabelDurations[i].Text = duration.Minutes.ToString("00") + ":" + duration.Seconds.ToString("00"); 
                     musicListPanels[i].Controls.Add(musicListPanelsLabelDurations[i]);
 
 
+                    musicListPanelsLabelAlbum[i] = new System.Windows.Forms.Label();
+                    musicListPanelsLabelAlbum[i].Location = new System.Drawing.Point(300, 10);
+                    musicListPanelsLabelAlbum[i].Name = "lblAlbum";
+                    musicListPanelsLabelAlbum[i].Size = new System.Drawing.Size(140, 13);
+                    musicListPanelsLabelAlbum[i].TabIndex = 4;
+                    musicListPanelsLabelAlbum[i].Text = tfile.Tag.Album;
+                    musicListPanels[i].Controls.Add(this.musicListPanelsLabelAlbum[i]);
+
+                    musicListPanelsLabelYear[i] = new System.Windows.Forms.Label();
+                    musicListPanelsLabelYear[i].Location = new System.Drawing.Point(440, 10);
+                    musicListPanelsLabelYear[i].Name = "lblYear";
+                    musicListPanelsLabelYear[i].Size = new System.Drawing.Size(50, 13);
+                    musicListPanelsLabelYear[i].TabIndex = 5;
+                    musicListPanelsLabelYear[i].Text = tfile.Tag.Year.ToString();
+                    musicListPanels[i].Controls.Add(this.musicListPanelsLabelYear[i]);
+
+                    musicListPanelsLabelGenre[i] = new System.Windows.Forms.Label();
+                    musicListPanelsLabelGenre[i].Location = new System.Drawing.Point(490, 10);
+                    musicListPanelsLabelGenre[i].Name = "lblGenre";
+                    musicListPanelsLabelGenre[i].Size = new System.Drawing.Size(140, 13);
+                    musicListPanelsLabelGenre[i].TabIndex = 6;
+                    musicListPanelsLabelGenre[i].Text = tfile.Tag.Genres.FirstOrDefault();
+                    if (musicListPanelsLabelGenre[i].Text == "")
+                        musicListPanelsLabelGenre[i].Text = "  ---  ";
+                    musicListPanels[i].Controls.Add(this.musicListPanelsLabelGenre[i]);
 
                 }
             }
@@ -262,6 +314,7 @@ namespace Draft_Audio_Player
                     else
                     {
                         audioPath = fileNames[i - 1];
+                        coverAndTitle();
                         break;
                     }
             }
@@ -296,6 +349,7 @@ namespace Draft_Audio_Player
                     else
                     {
                         audioPath = fileNames[i + 1];
+                        coverAndTitle();
                         break;
                     }
             }

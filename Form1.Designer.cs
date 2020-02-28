@@ -34,7 +34,9 @@
             this.getFileNameButton = new System.Windows.Forms.Button();
             this.directoryChooseButton = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.pictCover = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lbTitle = new System.Windows.Forms.Label();
             this.volumePercentLabel = new System.Windows.Forms.Label();
             this.volumeTrackBar = new System.Windows.Forms.TrackBar();
             this.maximumDuration = new System.Windows.Forms.Label();
@@ -48,11 +50,12 @@
             this.timerOfPlayback = new System.Windows.Forms.Timer(this.components);
             this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-
+            this.lbArtist = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitNavigation)).BeginInit();
             this.splitNavigation.Panel1.SuspendLayout();
             this.splitNavigation.Panel2.SuspendLayout();
             this.splitNavigation.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictCover)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.volumeTrackBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.musicTrackBar)).BeginInit();
@@ -62,7 +65,8 @@
             // 
             this.splitNavigation.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.splitNavigation.Location = new System.Drawing.Point(2, 0);
+            this.splitNavigation.Location = new System.Drawing.Point(1, 0);
+            this.splitNavigation.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.splitNavigation.Name = "splitNavigation";
             // 
             // splitNavigation.Panel1
@@ -74,7 +78,7 @@
             // 
             this.splitNavigation.Panel2.Controls.Add(this.panel2);
             this.splitNavigation.Size = new System.Drawing.Size(883, 567);
-            this.splitNavigation.SplitterDistance = 262;
+            this.splitNavigation.SplitterDistance = 261;
             this.splitNavigation.TabIndex = 0;
             // 
             // getFileNameButton
@@ -112,10 +116,23 @@
             this.panel2.TabIndex = 0;
             this.panel2.Scroll += new System.Windows.Forms.ScrollEventHandler(this.panel2_Scroll);
             // 
+            // pictCover
+            // 
+            this.pictCover.ErrorImage = ((System.Drawing.Image)(resources.GetObject("pictCover.ErrorImage")));
+            this.pictCover.Location = new System.Drawing.Point(9, 10);
+            this.pictCover.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictCover.Name = "pictCover";
+            this.pictCover.Size = new System.Drawing.Size(67, 67);
+            this.pictCover.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictCover.TabIndex = 10;
+            this.pictCover.TabStop = false;
+            // 
             // panel1
             // 
-            
+            this.panel1.Controls.Add(this.lbArtist);
+            this.panel1.Controls.Add(this.lbTitle);
             this.panel1.Controls.Add(this.volumePercentLabel);
+            this.panel1.Controls.Add(this.pictCover);
             this.panel1.Controls.Add(this.volumeTrackBar);
             this.panel1.Controls.Add(this.maximumDuration);
             this.panel1.Controls.Add(this.durationOfPlayback);
@@ -128,6 +145,16 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(883, 87);
             this.panel1.TabIndex = 1;
+            // 
+            // lbTitle
+            // 
+            this.lbTitle.AutoSize = true;
+            this.lbTitle.Location = new System.Drawing.Point(81, 35);
+            this.lbTitle.Name = "lbTitle";
+            this.lbTitle.Size = new System.Drawing.Size(0, 13);
+            this.lbTitle.TabIndex = 9;
+            this.lbTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lbTitle.UseWaitCursor = true;
             // 
             // volumePercentLabel
             // 
@@ -259,6 +286,14 @@
             
             
             // 
+            // lbArtist
+            // 
+            this.lbArtist.AutoSize = true;
+            this.lbArtist.Location = new System.Drawing.Point(81, 54);
+            this.lbArtist.Name = "lbArtist";
+            this.lbArtist.Size = new System.Drawing.Size(0, 13);
+            this.lbArtist.TabIndex = 0;
+            // 
             // DraftAudioPlayerMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -276,6 +311,7 @@
             this.splitNavigation.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitNavigation)).EndInit();
             this.splitNavigation.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictCover)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.volumeTrackBar)).EndInit();
@@ -304,7 +340,9 @@
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.Label volumePercentLabel;
         private System.Windows.Forms.TrackBar volumeTrackBar;
-        
+        private System.Windows.Forms.Label lbTitle;
+        private System.Windows.Forms.PictureBox pictCover;
+        private System.Windows.Forms.Label lbArtist;
     }
 }
 
