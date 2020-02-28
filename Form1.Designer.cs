@@ -31,10 +31,10 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DraftAudioPlayerMainForm));
             this.splitNavigation = new System.Windows.Forms.SplitContainer();
-            this.pictCover = new System.Windows.Forms.PictureBox();
             this.getFileNameButton = new System.Windows.Forms.Button();
             this.directoryChooseButton = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.pictCover = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lbTitle = new System.Windows.Forms.Label();
             this.volumePercentLabel = new System.Windows.Forms.Label();
@@ -50,7 +50,7 @@
             this.timerOfPlayback = new System.Windows.Forms.Timer(this.components);
             this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.saveplaylist = new System.Windows.Forms.Button();
+            this.lbArtist = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitNavigation)).BeginInit();
             this.splitNavigation.Panel1.SuspendLayout();
             this.splitNavigation.Panel2.SuspendLayout();
@@ -65,13 +65,12 @@
             // 
             this.splitNavigation.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.splitNavigation.Location = new System.Drawing.Point(2, 0);
+            this.splitNavigation.Location = new System.Drawing.Point(1, 0);
+            this.splitNavigation.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.splitNavigation.Name = "splitNavigation";
             // 
             // splitNavigation.Panel1
             // 
-            this.splitNavigation.Panel1.Controls.Add(this.saveplaylist);
-            this.splitNavigation.Panel1.Controls.Add(this.pictCover);
             this.splitNavigation.Panel1.Controls.Add(this.getFileNameButton);
             this.splitNavigation.Panel1.Controls.Add(this.directoryChooseButton);
             // 
@@ -81,15 +80,6 @@
             this.splitNavigation.Size = new System.Drawing.Size(883, 567);
             this.splitNavigation.SplitterDistance = 261;
             this.splitNavigation.TabIndex = 0;
-            // 
-            // pictCover
-            // 
-            this.pictCover.ErrorImage = null;
-            this.pictCover.Location = new System.Drawing.Point(87, 235);
-            this.pictCover.Name = "pictCover";
-            this.pictCover.Size = new System.Drawing.Size(100, 100);
-            this.pictCover.TabIndex = 10;
-            this.pictCover.TabStop = false;
             // 
             // getFileNameButton
             // 
@@ -126,10 +116,23 @@
             this.panel2.TabIndex = 0;
             this.panel2.Scroll += new System.Windows.Forms.ScrollEventHandler(this.panel2_Scroll);
             // 
+            // pictCover
+            // 
+            this.pictCover.ErrorImage = ((System.Drawing.Image)(resources.GetObject("pictCover.ErrorImage")));
+            this.pictCover.Location = new System.Drawing.Point(9, 10);
+            this.pictCover.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictCover.Name = "pictCover";
+            this.pictCover.Size = new System.Drawing.Size(67, 67);
+            this.pictCover.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictCover.TabIndex = 10;
+            this.pictCover.TabStop = false;
+            // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.lbArtist);
             this.panel1.Controls.Add(this.lbTitle);
             this.panel1.Controls.Add(this.volumePercentLabel);
+            this.panel1.Controls.Add(this.pictCover);
             this.panel1.Controls.Add(this.volumeTrackBar);
             this.panel1.Controls.Add(this.maximumDuration);
             this.panel1.Controls.Add(this.durationOfPlayback);
@@ -146,7 +149,7 @@
             // lbTitle
             // 
             this.lbTitle.AutoSize = true;
-            this.lbTitle.Location = new System.Drawing.Point(20, 5);
+            this.lbTitle.Location = new System.Drawing.Point(81, 35);
             this.lbTitle.Name = "lbTitle";
             this.lbTitle.Size = new System.Drawing.Size(0, 13);
             this.lbTitle.TabIndex = 9;
@@ -280,24 +283,23 @@
             // folderBrowserDialog
             // 
             this.folderBrowserDialog.Description = "Выберите папку с музыкой";
+            
+            
             // 
-            // saveplaylist
+            // lbArtist
             // 
-            this.saveplaylist.BackColor = System.Drawing.Color.Teal;
-            this.saveplaylist.Location = new System.Drawing.Point(73, 407);
-            this.saveplaylist.Name = "saveplaylist";
-            this.saveplaylist.Size = new System.Drawing.Size(131, 23);
-            this.saveplaylist.TabIndex = 11;
-            this.saveplaylist.Text = "Save current playlist";
-            this.saveplaylist.UseVisualStyleBackColor = false;
-            this.saveplaylist.Click += new System.EventHandler(this.saveplaylist_Click);
+            this.lbArtist.AutoSize = true;
+            this.lbArtist.Location = new System.Drawing.Point(81, 54);
+            this.lbArtist.Name = "lbArtist";
+            this.lbArtist.Size = new System.Drawing.Size(0, 13);
+            this.lbArtist.TabIndex = 0;
             // 
             // DraftAudioPlayerMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(884, 573);
+            this.ClientSize = new System.Drawing.Size(884, 661);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.splitNavigation);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -315,7 +317,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.volumeTrackBar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.musicTrackBar)).EndInit();
             this.ResumeLayout(false);
-
         }
 
         #endregion
@@ -340,7 +341,7 @@
         private System.Windows.Forms.TrackBar volumeTrackBar;
         private System.Windows.Forms.Label lbTitle;
         private System.Windows.Forms.PictureBox pictCover;
-        private System.Windows.Forms.Button saveplaylist;
+        private System.Windows.Forms.Label lbArtist;
     }
 }
 
