@@ -27,6 +27,8 @@ namespace Draft_Audio_Player
         string[] fileNames;
         System.Windows.Forms.Panel[] musicListPanels;
         System.Windows.Forms.Label[] musicListPanelsLabelNames;
+        System.Windows.Forms.Label[] musicListPanelsLabelAlbum;
+        System.Windows.Forms.Label[] musicListPanelsLabelYear;
         System.Windows.Forms.Label[] musicListPanelsLabelDurations;
         System.Windows.Forms.Button[] musicListPanelsButton;
         System.Windows.Forms.CheckBox[] musicListPanelsCheckBox;
@@ -46,6 +48,7 @@ public DraftAudioPlayerMainForm()
                 var bin = (byte[])(tfile.Tag.Pictures[0].Data.Data);
                 pictCover.Image = System.Drawing.Image.FromStream(new MemoryStream(bin)).GetThumbnailImage(100, 100, null, IntPtr.Zero);
             }
+                
 
             if (musicIsPlaying == true)
             {
@@ -135,19 +138,23 @@ public DraftAudioPlayerMainForm()
 
                 for (int i = fileNames.Length - 1; i >= 0; i--)
                 {
+
+                    var tfile = TagLib.File.Create(fileNames[i]);
                     
                     musicListPanels = new System.Windows.Forms.Panel[fileNames.Length];
                     musicListPanelsLabelNames = new System.Windows.Forms.Label[fileNames.Length];
                     musicListPanelsLabelDurations = new System.Windows.Forms.Label[fileNames.Length];
                     musicListPanelsButton = new System.Windows.Forms.Button[fileNames.Length];
                     musicListPanelsCheckBox = new System.Windows.Forms.CheckBox[fileNames.Length];
+                    musicListPanelsLabelAlbum = new System.Windows.Forms.Label[fileNames.Length];
+                    musicListPanelsLabelYear = new System.Windows.Forms.Label[fileNames.Length];
 
-                    
+
 
                     musicListPanels[i] = new System.Windows.Forms.Panel();
                     musicListPanels[i].Location = new System.Drawing.Point(0, i*32);
                     musicListPanels[i].Name = "musicListPanel" + i.ToString();
-                    musicListPanels[i].Size = new System.Drawing.Size(panel2.Width-20, 32);
+                    musicListPanels[i].Size = new System.Drawing.Size(panel2.Width, 32);
                     musicListPanels[i].TabIndex = 1;
                     panel2.Controls.Add(musicListPanels[i]);
 
@@ -165,7 +172,7 @@ public DraftAudioPlayerMainForm()
                     musicListPanelsLabelNames[i].Name = "label1";
                     musicListPanelsLabelNames[i].Size = new System.Drawing.Size(172, 13);
                     musicListPanelsLabelNames[i].TabIndex = 1;
-                    musicListPanelsLabelNames[i].Text = fileNames[i].Substring(fileNames[i].LastIndexOf("\\") + 1);
+                    musicListPanelsLabelNames[i].Text = tfile.Tag.Title;
                     musicListPanels[i].Controls.Add(this.musicListPanelsLabelNames[i]);
 
 
@@ -188,11 +195,27 @@ public DraftAudioPlayerMainForm()
                     musicListPanelsLabelDurations[i] = new System.Windows.Forms.Label();
                     musicListPanelsLabelDurations[i].Location = new System.Drawing.Point(247, 10);
                     musicListPanelsLabelDurations[i].Name = "musicListPanelsLabelNames" + i.ToString();
-                    musicListPanelsLabelDurations[i].Size = new System.Drawing.Size(172, 13);
+                    musicListPanelsLabelDurations[i].Size = new System.Drawing.Size(50, 13);
                     musicListPanelsLabelDurations[i].TabIndex = 3;
                     musicListPanelsLabelDurations[i].Text = "00:00";
                     musicListPanels[i].Controls.Add(musicListPanelsLabelDurations[i]);
 
+
+                    musicListPanelsLabelAlbum[i] = new System.Windows.Forms.Label();
+                    musicListPanelsLabelAlbum[i].Location = new System.Drawing.Point(300, 10);
+                    musicListPanelsLabelAlbum[i].Name = "label2";
+                    musicListPanelsLabelAlbum[i].Size = new System.Drawing.Size(172, 13);
+                    musicListPanelsLabelAlbum[i].TabIndex = 4;
+                    musicListPanelsLabelAlbum[i].Text = tfile.Tag.Album;
+                    musicListPanels[i].Controls.Add(this.musicListPanelsLabelAlbum[i]);
+
+                    musicListPanelsLabelYear[i] = new System.Windows.Forms.Label();
+                    musicListPanelsLabelYear[i].Location = new System.Drawing.Point(475, 10);
+                    musicListPanelsLabelYear[i].Name = "label3";
+                    musicListPanelsLabelYear[i].Size = new System.Drawing.Size(40, 13);
+                    musicListPanelsLabelYear[i].TabIndex = 5;
+                    musicListPanelsLabelYear[i].Text = tfile.Tag.Year.ToString();
+                    musicListPanels[i].Controls.Add(this.musicListPanelsLabelYear[i]);
 
 
                 }
