@@ -31,10 +31,10 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DraftAudioPlayerMainForm));
             this.splitNavigation = new System.Windows.Forms.SplitContainer();
-            this.pictCover = new System.Windows.Forms.PictureBox();
             this.getFileNameButton = new System.Windows.Forms.Button();
             this.directoryChooseButton = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.pictCover = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lbTitle = new System.Windows.Forms.Label();
             this.volumePercentLabel = new System.Windows.Forms.Label();
@@ -64,43 +64,30 @@
             // 
             this.splitNavigation.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.splitNavigation.Location = new System.Drawing.Point(3, 0);
-            this.splitNavigation.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.splitNavigation.Location = new System.Drawing.Point(1, 0);
+            this.splitNavigation.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.splitNavigation.Name = "splitNavigation";
             // 
             // splitNavigation.Panel1
             // 
-            this.splitNavigation.Panel1.Controls.Add(this.pictCover);
             this.splitNavigation.Panel1.Controls.Add(this.getFileNameButton);
             this.splitNavigation.Panel1.Controls.Add(this.directoryChooseButton);
             // 
             // splitNavigation.Panel2
             // 
             this.splitNavigation.Panel2.Controls.Add(this.panel2);
-            this.splitNavigation.Size = new System.Drawing.Size(1324, 872);
-            this.splitNavigation.SplitterDistance = 392;
-            this.splitNavigation.SplitterWidth = 6;
+            this.splitNavigation.Size = new System.Drawing.Size(883, 567);
+            this.splitNavigation.SplitterDistance = 261;
             this.splitNavigation.TabIndex = 0;
-            // 
-            // pictCover
-            // 
-            this.pictCover.ErrorImage = null;
-            this.pictCover.Location = new System.Drawing.Point(130, 362);
-            this.pictCover.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.pictCover.Name = "pictCover";
-            this.pictCover.Size = new System.Drawing.Size(150, 154);
-            this.pictCover.TabIndex = 10;
-            this.pictCover.TabStop = false;
             // 
             // getFileNameButton
             // 
             this.getFileNameButton.BackColor = System.Drawing.Color.Teal;
             this.getFileNameButton.FlatAppearance.BorderSize = 0;
             this.getFileNameButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.getFileNameButton.Location = new System.Drawing.Point(168, 705);
-            this.getFileNameButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.getFileNameButton.Location = new System.Drawing.Point(112, 458);
             this.getFileNameButton.Name = "getFileNameButton";
-            this.getFileNameButton.Size = new System.Drawing.Size(112, 35);
+            this.getFileNameButton.Size = new System.Drawing.Size(75, 23);
             this.getFileNameButton.TabIndex = 0;
             this.getFileNameButton.Text = "Choose File";
             this.getFileNameButton.UseVisualStyleBackColor = false;
@@ -111,10 +98,9 @@
             this.directoryChooseButton.BackColor = System.Drawing.Color.Teal;
             this.directoryChooseButton.FlatAppearance.BorderSize = 0;
             this.directoryChooseButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.directoryChooseButton.Location = new System.Drawing.Point(110, 580);
-            this.directoryChooseButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.directoryChooseButton.Location = new System.Drawing.Point(73, 377);
             this.directoryChooseButton.Name = "directoryChooseButton";
-            this.directoryChooseButton.Size = new System.Drawing.Size(196, 35);
+            this.directoryChooseButton.Size = new System.Drawing.Size(131, 23);
             this.directoryChooseButton.TabIndex = 1;
             this.directoryChooseButton.Text = "Choose Directory";
             this.directoryChooseButton.UseVisualStyleBackColor = false;
@@ -123,17 +109,28 @@
             // panel2
             // 
             this.panel2.AutoScroll = true;
-            this.panel2.Location = new System.Drawing.Point(26, 46);
-            this.panel2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.panel2.Location = new System.Drawing.Point(17, 30);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(880, 797);
+            this.panel2.Size = new System.Drawing.Size(587, 518);
             this.panel2.TabIndex = 0;
             this.panel2.Scroll += new System.Windows.Forms.ScrollEventHandler(this.panel2_Scroll);
+            // 
+            // pictCover
+            // 
+            this.pictCover.ErrorImage = ((System.Drawing.Image)(resources.GetObject("pictCover.ErrorImage")));
+            this.pictCover.Location = new System.Drawing.Point(9, 10);
+            this.pictCover.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictCover.Name = "pictCover";
+            this.pictCover.Size = new System.Drawing.Size(67, 67);
+            this.pictCover.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictCover.TabIndex = 10;
+            this.pictCover.TabStop = false;
             // 
             // panel1
             // 
             this.panel1.Controls.Add(this.lbTitle);
             this.panel1.Controls.Add(this.volumePercentLabel);
+            this.panel1.Controls.Add(this.pictCover);
             this.panel1.Controls.Add(this.volumeTrackBar);
             this.panel1.Controls.Add(this.maximumDuration);
             this.panel1.Controls.Add(this.durationOfPlayback);
@@ -142,19 +139,17 @@
             this.panel1.Controls.Add(this.previousButton);
             this.panel1.Controls.Add(this.nextButton);
             this.panel1.Controls.Add(this.playButton);
-            this.panel1.Location = new System.Drawing.Point(3, 882);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.panel1.Location = new System.Drawing.Point(2, 573);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1324, 134);
+            this.panel1.Size = new System.Drawing.Size(883, 87);
             this.panel1.TabIndex = 1;
             // 
             // lbTitle
             // 
             this.lbTitle.AutoSize = true;
-            this.lbTitle.Location = new System.Drawing.Point(30, 8);
-            this.lbTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbTitle.Location = new System.Drawing.Point(81, 35);
             this.lbTitle.Name = "lbTitle";
-            this.lbTitle.Size = new System.Drawing.Size(0, 20);
+            this.lbTitle.Size = new System.Drawing.Size(0, 13);
             this.lbTitle.TabIndex = 9;
             this.lbTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lbTitle.UseWaitCursor = true;
@@ -162,21 +157,19 @@
             // volumePercentLabel
             // 
             this.volumePercentLabel.AutoSize = true;
-            this.volumePercentLabel.Location = new System.Drawing.Point(1054, 60);
-            this.volumePercentLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.volumePercentLabel.Location = new System.Drawing.Point(703, 39);
             this.volumePercentLabel.Name = "volumePercentLabel";
-            this.volumePercentLabel.Size = new System.Drawing.Size(50, 20);
+            this.volumePercentLabel.Size = new System.Drawing.Size(33, 13);
             this.volumePercentLabel.TabIndex = 8;
             this.volumePercentLabel.Text = "100%";
             // 
             // volumeTrackBar
             // 
             this.volumeTrackBar.BackColor = System.Drawing.Color.White;
-            this.volumeTrackBar.Location = new System.Drawing.Point(1114, 48);
-            this.volumeTrackBar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.volumeTrackBar.Location = new System.Drawing.Point(743, 31);
             this.volumeTrackBar.Maximum = 100;
             this.volumeTrackBar.Name = "volumeTrackBar";
-            this.volumeTrackBar.Size = new System.Drawing.Size(190, 69);
+            this.volumeTrackBar.Size = new System.Drawing.Size(127, 45);
             this.volumeTrackBar.TabIndex = 7;
             this.volumeTrackBar.TickStyle = System.Windows.Forms.TickStyle.None;
             this.volumeTrackBar.Value = 100;
@@ -185,20 +178,18 @@
             // maximumDuration
             // 
             this.maximumDuration.AutoSize = true;
-            this.maximumDuration.Location = new System.Drawing.Point(956, 60);
-            this.maximumDuration.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.maximumDuration.Location = new System.Drawing.Point(637, 39);
             this.maximumDuration.Name = "maximumDuration";
-            this.maximumDuration.Size = new System.Drawing.Size(49, 20);
+            this.maximumDuration.Size = new System.Drawing.Size(34, 13);
             this.maximumDuration.TabIndex = 6;
             this.maximumDuration.Text = "00:00";
             // 
             // durationOfPlayback
             // 
             this.durationOfPlayback.AutoSize = true;
-            this.durationOfPlayback.Location = new System.Drawing.Point(312, 60);
-            this.durationOfPlayback.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.durationOfPlayback.Location = new System.Drawing.Point(208, 39);
             this.durationOfPlayback.Name = "durationOfPlayback";
-            this.durationOfPlayback.Size = new System.Drawing.Size(49, 20);
+            this.durationOfPlayback.Size = new System.Drawing.Size(34, 13);
             this.durationOfPlayback.TabIndex = 5;
             this.durationOfPlayback.Text = "00:00";
             // 
@@ -210,10 +201,9 @@
             this.cycleButton.FlatAppearance.BorderSize = 0;
             this.cycleButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cycleButton.Font = new System.Drawing.Font("Segoe MDL2 Assets", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cycleButton.Location = new System.Drawing.Point(742, 8);
-            this.cycleButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.cycleButton.Location = new System.Drawing.Point(495, 5);
             this.cycleButton.Name = "cycleButton";
-            this.cycleButton.Size = new System.Drawing.Size(45, 46);
+            this.cycleButton.Size = new System.Drawing.Size(30, 30);
             this.cycleButton.TabIndex = 4;
             this.cycleButton.Text = "\r\n";
             this.cycleButton.UseVisualStyleBackColor = false;
@@ -222,11 +212,10 @@
             // musicTrackBar
             // 
             this.musicTrackBar.LargeChange = 1;
-            this.musicTrackBar.Location = new System.Drawing.Point(374, 60);
-            this.musicTrackBar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.musicTrackBar.Location = new System.Drawing.Point(249, 39);
             this.musicTrackBar.Maximum = 50;
             this.musicTrackBar.Name = "musicTrackBar";
-            this.musicTrackBar.Size = new System.Drawing.Size(573, 69);
+            this.musicTrackBar.Size = new System.Drawing.Size(382, 45);
             this.musicTrackBar.TabIndex = 3;
             this.musicTrackBar.Scroll += new System.EventHandler(this.musicTrackBar_Scroll);
             this.musicTrackBar.MouseUp += new System.Windows.Forms.MouseEventHandler(this.musicTrackBar_MouseUp);
@@ -239,10 +228,9 @@
             this.previousButton.FlatAppearance.BorderSize = 0;
             this.previousButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.previousButton.Font = new System.Drawing.Font("Segoe MDL2 Assets", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.previousButton.Location = new System.Drawing.Point(598, 5);
-            this.previousButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.previousButton.Location = new System.Drawing.Point(399, 3);
             this.previousButton.Name = "previousButton";
-            this.previousButton.Size = new System.Drawing.Size(45, 46);
+            this.previousButton.Size = new System.Drawing.Size(30, 30);
             this.previousButton.TabIndex = 2;
             this.previousButton.Text = "\r\n";
             this.previousButton.UseVisualStyleBackColor = false;
@@ -256,10 +244,9 @@
             this.nextButton.FlatAppearance.BorderSize = 0;
             this.nextButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.nextButton.Font = new System.Drawing.Font("Segoe MDL2 Assets", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nextButton.Location = new System.Drawing.Point(688, 5);
-            this.nextButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.nextButton.Location = new System.Drawing.Point(459, 3);
             this.nextButton.Name = "nextButton";
-            this.nextButton.Size = new System.Drawing.Size(45, 46);
+            this.nextButton.Size = new System.Drawing.Size(30, 30);
             this.nextButton.TabIndex = 1;
             this.nextButton.Text = "\r\n";
             this.nextButton.UseVisualStyleBackColor = false;
@@ -273,10 +260,9 @@
             this.playButton.FlatAppearance.BorderSize = 0;
             this.playButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.playButton.Font = new System.Drawing.Font("Segoe MDL2 Assets", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.playButton.Location = new System.Drawing.Point(644, 5);
-            this.playButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.playButton.Location = new System.Drawing.Point(429, 3);
             this.playButton.Name = "playButton";
-            this.playButton.Size = new System.Drawing.Size(45, 46);
+            this.playButton.Size = new System.Drawing.Size(30, 30);
             this.playButton.TabIndex = 0;
             this.playButton.Text = "";
             this.playButton.UseVisualStyleBackColor = false;
@@ -298,15 +284,14 @@
             // 
             // DraftAudioPlayerMainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1326, 1017);
+            this.ClientSize = new System.Drawing.Size(884, 661);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.splitNavigation);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MaximizeBox = false;
             this.Name = "DraftAudioPlayerMainForm";
             this.Text = "Draft Audio Player";
