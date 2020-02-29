@@ -34,6 +34,7 @@ namespace Draft_Audio_Player
         System.Windows.Forms.Button[] musicListPanelsButton;
         System.Windows.Forms.CheckBox[] musicListPanelsCheckBox;
         bool repeatButton = false;
+        bool randButton = false;
 
 
 public DraftAudioPlayerMainForm()
@@ -104,7 +105,7 @@ public DraftAudioPlayerMainForm()
         {
             musicTrackBar.Value = fileReader.CurrentTime.Minutes * 60 + fileReader.CurrentTime.Seconds;
             durationOfPlayback.Text = fileReader.CurrentTime.Minutes.ToString("00") + ":" + fileReader.CurrentTime.Seconds.ToString("00");
-            if (((fileReader.CurrentTime.Seconds + fileReader.CurrentTime.Minutes*60) == (fileReader.TotalTime.Minutes *60 + fileReader.TotalTime.Seconds)) && repeatButton == true)
+            if (((fileReader.CurrentTime.Seconds + fileReader.CurrentTime.Minutes * 60) == (fileReader.TotalTime.Minutes * 60 + fileReader.TotalTime.Seconds)) && repeatButton == true)
             {
                 durationOfPlayback.Text = "00:00";
                 musicTrackBar.Value = 0;
@@ -116,7 +117,9 @@ public DraftAudioPlayerMainForm()
                 musicIsPlaying = true;
                 timerOfPlayback.Enabled = true;
             }
-        }
+            if (((fileReader.CurrentTime.Seconds + fileReader.CurrentTime.Minutes * 60) == (fileReader.TotalTime.Minutes * 60 + fileReader.TotalTime.Seconds)) && repeatButton == false)
+                forwardButton_Click(sender, e);
+         }    
 
         private void musicTrackBar_MouseUp(object sender, MouseEventArgs e)
         {
@@ -385,7 +388,6 @@ public DraftAudioPlayerMainForm()
         {
             using (StreamWriter sw = new StreamWriter(playlistFile))
             {
-                string s;
                 sw.WriteLine("#EXTM3U");
                 for (int i = 0; i <= fileNames.Length - 1; i++)
                 {
@@ -400,6 +402,20 @@ public DraftAudioPlayerMainForm()
                     sw.WriteLine(fileNames[i]);
                     
                 }
+            }
+        }
+
+        private void randomButton_Click(object sender, EventArgs e)
+        {
+            if (randButton == false)
+            {
+                randButton = true;
+                randomButton.BackColor = Color.Red;
+            }
+            else
+            {
+                randButton = false;
+                randomButton.BackColor = Color.White;
             }
         }
     }   
