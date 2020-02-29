@@ -36,6 +36,8 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.pictCover = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.randomButton = new System.Windows.Forms.Button();
+            this.lbArtist = new System.Windows.Forms.Label();
             this.lbTitle = new System.Windows.Forms.Label();
             this.volumePercentLabel = new System.Windows.Forms.Label();
             this.volumeTrackBar = new System.Windows.Forms.TrackBar();
@@ -50,7 +52,6 @@
             this.timerOfPlayback = new System.Windows.Forms.Timer(this.components);
             this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.lbArtist = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitNavigation)).BeginInit();
             this.splitNavigation.Panel1.SuspendLayout();
             this.splitNavigation.Panel2.SuspendLayout();
@@ -66,7 +67,7 @@
             this.splitNavigation.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.splitNavigation.Location = new System.Drawing.Point(1, 0);
-            this.splitNavigation.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.splitNavigation.Margin = new System.Windows.Forms.Padding(2);
             this.splitNavigation.Name = "splitNavigation";
             // 
             // splitNavigation.Panel1
@@ -120,7 +121,7 @@
             // 
             this.pictCover.ErrorImage = ((System.Drawing.Image)(resources.GetObject("pictCover.ErrorImage")));
             this.pictCover.Location = new System.Drawing.Point(9, 10);
-            this.pictCover.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictCover.Margin = new System.Windows.Forms.Padding(2);
             this.pictCover.Name = "pictCover";
             this.pictCover.Size = new System.Drawing.Size(67, 67);
             this.pictCover.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -129,6 +130,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.randomButton);
             this.panel1.Controls.Add(this.lbArtist);
             this.panel1.Controls.Add(this.lbTitle);
             this.panel1.Controls.Add(this.volumePercentLabel);
@@ -145,6 +147,30 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(883, 87);
             this.panel1.TabIndex = 1;
+            // 
+            // randomButton
+            // 
+            this.randomButton.BackColor = System.Drawing.Color.Transparent;
+            this.randomButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.randomButton.FlatAppearance.BorderColor = System.Drawing.SystemColors.ActiveCaption;
+            this.randomButton.FlatAppearance.BorderSize = 0;
+            this.randomButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.randomButton.Font = new System.Drawing.Font("Segoe MDL2 Assets", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.randomButton.Location = new System.Drawing.Point(531, 3);
+            this.randomButton.Name = "randomButton";
+            this.randomButton.Size = new System.Drawing.Size(30, 30);
+            this.randomButton.TabIndex = 11;
+            this.randomButton.Text = "\r\n";
+            this.randomButton.UseVisualStyleBackColor = false;
+            this.randomButton.Click += new System.EventHandler(this.randomButton_Click);
+            // 
+            // lbArtist
+            // 
+            this.lbArtist.AutoSize = true;
+            this.lbArtist.Location = new System.Drawing.Point(81, 54);
+            this.lbArtist.Name = "lbArtist";
+            this.lbArtist.Size = new System.Drawing.Size(0, 13);
+            this.lbArtist.TabIndex = 0;
             // 
             // lbTitle
             // 
@@ -283,16 +309,6 @@
             // folderBrowserDialog
             // 
             this.folderBrowserDialog.Description = "Выберите папку с музыкой";
-            
-            
-            // 
-            // lbArtist
-            // 
-            this.lbArtist.AutoSize = true;
-            this.lbArtist.Location = new System.Drawing.Point(81, 54);
-            this.lbArtist.Name = "lbArtist";
-            this.lbArtist.Size = new System.Drawing.Size(0, 13);
-            this.lbArtist.TabIndex = 0;
             // 
             // DraftAudioPlayerMainForm
             // 
@@ -343,6 +359,7 @@
         private System.Windows.Forms.Label lbTitle;
         private System.Windows.Forms.PictureBox pictCover;
         private System.Windows.Forms.Label lbArtist;
+        private System.Windows.Forms.Button randomButton;
     }
 }
 
