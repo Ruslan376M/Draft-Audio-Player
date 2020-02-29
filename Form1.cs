@@ -368,39 +368,6 @@ public DraftAudioPlayerMainForm()
             timerOfPlayback.Enabled = true;
         }
 
-        private void saveplaylist_Click( object sender, EventArgs e)
-        {
-            SaveFileDialog save = new SaveFileDialog();
-            save.Title = "Save playlist";
-            save.Filter = "(*.m3u)|*.m3u";
-            save.RestoreDirectory = true;
-            if (save.ShowDialog() == DialogResult.OK)
-            {
-                int kolvo = fileNames.Length - 1;
-                SavePlaylist(save.FileName, kolvo);
-            }
-
-        }
-        private void SavePlaylist(string playlistFile, int kolvo)
-        {
-            using (StreamWriter sw = new StreamWriter(playlistFile))
-            {
-                string s;
-                sw.WriteLine("#EXTM3U");
-                for (int i = 0; i <= fileNames.Length - 1; i++)
-                {
-                    var tfile = TagLib.File.Create(fileNames[i]);
-                    var duration = tfile.Properties.Duration;
-                    sw.Write("#EXTINF:");
-                    sw.Write((duration.Minutes*60) + duration.Seconds);
-                    sw.Write(",");
-                    sw.Write(tfile.Tag.FirstPerformer);
-                    sw.Write(" - ");
-                    sw.WriteLine(tfile.Tag.Title);                   
-                    sw.WriteLine(fileNames[i]);
-                    
-                }
-            }
-        }
+        
     }   
 }

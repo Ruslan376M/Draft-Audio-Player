@@ -317,6 +317,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.volumeTrackBar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.musicTrackBar)).EndInit();
             this.ResumeLayout(false);
+
         }
 
         #endregion
