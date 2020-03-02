@@ -29,43 +29,50 @@ namespace Draft_Audio_Player_New_Design
         public static List<string> fileQueue = new List<string>();
 
         //Создание плейлиста с названием name
-        public static void createPlayList(string name)
+        public static async void createPlayList(string name)
         {
-            System.IO.File.Delete(musicFolderPath + "\\" + name + ".m3u");
-            StreamWriter writerOfM3UFile = new StreamWriter(musicFolderPath + "\\" + name + ".m3u");
-            writerOfM3UFile.WriteLine("#EXTM3U");
-            for (int i = 0; i < fileQueue.Count; i++) 
+            await Task.Run(() =>
             {
-                TagLib.File tagFile = TagLib.File.Create(musicFolderPath + "\\" + fileQueue[i]);
-                System.TimeSpan duration = tagFile.Properties.Duration;
-                writerOfM3UFile.Write("#EXTINF: ");
-                writerOfM3UFile.Write((duration.Minutes * 60) + duration.Seconds);
-                writerOfM3UFile.Write(",");
-                writerOfM3UFile.Write(tagFile.Tag.FirstPerformer);
-                writerOfM3UFile.Write(" - ");
-                writerOfM3UFile.WriteLine(tagFile.Tag.Title);
-                writerOfM3UFile.WriteLine(musicFolderPath + "\\" + fileQueue[i]);
-            }
-            writerOfM3UFile.Close();
+                System.IO.File.Delete(musicFolderPath + "\\" + name + ".m3u");
+                StreamWriter writerOfM3UFile = new StreamWriter(musicFolderPath + "\\" + name + ".m3u");
+                writerOfM3UFile.WriteLine("#EXTM3U");
+                for (int i = 0; i < fileQueue.Count; i++)
+                {
+                    TagLib.File tagFile = TagLib.File.Create(musicFolderPath + "\\" + fileQueue[i]);
+                    System.TimeSpan duration = tagFile.Properties.Duration;
+                    writerOfM3UFile.Write("#EXTINF: ");
+                    writerOfM3UFile.Write((duration.Minutes * 60) + duration.Seconds);
+                    writerOfM3UFile.Write(",");
+                    writerOfM3UFile.Write(tagFile.Tag.FirstPerformer);
+                    writerOfM3UFile.Write(" - ");
+                    writerOfM3UFile.WriteLine(tagFile.Tag.Title);
+                    writerOfM3UFile.WriteLine(musicFolderPath + "\\" + fileQueue[i]);
+                }
+                writerOfM3UFile.Close();
+            });
+            
         }
 
         //Чтение плейлиста с именем name
         //При этом пути файлов заносятся в fileQueue по очереди воспроизведения
-        public static void readPlayList(string name)
+        public static async void readPlayList(string name)
         {
-            StreamReader readerOfM3UFile = new StreamReader(name);
-            string currentLine;
-            fileQueue.Clear();
-            while ((currentLine = readerOfM3UFile.ReadLine()) != null)
+            await Task.Run(() =>
             {
-                if (currentLine[0] == '#')
-                    continue;
-                else
+                StreamReader readerOfM3UFile = new StreamReader(name);
+                string currentLine;
+                fileQueue.Clear();
+                while ((currentLine = readerOfM3UFile.ReadLine()) != null)
                 {
-                    currentLine = currentLine.Remove(0, musicFolderPath.Length + 1);
-                    fileQueue.Add(currentLine);
+                    if (currentLine[0] == '#')
+                        continue;
+                    else
+                    {
+                        currentLine = currentLine.Remove(0, musicFolderPath.Length + 1);
+                        fileQueue.Add(currentLine);
+                    }
                 }
-            }
+            });
         }
 
         //Редактирование плейлиста с именем name
@@ -80,14 +87,17 @@ namespace Draft_Audio_Player_New_Design
         //Сканирует папку на наличие музыкальных файлов
         //Путь к исходной папке обрезается, для экономии памяти
         //После чтения очередь сортируется сначала по вложенным папкам, затем по файлам
-        public static void scanFolder()
+        public static async void scanFolder()
         {
-            fileQueue.AddRange(Directory.GetFileSystemEntries(musicFolderPath, "*.mp3", SearchOption.AllDirectories));
-            fileQueue.AddRange(Directory.GetFileSystemEntries(musicFolderPath, "*.wav", SearchOption.AllDirectories));
-            fileQueue.AddRange(Directory.GetFileSystemEntries(musicFolderPath, "*.wma", SearchOption.AllDirectories));
-            fileQueue.AddRange(Directory.GetFileSystemEntries(musicFolderPath, "*.aac", SearchOption.AllDirectories));
-            cutTheFolderPath();
-            fileQueue.Sort();
+            await Task.Run(() =>
+            {
+                fileQueue.AddRange(Directory.GetFileSystemEntries(musicFolderPath, "*.mp3", SearchOption.AllDirectories));
+                fileQueue.AddRange(Directory.GetFileSystemEntries(musicFolderPath, "*.wav", SearchOption.AllDirectories));
+                fileQueue.AddRange(Directory.GetFileSystemEntries(musicFolderPath, "*.wma", SearchOption.AllDirectories));
+                fileQueue.AddRange(Directory.GetFileSystemEntries(musicFolderPath, "*.aac", SearchOption.AllDirectories));
+                cutTheFolderPath();
+                fileQueue.Sort();
+            });
         }
 
         //Функция удаления исходной папки из пути файла
