@@ -366,7 +366,6 @@ public DraftAudioPlayerMainForm()
         {
             using (StreamWriter sw = new StreamWriter(playlistFile))
             {
-                string s;
                 sw.WriteLine("#EXTM3U");
                 for (int i = 0; i <= fileNames.Length - 1; i++)
                 {
