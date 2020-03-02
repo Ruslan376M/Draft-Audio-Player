@@ -366,8 +366,8 @@ public DraftAudioPlayerMainForm()
         {
             using (StreamWriter sw = new StreamWriter(playlistFile))
             {
-                string s;
                 sw.WriteLine("#EXTM3U");
+                sw.WriteLine(fileNames.Length);
                 for (int i = 0; i <= fileNames.Length - 1; i++)
                 {
                     var tfile = TagLib.File.Create(fileNames[i]);
@@ -382,6 +382,116 @@ public DraftAudioPlayerMainForm()
                     
                 }
             }
+        }
+
+        private void Openplaylist_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog open = new OpenFileDialog();
+            open.Title = "Open playlist";
+            open.Filter = "(*.m3u)|*.m3u";
+            open.RestoreDirectory = true;
+            if (open.ShowDialog() == DialogResult.OK)
+            {
+                using (StreamReader file = new StreamReader(open.FileName))
+                {
+                    string line;
+                    int i = 0,p = 0;
+                    while ((line = file.ReadLine()) != null)
+                    {
+                        if (Char.IsDigit(line[0]))
+                            p = Convert.ToInt32(line);
+                        else if (line[0] != '#')
+                        {
+                            string way = line;
+                            add(way, i, p);
+                            i++;
+                        }
+                        
+                            
+                    }
+                    
+                }
+            }
+        }
+
+        private void add(string musicFolderPath,int i, int p)
+        {
+            
+                    var tfile = TagLib.File.Create(musicFolderPath);
+
+                    musicListPanels = new System.Windows.Forms.Panel[p];
+                    musicListPanelsLabelNames = new System.Windows.Forms.Label[p];
+                    musicListPanelsLabelDurations = new System.Windows.Forms.Label[p];
+                    musicListPanelsButton = new System.Windows.Forms.Button[p];
+                    musicListPanelsCheckBox = new System.Windows.Forms.CheckBox[p];
+                    musicListPanelsLabelAlbum = new System.Windows.Forms.Label[p];
+                    musicListPanelsLabelYear = new System.Windows.Forms.Label[p];
+
+                    musicListPanels[i] = new System.Windows.Forms.Panel();
+                    musicListPanels[i].Location = new System.Drawing.Point(0, i * 32);
+                    musicListPanels[i].Name = "musicListPanel" + i.ToString();
+                    musicListPanels[i].Size = new System.Drawing.Size(panel2.Width, 32);
+                    musicListPanels[i].TabIndex = 1;
+                    panel2.Controls.Add(musicListPanels[i]);
+
+                    musicListPanelsCheckBox[i] = new System.Windows.Forms.CheckBox();
+                    musicListPanels[i].Controls.Add(musicListPanelsCheckBox[i]);
+                    musicListPanelsCheckBox[i].Anchor = System.Windows.Forms.AnchorStyles.None;
+                    musicListPanelsCheckBox[i].CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
+                    musicListPanelsCheckBox[i].Location = new System.Drawing.Point(3, 5);
+                    musicListPanelsCheckBox[i].Name = "CheckBox" + i.ToString();
+                    musicListPanelsCheckBox[i].Size = new System.Drawing.Size(25, 24);
+                    musicListPanelsCheckBox[i].TabIndex = 0;
+
+                    musicListPanelsLabelNames[i] = new System.Windows.Forms.Label();
+                    musicListPanelsLabelNames[i].Location = new System.Drawing.Point(34, 10);
+                    musicListPanelsLabelNames[i].Name = "label1";
+                    musicListPanelsLabelNames[i].Size = new System.Drawing.Size(172, 13);
+                    musicListPanelsLabelNames[i].TabIndex = 1;
+                    musicListPanelsLabelNames[i].Text = tfile.Tag.Title;
+                    musicListPanels[i].Controls.Add(this.musicListPanelsLabelNames[i]);
+
+
+                    musicListPanelsButton[i] = new System.Windows.Forms.Button();
+                    musicListPanelsButton[i].BackColor = System.Drawing.Color.Transparent;
+                    musicListPanelsButton[i].BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+                    musicListPanelsButton[i].FlatAppearance.BorderColor = System.Drawing.SystemColors.ActiveCaption;
+                    musicListPanelsButton[i].FlatAppearance.BorderSize = 0;
+                    musicListPanelsButton[i].FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+                    musicListPanelsButton[i].Font = new System.Drawing.Font("Segoe MDL2 Assets", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                    musicListPanelsButton[i].Location = new System.Drawing.Point(211, 1);
+                    musicListPanelsButton[i].Name = i.ToString();
+                    musicListPanelsButton[i].Size = new System.Drawing.Size(30, 30);
+                    musicListPanelsButton[i].TabIndex = 2;
+                    musicListPanelsButton[i].Text = "";
+                    musicListPanelsButton[i].UseVisualStyleBackColor = false;
+                    musicListPanelsButton[i].Click += new System.EventHandler(musicListPanelsButton_Click);
+                    musicListPanels[i].Controls.Add(musicListPanelsButton[i]);
+
+                    musicListPanelsLabelDurations[i] = new System.Windows.Forms.Label();
+                    musicListPanelsLabelDurations[i].Location = new System.Drawing.Point(247, 10);
+                    musicListPanelsLabelDurations[i].Name = "musicListPanelsLabelNames" + i.ToString();
+                    musicListPanelsLabelDurations[i].Size = new System.Drawing.Size(50, 13);
+                    musicListPanelsLabelDurations[i].TabIndex = 3;
+                    musicListPanelsLabelDurations[i].Text = "00:00";
+                    musicListPanels[i].Controls.Add(musicListPanelsLabelDurations[i]);
+
+
+                    musicListPanelsLabelAlbum[i] = new System.Windows.Forms.Label();
+                    musicListPanelsLabelAlbum[i].Location = new System.Drawing.Point(300, 10);
+                    musicListPanelsLabelAlbum[i].Name = "label2";
+                    musicListPanelsLabelAlbum[i].Size = new System.Drawing.Size(172, 13);
+                    musicListPanelsLabelAlbum[i].TabIndex = 4;
+                    musicListPanelsLabelAlbum[i].Text = tfile.Tag.Album;
+                    musicListPanels[i].Controls.Add(this.musicListPanelsLabelAlbum[i]);
+
+                    musicListPanelsLabelYear[i] = new System.Windows.Forms.Label();
+                    musicListPanelsLabelYear[i].Location = new System.Drawing.Point(475, 10);
+                    musicListPanelsLabelYear[i].Name = "label3";
+                    musicListPanelsLabelYear[i].Size = new System.Drawing.Size(40, 13);
+                    musicListPanelsLabelYear[i].TabIndex = 5;
+                    musicListPanelsLabelYear[i].Text = tfile.Tag.Year.ToString();
+                    musicListPanels[i].Controls.Add(this.musicListPanelsLabelYear[i]);              
         }
     }   
 }

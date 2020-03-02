@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DraftAudioPlayerMainForm));
             this.splitNavigation = new System.Windows.Forms.SplitContainer();
+            this.saveplaylist = new System.Windows.Forms.Button();
             this.pictCover = new System.Windows.Forms.PictureBox();
             this.getFileNameButton = new System.Windows.Forms.Button();
             this.directoryChooseButton = new System.Windows.Forms.Button();
@@ -50,7 +51,7 @@
             this.timerOfPlayback = new System.Windows.Forms.Timer(this.components);
             this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.saveplaylist = new System.Windows.Forms.Button();
+            this.Openplaylist = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitNavigation)).BeginInit();
             this.splitNavigation.Panel1.SuspendLayout();
             this.splitNavigation.Panel2.SuspendLayout();
@@ -70,6 +71,7 @@
             // 
             // splitNavigation.Panel1
             // 
+            this.splitNavigation.Panel1.Controls.Add(this.Openplaylist);
             this.splitNavigation.Panel1.Controls.Add(this.saveplaylist);
             this.splitNavigation.Panel1.Controls.Add(this.pictCover);
             this.splitNavigation.Panel1.Controls.Add(this.getFileNameButton);
@@ -81,6 +83,18 @@
             this.splitNavigation.Size = new System.Drawing.Size(883, 567);
             this.splitNavigation.SplitterDistance = 261;
             this.splitNavigation.TabIndex = 0;
+            // 
+            // saveplaylist
+            // 
+            this.saveplaylist.BackColor = System.Drawing.Color.Teal;
+            this.saveplaylist.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.saveplaylist.Location = new System.Drawing.Point(73, 407);
+            this.saveplaylist.Name = "saveplaylist";
+            this.saveplaylist.Size = new System.Drawing.Size(131, 23);
+            this.saveplaylist.TabIndex = 11;
+            this.saveplaylist.Text = "Save current playlist";
+            this.saveplaylist.UseVisualStyleBackColor = false;
+            this.saveplaylist.Click += new System.EventHandler(this.saveplaylist_Click);
             // 
             // pictCover
             // 
@@ -96,7 +110,7 @@
             this.getFileNameButton.BackColor = System.Drawing.Color.Teal;
             this.getFileNameButton.FlatAppearance.BorderSize = 0;
             this.getFileNameButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.getFileNameButton.Location = new System.Drawing.Point(112, 458);
+            this.getFileNameButton.Location = new System.Drawing.Point(102, 466);
             this.getFileNameButton.Name = "getFileNameButton";
             this.getFileNameButton.Size = new System.Drawing.Size(75, 23);
             this.getFileNameButton.TabIndex = 0;
@@ -281,23 +295,24 @@
             // 
             this.folderBrowserDialog.Description = "Выберите папку с музыкой";
             // 
-            // saveplaylist
+            // Openplaylist
             // 
-            this.saveplaylist.BackColor = System.Drawing.Color.Teal;
-            this.saveplaylist.Location = new System.Drawing.Point(73, 407);
-            this.saveplaylist.Name = "saveplaylist";
-            this.saveplaylist.Size = new System.Drawing.Size(131, 23);
-            this.saveplaylist.TabIndex = 11;
-            this.saveplaylist.Text = "Save current playlist";
-            this.saveplaylist.UseVisualStyleBackColor = false;
-            this.saveplaylist.Click += new System.EventHandler(this.saveplaylist_Click);
+            this.Openplaylist.BackColor = System.Drawing.Color.Teal;
+            this.Openplaylist.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.Openplaylist.Location = new System.Drawing.Point(73, 437);
+            this.Openplaylist.Name = "Openplaylist";
+            this.Openplaylist.Size = new System.Drawing.Size(131, 23);
+            this.Openplaylist.TabIndex = 12;
+            this.Openplaylist.Text = "Open playlist";
+            this.Openplaylist.UseVisualStyleBackColor = false;
+            this.Openplaylist.Click += new System.EventHandler(this.Openplaylist_Click);
             // 
             // DraftAudioPlayerMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(884, 573);
+            this.ClientSize = new System.Drawing.Size(884, 655);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.splitNavigation);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -341,6 +356,7 @@
         private System.Windows.Forms.Label lbTitle;
         private System.Windows.Forms.PictureBox pictCover;
         private System.Windows.Forms.Button saveplaylist;
+        private System.Windows.Forms.Button Openplaylist;
     }
 }
 
