@@ -74,6 +74,7 @@ namespace Draft_Audio_Player_New_Design
         public static void editPlayList(string name)
         {
 
+
         }
         
         //Сканирует папку на наличие музыкальных файлов
