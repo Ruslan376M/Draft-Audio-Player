@@ -16,5 +16,11 @@ namespace Draft_Audio_Player_New_Design
         {
             InitializeComponent();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Program.scanFolder();
+            Program.createPlayList("AllFiles");
+        }
     }
 }
