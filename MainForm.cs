@@ -12,7 +12,7 @@ namespace Draft_Audio_Player_New_Design
 {
     public partial class MainForm : Form
     {
-        //Инициализация форм побочных форм
+        //Инициализация побочных форм
         MusicListForm musicListForm = new MusicListForm() { Dock = DockStyle.Fill, TopLevel = false};
         EffectsForm effectsForm = new EffectsForm() { Dock = DockStyle.Fill, TopLevel = false};
         EditorForm editorForm = new EditorForm() { Dock = DockStyle.Fill, TopLevel = false};

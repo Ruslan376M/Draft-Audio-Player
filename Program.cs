@@ -21,6 +21,8 @@ namespace Draft_Audio_Player_New_Design
             Application.Run(new MainForm());
         }
 
+        public static Task showElements;
+
         //Путь к папке с музыкой
         public static string musicFolderPath = "";
 

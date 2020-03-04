@@ -23,6 +23,8 @@ namespace Draft_Audio_Player_New_Design
             musicFolderBrowserDialog.ShowDialog();
             Program.musicFolderPath = musicFolderBrowserDialog.SelectedPath;
             folderLabel.Text = musicFolderBrowserDialog.SelectedPath;
+            if (Program.musicFolderPath != "")
+                Program.scanFolder();
         }
     }
 }
