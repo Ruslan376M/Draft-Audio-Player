@@ -16,9 +16,7 @@ namespace Draft_Audio_Player_New_Design
     {
         public MusicListForm()
         {
-            DoubleBuffered = true;
             InitializeComponent();
-            
         }
 
         Panel allMusicListFormPanel;
@@ -30,47 +28,25 @@ namespace Draft_Audio_Player_New_Design
 
         CheckBox[] checkBoxes;
         Label[] name;
-        Button[] play;
+        public static Button[] play;
         Label[] duration;
         Label[] artist;
         Label[] album;
         Label[] genre;
 
-        static BackgroundWorker bw = new BackgroundWorker();
-
-        private void MusicListForm_VisibleChanged(object sender, EventArgs e)
-        {
-            if (allMusicListFormPanel == null)
-                if (Program.fileQueue.Count != 0)
-                {
-                    //initMusicPanels(allMusicListFormPanel, musicPanels);
-                    bw.DoWork += bw_doWork;
-                    bw.RunWorkerAsync();
-                    bw.RunWorkerCompleted += Bw_RunWorkerCompleted;
-                    
-                }
-        }
-
-        private void Bw_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
-
-            MusicListFormMainPanel.Controls.Add(allMusicListFormPanel);
-            MusicListFormMainPanel.Invalidate();
-        }
-
-        private void bw_doWork(object sender, DoWorkEventArgs e)
+        void initMusicPanels(Panel panelName, Panel[] musicPanelsName)
         {
             //initMusicPanels(allMusicListFormPanel, musicPanels);
-            allMusicListFormPanel = new Panel();
-            allMusicListFormPanel.AutoScroll = true;
-            allMusicListFormPanel.Size = new System.Drawing.Size(1197, 417);
-            allMusicListFormPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            allMusicListFormPanel.Location = new System.Drawing.Point(0, 53);
-            allMusicListFormPanel.Name = allMusicListFormPanel.ToString();
-            typeof(Control).GetProperty("DoubleBuffered", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.SetProperty).SetValue(allMusicListFormPanel, true, null);
-            if (musicPanels != null)
+            panelName = new Panel();
+            panelName.AutoScroll = true;
+            panelName.Size = new System.Drawing.Size(1197, 417);
+            panelName.Dock = System.Windows.Forms.DockStyle.Fill;
+            panelName.Location = new System.Drawing.Point(0, 53);
+            panelName.Name = panelName.ToString();
+            typeof(Control).GetProperty("DoubleBuffered", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.SetProperty).SetValue(panelName, true, null);
+            if (musicPanelsName != null)
             {
-                musicPanels = null;
+                musicPanelsName = null;
                 checkBoxes = null;
                 name = null;
                 play = null;
@@ -79,7 +55,8 @@ namespace Draft_Audio_Player_New_Design
                 album = null;
                 genre = null;
             }
-            musicPanels = new Panel[Program.fileQueue.Count];
+
+            musicPanelsName = new Panel[Program.fileQueue.Count];
             checkBoxes = new CheckBox[Program.fileQueue.Count];
             name = new Label[Program.fileQueue.Count];
             play = new Button[Program.fileQueue.Count];
@@ -87,10 +64,11 @@ namespace Draft_Audio_Player_New_Design
             artist = new Label[Program.fileQueue.Count];
             album = new Label[Program.fileQueue.Count];
             genre = new Label[Program.fileQueue.Count];
-            for (int i = Program.fileQueue.Count - 1; i >= 0; i--) 
+
+            for (int i = Program.fileQueue.Count - 1; i >= 0; i--)
             {
                 var tagFile = TagLib.File.Create(Program.musicFolderPath + "\\" + Program.fileQueue[i]);
-                musicPanels[i] = new Panel();
+                musicPanelsName[i] = new Panel();
                 checkBoxes[i] = new CheckBox();
                 name[i] = new Label();
                 play[i] = new Button();
@@ -99,28 +77,26 @@ namespace Draft_Audio_Player_New_Design
                 album[i] = new Label();
                 genre[i] = new Label();
 
-                musicPanels[i].Dock = System.Windows.Forms.DockStyle.Top;
-                musicPanels[i].Location = new System.Drawing.Point(0, 0);
-                musicPanels[i].Name = musicPanels[i].ToString();
-                musicPanels[i].Size = new System.Drawing.Size(1197, 25);
-                musicPanels[i].BackColor = Color.Transparent;
+                musicPanelsName[i].Dock = System.Windows.Forms.DockStyle.Top;
+                musicPanelsName[i].Location = new System.Drawing.Point(0, 0);
+                musicPanelsName[i].Name = musicPanelsName[i].ToString();
+                musicPanelsName[i].Size = new System.Drawing.Size(1197, 25);
+                musicPanelsName[i].BackColor = Color.Transparent;
 
-                musicPanels[i].Controls.Add(checkBoxes[i]);
-                musicPanels[i].Controls.Add(name[i]);
-                musicPanels[i].Controls.Add(play[i]);
-                musicPanels[i].Controls.Add(duration[i]);
-                musicPanels[i].Controls.Add(artist[i]);
-                musicPanels[i].Controls.Add(album[i]);
-                musicPanels[i].Controls.Add(genre[i]);
+                musicPanelsName[i].Controls.Add(checkBoxes[i]);
+                musicPanelsName[i].Controls.Add(name[i]);
+                musicPanelsName[i].Controls.Add(play[i]);
+                musicPanelsName[i].Controls.Add(duration[i]);
+                musicPanelsName[i].Controls.Add(artist[i]);
+                musicPanelsName[i].Controls.Add(album[i]);
+                musicPanelsName[i].Controls.Add(genre[i]);
 
                 checkBoxes[i].CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
-                //checkBoxes[i].Dock = System.Windows.Forms.DockStyle.Left;
                 checkBoxes[i].Location = new System.Drawing.Point(0, 0);
                 checkBoxes[i].Name = checkBoxes[i].ToString();
                 checkBoxes[i].Size = new System.Drawing.Size(25, 25);
 
                 name[i].AutoEllipsis = true;
-                //name[i].Dock = System.Windows.Forms.DockStyle.Left;
                 name[i].FlatStyle = System.Windows.Forms.FlatStyle.Flat;
                 name[i].Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
                 name[i].Location = new System.Drawing.Point(25, 0);
@@ -140,14 +116,10 @@ namespace Draft_Audio_Player_New_Design
                 play[i].Location = new System.Drawing.Point(300, 0);
                 play[i].Name = i.ToString();
                 play[i].Size = new System.Drawing.Size(25, 25);
-                play[i].TabIndex = 0;
-                play[i].TabStop = false;
                 play[i].Text = "";
-                play[i].UseVisualStyleBackColor = false;
-                play[i].Click += playButton_Click;
+                play[i].Click += new System.EventHandler(playButton_Click);
 
                 duration[i].AutoEllipsis = true;
-                //duration[i].Dock = System.Windows.Forms.DockStyle.Left;
                 duration[i].FlatStyle = System.Windows.Forms.FlatStyle.Flat;
                 duration[i].Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
                 duration[i].Location = new System.Drawing.Point(325, 0);
@@ -157,7 +129,6 @@ namespace Draft_Audio_Player_New_Design
                 duration[i].TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 
                 artist[i].AutoEllipsis = true;
-                //artist[i].Dock = System.Windows.Forms.DockStyle.Left;
                 artist[i].FlatStyle = System.Windows.Forms.FlatStyle.Flat;
                 artist[i].Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
                 artist[i].Location = new System.Drawing.Point(385, 0);
@@ -167,7 +138,6 @@ namespace Draft_Audio_Player_New_Design
                 artist[i].TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 
                 album[i].AutoEllipsis = true;
-                //album[i].Dock = System.Windows.Forms.DockStyle.Left;
                 album[i].FlatStyle = System.Windows.Forms.FlatStyle.Flat;
                 album[i].Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
                 album[i].Location = new System.Drawing.Point(585, 0);
@@ -177,7 +147,6 @@ namespace Draft_Audio_Player_New_Design
                 album[i].TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 
                 genre[i].AutoEllipsis = true;
-                //genre[i].Dock = System.Windows.Forms.DockStyle.Left;
                 genre[i].FlatStyle = System.Windows.Forms.FlatStyle.Flat;
                 genre[i].Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
                 genre[i].Location = new System.Drawing.Point(785, 0);
@@ -186,15 +155,50 @@ namespace Draft_Audio_Player_New_Design
                 genre[i].Text = tagFile.Tag.FirstGenre;
                 genre[i].TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 
-                allMusicListFormPanel.Controls.Add(musicPanels[i]);
+                panelName.Controls.Add(musicPanelsName[i]);
             }
-            
-            
+            MusicListFormMainPanel.Controls.Add(panelName);
+
         }
 
+        private void MusicListForm_VisibleChanged(object sender, EventArgs e)
+        {
+            if (allMusicListFormPanel == null)
+                if (Program.fileQueue.Count != 0)
+                    initMusicPanels(allMusicListFormPanel, musicPanels); 
+        }
+
+        public static int previousButton = -1;
         private void playButton_Click(object sender, EventArgs e)
         {
-            string s = ((Button)sender).Name;
+            if (previousButton == Convert.ToInt32(((Button)sender).Name))
+            {
+                if (MainForm.musicIsPlaying == true)
+                {
+                    MainForm.outputDevice.Pause();
+                    MainForm.timerOfPlayback.Stop();
+                    MainForm.playButton.Text = "";
+                    ((Button)sender).Text = "";
+                    MainForm.musicIsPlaying = false;
+                }
+                else
+                {
+                    MainForm.outputDevice.Play();
+                    MainForm.timerOfPlayback.Start();
+                    MainForm.playButton.Text = "";
+                    ((Button)sender).Text = "";
+                    MainForm.musicIsPlaying = true;
+                }
+            }
+            else
+            {
+                if (previousButton != -1)
+                    play[previousButton].Text = "";
+                previousButton = Convert.ToInt32(((Button)sender).Name);
+                MainForm.playButton.Text = "";
+                ((Button)sender).Text = "";
+                MainForm.playMusic(Convert.ToInt32(((Button)sender).Name));
+            }
         }
     }
 }

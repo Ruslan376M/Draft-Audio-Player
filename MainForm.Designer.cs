@@ -30,16 +30,11 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.musicPanel = new System.Windows.Forms.Panel();
-            this.musicControlsPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.musicControlsPanel = new System.Windows.Forms.Panel();
             this.randomizeButton = new System.Windows.Forms.Button();
             this.backwardButton = new System.Windows.Forms.Button();
-            this.playButton = new System.Windows.Forms.Button();
             this.forwardButton = new System.Windows.Forms.Button();
             this.repeatButton = new System.Windows.Forms.Button();
-            this.nameOfCurrentTrackLabel = new System.Windows.Forms.Label();
-            this.volumeTrackBar = new XComponent.SliderBar.MACTrackBar();
-            this.coverPictureBox = new System.Windows.Forms.PictureBox();
-            this.musicTrackBar = new XComponent.SliderBar.MACTrackBar();
             this.mainFormSplitContainer = new System.Windows.Forms.SplitContainer();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.hamburgerButton = new System.Windows.Forms.Button();
@@ -60,7 +55,6 @@
             this.navigationEditorTextLabel = new System.Windows.Forms.Label();
             this.musicPanel.SuspendLayout();
             this.musicControlsPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.coverPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mainFormSplitContainer)).BeginInit();
             this.mainFormSplitContainer.Panel1.SuspendLayout();
             this.mainFormSplitContainer.SuspendLayout();
@@ -75,10 +69,6 @@
             // musicPanel
             // 
             this.musicPanel.Controls.Add(this.musicControlsPanel);
-            this.musicPanel.Controls.Add(this.nameOfCurrentTrackLabel);
-            this.musicPanel.Controls.Add(this.volumeTrackBar);
-            this.musicPanel.Controls.Add(this.coverPictureBox);
-            this.musicPanel.Controls.Add(this.musicTrackBar);
             this.musicPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.musicPanel.Location = new System.Drawing.Point(0, 470);
             this.musicPanel.Name = "musicPanel";
@@ -91,7 +81,6 @@
             this.musicControlsPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.musicControlsPanel.Controls.Add(this.randomizeButton);
             this.musicControlsPanel.Controls.Add(this.backwardButton);
-            this.musicControlsPanel.Controls.Add(this.playButton);
             this.musicControlsPanel.Controls.Add(this.forwardButton);
             this.musicControlsPanel.Controls.Add(this.repeatButton);
             this.musicControlsPanel.ForeColor = System.Drawing.Color.White;
@@ -136,24 +125,6 @@
             this.backwardButton.Text = "";
             this.backwardButton.UseVisualStyleBackColor = false;
             // 
-            // playButton
-            // 
-            this.playButton.BackColor = System.Drawing.Color.Transparent;
-            this.playButton.CausesValidation = false;
-            this.playButton.FlatAppearance.BorderSize = 0;
-            this.playButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
-            this.playButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
-            this.playButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.playButton.Font = new System.Drawing.Font("Segoe MDL2 Assets", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.playButton.ForeColor = System.Drawing.Color.Transparent;
-            this.playButton.Location = new System.Drawing.Point(115, 3);
-            this.playButton.Name = "playButton";
-            this.playButton.Size = new System.Drawing.Size(50, 50);
-            this.playButton.TabIndex = 13;
-            this.playButton.TabStop = false;
-            this.playButton.Text = "";
-            this.playButton.UseVisualStyleBackColor = false;
-            // 
             // forwardButton
             // 
             this.forwardButton.BackColor = System.Drawing.Color.Transparent;
@@ -164,7 +135,7 @@
             this.forwardButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.forwardButton.Font = new System.Drawing.Font("Segoe MDL2 Assets", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.forwardButton.ForeColor = System.Drawing.Color.Transparent;
-            this.forwardButton.Location = new System.Drawing.Point(171, 3);
+            this.forwardButton.Location = new System.Drawing.Point(165, 3);
             this.forwardButton.Name = "forwardButton";
             this.forwardButton.Size = new System.Drawing.Size(50, 50);
             this.forwardButton.TabIndex = 14;
@@ -182,85 +153,13 @@
             this.repeatButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.repeatButton.Font = new System.Drawing.Font("Segoe MDL2 Assets", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.repeatButton.ForeColor = System.Drawing.Color.Transparent;
-            this.repeatButton.Location = new System.Drawing.Point(227, 3);
+            this.repeatButton.Location = new System.Drawing.Point(215, 3);
             this.repeatButton.Name = "repeatButton";
             this.repeatButton.Size = new System.Drawing.Size(50, 50);
             this.repeatButton.TabIndex = 16;
             this.repeatButton.TabStop = false;
             this.repeatButton.Text = "";
             this.repeatButton.UseVisualStyleBackColor = false;
-            // 
-            // nameOfCurrentTrackLabel
-            // 
-            this.nameOfCurrentTrackLabel.BackColor = System.Drawing.Color.Transparent;
-            this.nameOfCurrentTrackLabel.CausesValidation = false;
-            this.nameOfCurrentTrackLabel.Enabled = false;
-            this.nameOfCurrentTrackLabel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.nameOfCurrentTrackLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.nameOfCurrentTrackLabel.Location = new System.Drawing.Point(91, 5);
-            this.nameOfCurrentTrackLabel.Name = "nameOfCurrentTrackLabel";
-            this.nameOfCurrentTrackLabel.Size = new System.Drawing.Size(145, 80);
-            this.nameOfCurrentTrackLabel.TabIndex = 2;
-            // 
-            // volumeTrackBar
-            // 
-            this.volumeTrackBar.BackColor = System.Drawing.Color.Transparent;
-            this.volumeTrackBar.BorderColor = System.Drawing.Color.Transparent;
-            this.volumeTrackBar.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.volumeTrackBar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(123)))), ((int)(((byte)(125)))), ((int)(((byte)(123)))));
-            this.volumeTrackBar.IndentHeight = 6;
-            this.volumeTrackBar.Location = new System.Drawing.Point(622, 18);
-            this.volumeTrackBar.Maximum = 100;
-            this.volumeTrackBar.Minimum = 0;
-            this.volumeTrackBar.MinimumSize = new System.Drawing.Size(100, 27);
-            this.volumeTrackBar.Name = "volumeTrackBar";
-            this.volumeTrackBar.Size = new System.Drawing.Size(150, 27);
-            this.volumeTrackBar.TabIndex = 13;
-            this.volumeTrackBar.TabStop = false;
-            this.volumeTrackBar.TextTickStyle = System.Windows.Forms.TickStyle.None;
-            this.volumeTrackBar.TickColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(146)))), ((int)(((byte)(148)))));
-            this.volumeTrackBar.TickHeight = 1;
-            this.volumeTrackBar.TickStyle = System.Windows.Forms.TickStyle.None;
-            this.volumeTrackBar.TrackerColor = System.Drawing.Color.Snow;
-            this.volumeTrackBar.TrackerSize = new System.Drawing.Size(15, 15);
-            this.volumeTrackBar.TrackLineColor = System.Drawing.Color.Gray;
-            this.volumeTrackBar.TrackLineHeight = 3;
-            this.volumeTrackBar.TrackLineSelectedColor = System.Drawing.Color.SteelBlue;
-            this.volumeTrackBar.Value = 100;
-            // 
-            // coverPictureBox
-            // 
-            this.coverPictureBox.Location = new System.Drawing.Point(5, 5);
-            this.coverPictureBox.Name = "coverPictureBox";
-            this.coverPictureBox.Size = new System.Drawing.Size(80, 80);
-            this.coverPictureBox.TabIndex = 1;
-            this.coverPictureBox.TabStop = false;
-            // 
-            // musicTrackBar
-            // 
-            this.musicTrackBar.BackColor = System.Drawing.Color.Transparent;
-            this.musicTrackBar.BorderColor = System.Drawing.Color.Transparent;
-            this.musicTrackBar.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.musicTrackBar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(123)))), ((int)(((byte)(125)))), ((int)(((byte)(123)))));
-            this.musicTrackBar.IndentHeight = 6;
-            this.musicTrackBar.Location = new System.Drawing.Point(242, 61);
-            this.musicTrackBar.Maximum = 50;
-            this.musicTrackBar.Minimum = 0;
-            this.musicTrackBar.MinimumSize = new System.Drawing.Size(300, 27);
-            this.musicTrackBar.Name = "musicTrackBar";
-            this.musicTrackBar.Size = new System.Drawing.Size(300, 27);
-            this.musicTrackBar.TabIndex = 0;
-            this.musicTrackBar.TabStop = false;
-            this.musicTrackBar.TextTickStyle = System.Windows.Forms.TickStyle.None;
-            this.musicTrackBar.TickColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(146)))), ((int)(((byte)(148)))));
-            this.musicTrackBar.TickHeight = 1;
-            this.musicTrackBar.TickStyle = System.Windows.Forms.TickStyle.None;
-            this.musicTrackBar.TrackerColor = System.Drawing.Color.Snow;
-            this.musicTrackBar.TrackerSize = new System.Drawing.Size(15, 15);
-            this.musicTrackBar.TrackLineColor = System.Drawing.Color.Gray;
-            this.musicTrackBar.TrackLineHeight = 3;
-            this.musicTrackBar.TrackLineSelectedColor = System.Drawing.Color.SteelBlue;
-            this.musicTrackBar.Value = 0;
             // 
             // mainFormSplitContainer
             // 
@@ -543,7 +442,6 @@
             this.Resize += new System.EventHandler(this.MainForm_Resize);
             this.musicPanel.ResumeLayout(false);
             this.musicControlsPanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.coverPictureBox)).EndInit();
             this.mainFormSplitContainer.Panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.mainFormSplitContainer)).EndInit();
             this.mainFormSplitContainer.ResumeLayout(false);
@@ -577,15 +475,10 @@
         private System.Windows.Forms.FlowLayoutPanel navigationEffectsPanel;
         private System.Windows.Forms.Label navigationEffectsIconLabel;
         private System.Windows.Forms.Label navigationEffectsTextLabel;
-        private XComponent.SliderBar.MACTrackBar musicTrackBar;
-        private System.Windows.Forms.PictureBox coverPictureBox;
-        private System.Windows.Forms.Label nameOfCurrentTrackLabel;
-        private XComponent.SliderBar.MACTrackBar volumeTrackBar;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
-        private System.Windows.Forms.FlowLayoutPanel musicControlsPanel;
+        private System.Windows.Forms.Panel musicControlsPanel;
         private System.Windows.Forms.Button randomizeButton;
         private System.Windows.Forms.Button backwardButton;
-        private System.Windows.Forms.Button playButton;
         private System.Windows.Forms.Button forwardButton;
         private System.Windows.Forms.Button repeatButton;
     }
