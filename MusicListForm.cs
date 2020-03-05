@@ -168,6 +168,7 @@ namespace Draft_Audio_Player_New_Design
                     initMusicPanels(allMusicListFormPanel, musicPanels); 
         }
 
+        public static int currentTrackIndex = 0;
         public static int previousButton = -1;
         private void playButton_Click(object sender, EventArgs e)
         {
@@ -176,16 +177,16 @@ namespace Draft_Audio_Player_New_Design
                 if (MainForm.musicIsPlaying == true)
                 {
                     MainForm.outputDevice.Pause();
-                    MainForm.timerOfPlayback.Stop();
-                    MainForm.playButton.Text = "";
+                    Program.mainForm.timerOfPlayback.Stop();
+                    Program.mainForm.playButton.Text = "";
                     ((Button)sender).Text = "";
                     MainForm.musicIsPlaying = false;
                 }
                 else
                 {
                     MainForm.outputDevice.Play();
-                    MainForm.timerOfPlayback.Start();
-                    MainForm.playButton.Text = "";
+                    Program.mainForm.timerOfPlayback.Start();
+                    Program.mainForm.playButton.Text = "";
                     ((Button)sender).Text = "";
                     MainForm.musicIsPlaying = true;
                 }
@@ -195,9 +196,10 @@ namespace Draft_Audio_Player_New_Design
                 if (previousButton != -1)
                     play[previousButton].Text = "";
                 previousButton = Convert.ToInt32(((Button)sender).Name);
-                MainForm.playButton.Text = "";
+                currentTrackIndex = previousButton;
+                Program.mainForm.playButton.Text = "";
                 ((Button)sender).Text = "";
-                MainForm.playMusic(Convert.ToInt32(((Button)sender).Name));
+                Program.mainForm.playMusic(Convert.ToInt32(((Button)sender).Name));
             }
         }
     }

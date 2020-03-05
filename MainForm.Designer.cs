@@ -28,7 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
+            this.durationOfPlayback = new System.Windows.Forms.Label();
+            this.volumeTrackBar = new XComponent.SliderBar.MACTrackBar();
+            this.musicTrackBar = new XComponent.SliderBar.MACTrackBar();
+            this.maximumDuration = new System.Windows.Forms.Label();
+            this.nameOfCurrentTrackLabel = new System.Windows.Forms.Label();
+            this.coverPictureBox = new System.Windows.Forms.PictureBox();
+            this.timerOfPlayback = new System.Windows.Forms.Timer(this.components);
+            this.playButton = new System.Windows.Forms.Button();
             this.musicPanel = new System.Windows.Forms.Panel();
             this.musicControlsPanel = new System.Windows.Forms.Panel();
             this.randomizeButton = new System.Windows.Forms.Button();
@@ -53,6 +62,7 @@
             this.navigationEditorPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.navigationEditorIconLabel = new System.Windows.Forms.Label();
             this.navigationEditorTextLabel = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.coverPictureBox)).BeginInit();
             this.musicPanel.SuspendLayout();
             this.musicControlsPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mainFormSplitContainer)).BeginInit();
@@ -66,9 +76,132 @@
             this.navigationEditorPanel.SuspendLayout();
             this.SuspendLayout();
             // 
+            // durationOfPlayback
+            // 
+            this.durationOfPlayback.AutoSize = true;
+            this.durationOfPlayback.Location = new System.Drawing.Point(200, 66);
+            this.durationOfPlayback.Name = "durationOfPlayback";
+            this.durationOfPlayback.Size = new System.Drawing.Size(34, 13);
+            this.durationOfPlayback.TabIndex = 14;
+            this.durationOfPlayback.Text = "00:00";
+            // 
+            // volumeTrackBar
+            // 
+            this.volumeTrackBar.BackColor = System.Drawing.Color.Transparent;
+            this.volumeTrackBar.BorderColor = System.Drawing.Color.Transparent;
+            this.volumeTrackBar.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.volumeTrackBar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(123)))), ((int)(((byte)(125)))), ((int)(((byte)(123)))));
+            this.volumeTrackBar.IndentHeight = 6;
+            this.volumeTrackBar.Location = new System.Drawing.Point(622, 18);
+            this.volumeTrackBar.Maximum = 100;
+            this.volumeTrackBar.Minimum = 0;
+            this.volumeTrackBar.MinimumSize = new System.Drawing.Size(100, 27);
+            this.volumeTrackBar.Name = "volumeTrackBar";
+            this.volumeTrackBar.Size = new System.Drawing.Size(150, 27);
+            this.volumeTrackBar.TabIndex = 13;
+            this.volumeTrackBar.TabStop = false;
+            this.volumeTrackBar.TextTickStyle = System.Windows.Forms.TickStyle.None;
+            this.volumeTrackBar.TickColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(146)))), ((int)(((byte)(148)))));
+            this.volumeTrackBar.TickHeight = 1;
+            this.volumeTrackBar.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.volumeTrackBar.TrackerColor = System.Drawing.Color.Snow;
+            this.volumeTrackBar.TrackerSize = new System.Drawing.Size(15, 15);
+            this.volumeTrackBar.TrackLineColor = System.Drawing.Color.Gray;
+            this.volumeTrackBar.TrackLineHeight = 3;
+            this.volumeTrackBar.TrackLineSelectedColor = System.Drawing.Color.SteelBlue;
+            this.volumeTrackBar.Value = 100;
+            this.volumeTrackBar.Scroll += new System.EventHandler(this.volumeTrackBar_Scroll);
+            // 
+            // musicTrackBar
+            // 
+            this.musicTrackBar.BackColor = System.Drawing.Color.Transparent;
+            this.musicTrackBar.BorderColor = System.Drawing.Color.Transparent;
+            this.musicTrackBar.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.musicTrackBar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(123)))), ((int)(((byte)(125)))), ((int)(((byte)(123)))));
+            this.musicTrackBar.IndentHeight = 6;
+            this.musicTrackBar.Location = new System.Drawing.Point(242, 61);
+            this.musicTrackBar.Maximum = 50;
+            this.musicTrackBar.Minimum = 0;
+            this.musicTrackBar.MinimumSize = new System.Drawing.Size(300, 27);
+            this.musicTrackBar.Name = "musicTrackBar";
+            this.musicTrackBar.Size = new System.Drawing.Size(300, 27);
+            this.musicTrackBar.TabIndex = 0;
+            this.musicTrackBar.TabStop = false;
+            this.musicTrackBar.TextTickStyle = System.Windows.Forms.TickStyle.None;
+            this.musicTrackBar.TickColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(146)))), ((int)(((byte)(148)))));
+            this.musicTrackBar.TickHeight = 1;
+            this.musicTrackBar.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.musicTrackBar.TrackerColor = System.Drawing.Color.Snow;
+            this.musicTrackBar.TrackerSize = new System.Drawing.Size(15, 15);
+            this.musicTrackBar.TrackLineColor = System.Drawing.Color.Gray;
+            this.musicTrackBar.TrackLineHeight = 3;
+            this.musicTrackBar.TrackLineSelectedColor = System.Drawing.Color.SteelBlue;
+            this.musicTrackBar.Value = 0;
+            this.musicTrackBar.Scroll += new System.EventHandler(this.musicTrackBar_Scroll);
+            this.musicTrackBar.MouseUp += new System.Windows.Forms.MouseEventHandler(this.musicTrackBar_MouseUp);
+            // 
+            // maximumDuration
+            // 
+            this.maximumDuration.AutoSize = true;
+            this.maximumDuration.Location = new System.Drawing.Point(548, 66);
+            this.maximumDuration.Name = "maximumDuration";
+            this.maximumDuration.Size = new System.Drawing.Size(34, 13);
+            this.maximumDuration.TabIndex = 15;
+            this.maximumDuration.Text = "00:00";
+            // 
+            // nameOfCurrentTrackLabel
+            // 
+            this.nameOfCurrentTrackLabel.AutoEllipsis = true;
+            this.nameOfCurrentTrackLabel.BackColor = System.Drawing.Color.Transparent;
+            this.nameOfCurrentTrackLabel.CausesValidation = false;
+            this.nameOfCurrentTrackLabel.Enabled = false;
+            this.nameOfCurrentTrackLabel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.nameOfCurrentTrackLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.nameOfCurrentTrackLabel.Location = new System.Drawing.Point(91, 5);
+            this.nameOfCurrentTrackLabel.Name = "nameOfCurrentTrackLabel";
+            this.nameOfCurrentTrackLabel.Size = new System.Drawing.Size(145, 80);
+            this.nameOfCurrentTrackLabel.TabIndex = 2;
+            // 
+            // coverPictureBox
+            // 
+            this.coverPictureBox.Location = new System.Drawing.Point(5, 5);
+            this.coverPictureBox.Name = "coverPictureBox";
+            this.coverPictureBox.Size = new System.Drawing.Size(80, 80);
+            this.coverPictureBox.TabIndex = 1;
+            this.coverPictureBox.TabStop = false;
+            // 
+            // timerOfPlayback
+            // 
+            this.timerOfPlayback.Interval = 1000;
+            this.timerOfPlayback.Tick += new System.EventHandler(this.timerOfPlayback_Tick);
+            // 
+            // playButton
+            // 
+            this.playButton.BackColor = System.Drawing.Color.Transparent;
+            this.playButton.CausesValidation = false;
+            this.playButton.FlatAppearance.BorderSize = 0;
+            this.playButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
+            this.playButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.playButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.playButton.Font = new System.Drawing.Font("Segoe MDL2 Assets", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.playButton.ForeColor = System.Drawing.Color.Transparent;
+            this.playButton.Location = new System.Drawing.Point(115, 3);
+            this.playButton.Name = "playButton";
+            this.playButton.Size = new System.Drawing.Size(50, 50);
+            this.playButton.TabIndex = 18;
+            this.playButton.Text = "";
+            this.playButton.UseVisualStyleBackColor = false;
+            this.playButton.Click += new System.EventHandler(this.playButton_Click);
+            // 
             // musicPanel
             // 
             this.musicPanel.Controls.Add(this.musicControlsPanel);
+            this.musicPanel.Controls.Add(this.maximumDuration);
+            this.musicPanel.Controls.Add(this.durationOfPlayback);
+            this.musicPanel.Controls.Add(this.volumeTrackBar);
+            this.musicPanel.Controls.Add(this.musicTrackBar);
+            this.musicPanel.Controls.Add(this.nameOfCurrentTrackLabel);
+            this.musicPanel.Controls.Add(this.coverPictureBox);
             this.musicPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.musicPanel.Location = new System.Drawing.Point(0, 470);
             this.musicPanel.Name = "musicPanel";
@@ -81,6 +214,7 @@
             this.musicControlsPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.musicControlsPanel.Controls.Add(this.randomizeButton);
             this.musicControlsPanel.Controls.Add(this.backwardButton);
+            this.musicControlsPanel.Controls.Add(this.playButton);
             this.musicControlsPanel.Controls.Add(this.forwardButton);
             this.musicControlsPanel.Controls.Add(this.repeatButton);
             this.musicControlsPanel.ForeColor = System.Drawing.Color.White;
@@ -106,6 +240,7 @@
             this.randomizeButton.TabStop = false;
             this.randomizeButton.Text = "";
             this.randomizeButton.UseVisualStyleBackColor = false;
+            this.randomizeButton.Click += new System.EventHandler(this.randomizeButton_Click);
             // 
             // backwardButton
             // 
@@ -124,6 +259,7 @@
             this.backwardButton.TabStop = false;
             this.backwardButton.Text = "";
             this.backwardButton.UseVisualStyleBackColor = false;
+            this.backwardButton.Click += new System.EventHandler(this.backwardButton_Click);
             // 
             // forwardButton
             // 
@@ -142,6 +278,7 @@
             this.forwardButton.TabStop = false;
             this.forwardButton.Text = "";
             this.forwardButton.UseVisualStyleBackColor = false;
+            this.forwardButton.Click += new System.EventHandler(this.forwardButton_Click);
             // 
             // repeatButton
             // 
@@ -160,6 +297,7 @@
             this.repeatButton.TabStop = false;
             this.repeatButton.Text = "";
             this.repeatButton.UseVisualStyleBackColor = false;
+            this.repeatButton.Click += new System.EventHandler(this.repeatButton_Click);
             // 
             // mainFormSplitContainer
             // 
@@ -440,7 +578,9 @@
             this.Name = "MainForm";
             this.Text = "Draft Audio Player";
             this.Resize += new System.EventHandler(this.MainForm_Resize);
+            ((System.ComponentModel.ISupportInitialize)(this.coverPictureBox)).EndInit();
             this.musicPanel.ResumeLayout(false);
+            this.musicPanel.PerformLayout();
             this.musicControlsPanel.ResumeLayout(false);
             this.mainFormSplitContainer.Panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.mainFormSplitContainer)).EndInit();
@@ -454,6 +594,7 @@
             this.ResumeLayout(false);
 
         }
+
 
         #endregion
 
@@ -481,6 +622,14 @@
         private System.Windows.Forms.Button backwardButton;
         private System.Windows.Forms.Button forwardButton;
         private System.Windows.Forms.Button repeatButton;
+        public XComponent.SliderBar.MACTrackBar volumeTrackBar;
+        public System.Windows.Forms.Label durationOfPlayback;
+        public XComponent.SliderBar.MACTrackBar musicTrackBar;
+        public System.Windows.Forms.Label maximumDuration;
+        public System.Windows.Forms.PictureBox coverPictureBox;
+        public System.Windows.Forms.Label nameOfCurrentTrackLabel;
+        public System.Windows.Forms.Timer timerOfPlayback;
+        public System.Windows.Forms.Button playButton;
     }
 }
 

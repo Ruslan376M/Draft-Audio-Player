@@ -13,15 +13,32 @@ namespace Draft_Audio_Player_New_Design
         /// <summary>
         /// Главная точка входа для приложения.
         /// </summary>
+
+        public static MusicListForm musicListForm;
+        public static EffectsForm effectsForm;
+        public static EditorForm editorForm;
+        public static SettingsForm settingsForm;
+        public static AboutForm aboutForm;
+        public static MainForm mainForm;
+        //Инициализация побочных форм
+        
+
         [STAThread]
         static void Main()
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainForm());
+            musicListForm = new MusicListForm() { Dock = DockStyle.Fill, TopLevel = false };
+            effectsForm = new EffectsForm() { Dock = DockStyle.Fill, TopLevel = false };
+            editorForm = new EditorForm() { Dock = DockStyle.Fill, TopLevel = false };
+            settingsForm = new SettingsForm() { Dock = DockStyle.Fill, TopLevel = false };
+            aboutForm = new AboutForm() { Dock = DockStyle.Fill, TopLevel = false };
+            mainForm = new MainForm();
+            Application.Run(mainForm);
         }
 
-        public static Task showElements;
+        public static int repeatMode = 0;
+        public static bool is_random = false;
 
         //Путь к папке с музыкой
         public static string musicFolderPath = "";
@@ -30,6 +47,7 @@ namespace Draft_Audio_Player_New_Design
         //Массив не содержит искомую папку
         public static List<string> fileQueue = new List<string>();
 
+        public static List<int> excludeIndexes= new List<int>();
         //Создание плейлиста с названием name
         public static async void createPlayList(string name)
         {
