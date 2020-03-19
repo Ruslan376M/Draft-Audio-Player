@@ -139,6 +139,7 @@ namespace Draft_Audio_Player_New_Design
                 fileReader.Close();
                 fileReader.Dispose();
             }
+            
             fileReader = new MediaFoundationReader(Program.musicFolderPath + "\\" + Program.fileQueue[indexOfTrackInFileQueue]);
 
             if (outputDevice == null)
@@ -174,6 +175,8 @@ namespace Draft_Audio_Player_New_Design
             durationOfPlayback.Text = fileReader.CurrentTime.Minutes.ToString("00") + ":" + fileReader.CurrentTime.Seconds.ToString("00");
             if ((fileReader.CurrentTime.Seconds + fileReader.CurrentTime.Minutes * 60) == (fileReader.TotalTime.Minutes * 60 + fileReader.TotalTime.Seconds))
             {
+                if (MusicListForm.currentTrackIndex == Program.fileQueue.Count - 1)
+                    return;
                 durationOfPlayback.Text = "00:00";
                 musicTrackBar.Value = 0;
                 timerOfPlayback.Stop();
@@ -228,7 +231,11 @@ namespace Draft_Audio_Player_New_Design
 
         private void forwardButton_Click(object sender, EventArgs e)
         {
-            if (MusicListForm.currentTrackIndex < Program.fileQueue.Count)
+             if (MusicListForm.currentTrackIndex == Program.fileQueue.Count - 1)
+            {
+                playMusic(MusicListForm.currentTrackIndex);
+            }
+            else if (MusicListForm.currentTrackIndex < Program.fileQueue.Count)
             {
                 if (MusicListForm.previousButton != -1)
                     MusicListForm.play[MusicListForm.previousButton].Text = "";
