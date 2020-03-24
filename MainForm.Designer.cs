@@ -164,6 +164,7 @@
             // 
             // coverPictureBox
             // 
+            this.coverPictureBox.ErrorImage = ((System.Drawing.Image)(resources.GetObject("coverPictureBox.ErrorImage")));
             this.coverPictureBox.Location = new System.Drawing.Point(5, 5);
             this.coverPictureBox.Name = "coverPictureBox";
             this.coverPictureBox.Size = new System.Drawing.Size(80, 80);
