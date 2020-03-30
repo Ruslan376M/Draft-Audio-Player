@@ -175,7 +175,7 @@ namespace Draft_Audio_Player_New_Design
             durationOfPlayback.Text = fileReader.CurrentTime.Minutes.ToString("00") + ":" + fileReader.CurrentTime.Seconds.ToString("00");
             if ((fileReader.CurrentTime.Seconds + fileReader.CurrentTime.Minutes * 60) == (fileReader.TotalTime.Minutes * 60 + fileReader.TotalTime.Seconds))
             {
-                if (MusicListForm.currentTrackIndex == Program.fileQueue.Count - 1)
+                if (MusicListForm.currentTrackIndex == Program.fileQueue.Count - 1 && Program.repeatMode != 2)
                     return;
                 durationOfPlayback.Text = "00:00";
                 musicTrackBar.Value = 0;
@@ -215,12 +215,16 @@ namespace Draft_Audio_Player_New_Design
             if (musicIsPlaying != false)
                 outputDevice.Play();
             timerOfPlayback.Enabled = true;
+            durationLabel.Visible = false;
         }
 
         private void musicTrackBar_Scroll(object sender, EventArgs e)
         {
+            durationLabel.Visible = true;
             timerOfPlayback.Enabled = false;
             durationOfPlayback.Text = (musicTrackBar.Value / 60).ToString("00") + ":" + (musicTrackBar.Value % 60).ToString("00");
+            durationLabel.Location = new Point(257 + 91*300* musicTrackBar.Value/ musicTrackBar.Maximum/ 100 - 34/2, 48) ;
+            durationLabel.Text = (musicTrackBar.Value / 60).ToString("00") + ":" + (musicTrackBar.Value % 60).ToString("00");
         }
 
         private void volumeTrackBar_Scroll(object sender, EventArgs e)
@@ -313,7 +317,11 @@ namespace Draft_Audio_Player_New_Design
         {
             var range = Enumerable.Range(0, Program.fileQueue.Count - 1).Where(i => !Program.excludeIndexes.Contains(i));
 
-            int index = randomizer.Next(0, Program.fileQueue.Count - 1 - Program.excludeIndexes.Count);
+            int index=0; //randomizer.Next(0, Program.fileQueue.Count - 1 - Program.excludeIndexes.Count);
+            if((Program.fileQueue.Count - 1 - Program.excludeIndexes.Count) >= 0)
+            {
+                index=randomizer.Next(0, Program.fileQueue.Count - 1 - Program.excludeIndexes.Count);
+            }
             Program.excludeIndexes.Add(index);
             return index;
         }
@@ -355,5 +363,7 @@ namespace Draft_Audio_Player_New_Design
                 Program.repeatMode = 0;
             }
         }
+
+        
     }
 }

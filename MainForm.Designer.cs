@@ -40,6 +40,7 @@
             this.playButton = new System.Windows.Forms.Button();
             this.musicPanel = new System.Windows.Forms.Panel();
             this.musicControlsPanel = new System.Windows.Forms.Panel();
+            this.durationLabel = new System.Windows.Forms.Label();
             this.randomizeButton = new System.Windows.Forms.Button();
             this.backwardButton = new System.Windows.Forms.Button();
             this.forwardButton = new System.Windows.Forms.Button();
@@ -120,7 +121,7 @@
             this.musicTrackBar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(123)))), ((int)(((byte)(125)))), ((int)(((byte)(123)))));
             this.musicTrackBar.IndentHeight = 6;
             this.musicTrackBar.Location = new System.Drawing.Point(242, 61);
-            this.musicTrackBar.Maximum = 50;
+            this.musicTrackBar.Maximum = 100;
             this.musicTrackBar.Minimum = 0;
             this.musicTrackBar.MinimumSize = new System.Drawing.Size(300, 27);
             this.musicTrackBar.Name = "musicTrackBar";
@@ -167,6 +168,7 @@
             this.coverPictureBox.Location = new System.Drawing.Point(5, 5);
             this.coverPictureBox.Name = "coverPictureBox";
             this.coverPictureBox.Size = new System.Drawing.Size(80, 80);
+            this.coverPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.coverPictureBox.TabIndex = 1;
             this.coverPictureBox.TabStop = false;
             // 
@@ -195,6 +197,7 @@
             // 
             // musicPanel
             // 
+            this.musicPanel.Controls.Add(this.durationLabel);
             this.musicPanel.Controls.Add(this.musicControlsPanel);
             this.musicPanel.Controls.Add(this.maximumDuration);
             this.musicPanel.Controls.Add(this.durationOfPlayback);
@@ -222,6 +225,17 @@
             this.musicControlsPanel.Name = "musicControlsPanel";
             this.musicControlsPanel.Size = new System.Drawing.Size(280, 55);
             this.musicControlsPanel.TabIndex = 8;
+            // 
+            // durationLabel
+            // 
+            this.durationLabel.AutoSize = true;
+            this.durationLabel.BackColor = System.Drawing.Color.Transparent;
+            this.durationLabel.Location = new System.Drawing.Point(570, 48);
+            this.durationLabel.Name = "durationLabel";
+            this.durationLabel.Size = new System.Drawing.Size(34, 13);
+            this.durationLabel.TabIndex = 16;
+            this.durationLabel.Text = "00:00";
+            this.durationLabel.Visible = false;
             // 
             // randomizeButton
             // 
@@ -630,6 +644,7 @@
         public System.Windows.Forms.Label nameOfCurrentTrackLabel;
         public System.Windows.Forms.Timer timerOfPlayback;
         public System.Windows.Forms.Button playButton;
+        public System.Windows.Forms.Label durationLabel;
     }
 }
 
