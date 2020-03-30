@@ -223,7 +223,7 @@ namespace Draft_Audio_Player_New_Design
             durationLabel.Visible = true;
             timerOfPlayback.Enabled = false;
             durationOfPlayback.Text = (musicTrackBar.Value / 60).ToString("00") + ":" + (musicTrackBar.Value % 60).ToString("00");
-            durationLabel.Location = new Point(257 + 91*300* musicTrackBar.Value/ musicTrackBar.Maximum/ 100 - 34/2, 48) ;
+            durationLabel.Location = new Point( (musicTrackBar.Location.X+15) + (91 * musicTrackBar.Width * musicTrackBar.Value / musicTrackBar.Maximum / 100) - (durationLabel.Width/2), 48) ;
             durationLabel.Text = (musicTrackBar.Value / 60).ToString("00") + ":" + (musicTrackBar.Value % 60).ToString("00");
         }
 
@@ -231,6 +231,9 @@ namespace Draft_Audio_Player_New_Design
         {
             if (outputDevice != null)
                 outputDevice.Volume = volumeTrackBar.Value / 100f;
+            label1.Visible = true;
+            label1.Location = new Point( (812 * volumeTrackBar.Value * volumeTrackBar.Width / volumeTrackBar.Maximum / 1000) + (volumeTrackBar.Location.X + 15) - ((volumeTrackBar.Value>9)? 19/2 : 13/2 ), 9);
+            label1.Text = volumeTrackBar.Value.ToString();
         }
 
         private void forwardButton_Click(object sender, EventArgs e)

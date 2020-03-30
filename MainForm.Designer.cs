@@ -39,8 +39,8 @@
             this.timerOfPlayback = new System.Windows.Forms.Timer(this.components);
             this.playButton = new System.Windows.Forms.Button();
             this.musicPanel = new System.Windows.Forms.Panel();
-            this.musicControlsPanel = new System.Windows.Forms.Panel();
             this.durationLabel = new System.Windows.Forms.Label();
+            this.musicControlsPanel = new System.Windows.Forms.Panel();
             this.randomizeButton = new System.Windows.Forms.Button();
             this.backwardButton = new System.Windows.Forms.Button();
             this.forwardButton = new System.Windows.Forms.Button();
@@ -63,6 +63,7 @@
             this.navigationEditorPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.navigationEditorIconLabel = new System.Windows.Forms.Label();
             this.navigationEditorTextLabel = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.coverPictureBox)).BeginInit();
             this.musicPanel.SuspendLayout();
             this.musicControlsPanel.SuspendLayout();
@@ -197,6 +198,7 @@
             // 
             // musicPanel
             // 
+            this.musicPanel.Controls.Add(this.label1);
             this.musicPanel.Controls.Add(this.durationLabel);
             this.musicPanel.Controls.Add(this.musicControlsPanel);
             this.musicPanel.Controls.Add(this.maximumDuration);
@@ -210,6 +212,17 @@
             this.musicPanel.Name = "musicPanel";
             this.musicPanel.Size = new System.Drawing.Size(784, 91);
             this.musicPanel.TabIndex = 0;
+            // 
+            // durationLabel
+            // 
+            this.durationLabel.AutoSize = true;
+            this.durationLabel.BackColor = System.Drawing.Color.Transparent;
+            this.durationLabel.Location = new System.Drawing.Point(202, 48);
+            this.durationLabel.Name = "durationLabel";
+            this.durationLabel.Size = new System.Drawing.Size(34, 13);
+            this.durationLabel.TabIndex = 16;
+            this.durationLabel.Text = "00:00";
+            this.durationLabel.Visible = false;
             // 
             // musicControlsPanel
             // 
@@ -225,17 +238,6 @@
             this.musicControlsPanel.Name = "musicControlsPanel";
             this.musicControlsPanel.Size = new System.Drawing.Size(280, 55);
             this.musicControlsPanel.TabIndex = 8;
-            // 
-            // durationLabel
-            // 
-            this.durationLabel.AutoSize = true;
-            this.durationLabel.BackColor = System.Drawing.Color.Transparent;
-            this.durationLabel.Location = new System.Drawing.Point(570, 48);
-            this.durationLabel.Name = "durationLabel";
-            this.durationLabel.Size = new System.Drawing.Size(34, 13);
-            this.durationLabel.TabIndex = 16;
-            this.durationLabel.Text = "00:00";
-            this.durationLabel.Visible = false;
             // 
             // randomizeButton
             // 
@@ -577,6 +579,17 @@
             this.navigationEditorTextLabel.Text = "Редактор";
             this.navigationEditorTextLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Location = new System.Drawing.Point(747, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(13, 13);
+            this.label1.TabIndex = 17;
+            this.label1.Text = "9";
+            this.label1.Visible = false;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -645,6 +658,7 @@
         public System.Windows.Forms.Timer timerOfPlayback;
         public System.Windows.Forms.Button playButton;
         public System.Windows.Forms.Label durationLabel;
+        public System.Windows.Forms.Label label1;
     }
 }
 
