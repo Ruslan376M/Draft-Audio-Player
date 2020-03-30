@@ -38,6 +38,7 @@
             this.button3 = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.pitchTrackBar = new XComponent.SliderBar.MACTrackBar();
+            this.equalizer = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // musicTrackBar
@@ -201,6 +202,20 @@
             this.pitchTrackBar.Value = 0;
             this.pitchTrackBar.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pitchTrackBar_MouseUp);
             // 
+            // equalizer
+            // 
+            this.equalizer.BackColor = System.Drawing.Color.Transparent;
+            this.equalizer.CausesValidation = false;
+            this.equalizer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.equalizer.ForeColor = System.Drawing.Color.Transparent;
+            this.equalizer.Location = new System.Drawing.Point(405, 22);
+            this.equalizer.Name = "equalizer";
+            this.equalizer.Size = new System.Drawing.Size(237, 40);
+            this.equalizer.TabIndex = 27;
+            this.equalizer.Text = "Эквалайзер";
+            this.equalizer.UseVisualStyleBackColor = false;
+            this.equalizer.Click += new System.EventHandler(this.equalizer_Click);
+            // 
             // EffectsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -208,6 +223,7 @@
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.equalizer);
             this.Controls.Add(this.pitchValueLabel);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button3);
@@ -238,5 +254,6 @@
         public System.Windows.Forms.Button button3;
         public System.Windows.Forms.Label label3;
         public XComponent.SliderBar.MACTrackBar pitchTrackBar;
+        private System.Windows.Forms.Button equalizer;
     }
 }

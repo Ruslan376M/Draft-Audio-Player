@@ -36,5 +36,11 @@ namespace Draft_Audio_Player_New_Design
             else
                 pitch.PitchFactor = (float)currentPitch;
         }
+
+        private void equalizer_Click(object sender, EventArgs e)
+        {
+            EqualizerForm Эквалайзер = new EqualizerForm();
+            Эквалайзер.Show();
+        }  
     }
 }

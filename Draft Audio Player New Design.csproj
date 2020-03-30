@@ -48,6 +48,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CSCore, Version=1.2.1.2, Culture=neutral, PublicKeyToken=5a08f2b6f4415dea, processorArchitecture=MSIL">
+      <HintPath>packages\CSCore.1.2.1.2\lib\net35-client\CSCore.dll</HintPath>
+    </Reference>
     <Reference Include="CustomMarshalers" />
     <Reference Include="MACTrackBarLib, Version=1.0.5896.38740, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\MACTrackBarLib.dll.1.0.2\lib\net40\MACTrackBarLib.dll</HintPath>
@@ -101,6 +104,12 @@
     <Compile Include="EffectsForm.Designer.cs">
       <DependentUpon>EffectsForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="EqualizerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EqualizerForm.Designer.cs">
+      <DependentUpon>EqualizerForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -129,6 +138,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="EffectsForm.resx">
       <DependentUpon>EffectsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EqualizerForm.resx">
+      <DependentUpon>EqualizerForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
