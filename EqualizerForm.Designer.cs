@@ -44,6 +44,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.trackBar11 = new System.Windows.Forms.TrackBar();
+            this.trackBar12 = new System.Windows.Forms.TrackBar();
             this.flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).BeginInit();
@@ -55,6 +57,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.trackBar8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar9)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar11)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar12)).BeginInit();
             this.SuspendLayout();
             // 
             // flowLayoutPanel1
@@ -221,7 +225,7 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(247, 23);
             this.button1.TabIndex = 4;
-            this.button1.Text = "выбрать песню";
+            this.button1.Text = "применить";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
@@ -265,12 +269,30 @@
             this.label3.TabIndex = 8;
             this.label3.Text = "-12db";
             // 
+            // trackBar11
+            // 
+            this.trackBar11.Location = new System.Drawing.Point(64, 54);
+            this.trackBar11.Name = "trackBar11";
+            this.trackBar11.Orientation = System.Windows.Forms.Orientation.Vertical;
+            this.trackBar11.Size = new System.Drawing.Size(45, 255);
+            this.trackBar11.TabIndex = 9;
+            // 
+            // trackBar12
+            // 
+            this.trackBar12.Location = new System.Drawing.Point(131, 54);
+            this.trackBar12.Name = "trackBar12";
+            this.trackBar12.Orientation = System.Windows.Forms.Orientation.Vertical;
+            this.trackBar12.Size = new System.Drawing.Size(45, 255);
+            this.trackBar12.TabIndex = 10;
+            // 
             // EqualizerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.trackBar12);
+            this.Controls.Add(this.trackBar11);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -290,6 +312,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.trackBar8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar10)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar9)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar11)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar12)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -312,5 +336,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TrackBar trackBar11;
+        private System.Windows.Forms.TrackBar trackBar12;
     }
 }

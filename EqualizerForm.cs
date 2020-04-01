@@ -12,63 +12,64 @@ using CSCore.Codecs;
 using CSCore.SoundOut;
 using CSCore.Streams;
 using CSCore.Streams.Effects;
+//using NAudio.Dsp;
+//using NAudio.Wave;
+//using NAudio.Wave.SampleProviders;
 
 namespace Draft_Audio_Player_New_Design
 {
-    public partial class EqualizerForm : Form
-    {
-        private const double MaxDB = 20;
+	public partial class EqualizerForm : Form
+	{
+		private const double MaxDB = 20;
 
-        private Equalizer _equalizer;
-        private ISoundOut _soundOut;
-        public EqualizerForm()
-        {
-            InitializeComponent();
-        }
+		private Equalizer _equalizer;
+		private ISoundOut _soundOut;
 
-        private void band1_ValueChanged(object sender, EventArgs e)
-        {
-            var trackbar = sender as TrackBar;
-            if (_equalizer != null && trackbar != null)
-            {
-                double perc = (trackbar.Value / (double)trackbar.Maximum);
-                var value = (float)(perc * MaxDB);
+		public EqualizerForm()
+		{
+			InitializeComponent();
+		}
 
-                //the tag of the trackbar contains the index of the filter
-                int filterIndex = Int32.Parse((string)trackbar.Tag);
-                EqualizerFilter filter = _equalizer.SampleFilters[filterIndex];
-                filter.AverageGainDB = value;
-            }
-        }
-       
-        private void button1_Click_1(object sender, EventArgs e)
-        {
-            var ofn = new OpenFileDialog();
-            ofn.Filter = CodecFactory.SupportedFilesFilterEn;
-            if (ofn.ShowDialog() == DialogResult.OK)
-            { 
-                if (WasapiOut.IsSupportedOnCurrentPlatform)
-                    _soundOut = new WasapiOut();
-                else
-                    _soundOut = new DirectSoundOut();
+	   
 
-                var source = CodecFactory.Instance.GetCodec(ofn.FileName)
-                    .Loop()
-                    .ChangeSampleRate(44100)
-                    .ToSampleSource()
-                    .AppendSource(Equalizer.Create10BandEqualizer, out _equalizer)
-                    .ToWaveSource();
+		private void band1_ValueChanged(object sender, EventArgs e)
+		{
+			var trackbar = sender as TrackBar;
+			if (_equalizer != null && trackbar != null)
+			{
+				double perc = (trackbar.Value / (double)trackbar.Maximum);
+				var value = (float)(perc * MaxDB);
 
-                _soundOut.Initialize(source);
-                _soundOut.Play();
-            }
-        }
-        
+				//the tag of the trackbar contains the index of the filter
+				int filterIndex = Int32.Parse((string)trackbar.Tag);
+				EqualizerFilter filter = _equalizer.SampleFilters[filterIndex];
+				filter.AverageGainDB = value;
+			}
+		}
 
-        private void closee_Click(object sender, EventArgs e)
-        {
-            _soundOut.Stop();
-            this.Close();
-        }
-    }
+		private void button1_Click_1(object sender, EventArgs e)
+		{
+			
+			int filenamess = MusicListForm.currentTrackIndex;			
+			var source = CodecFactory.Instance.GetCodec(Program.musicFolderPath + "\\" + Program.fileQueue[filenamess])
+				.Loop()
+				.ChangeSampleRate(44100)
+				.ToSampleSource()
+				.AppendSource(Equalizer.Create10BandEqualizer, out _equalizer)
+				.ToWaveSource();
+			
+			MainForm.outputDevice.Stop();
+			_soundOut.Initialize(source);
+			_soundOut.Play();
+			
+
+		}
+
+
+		private void closee_Click(object sender, EventArgs e)
+		{
+			_soundOut.Stop();
+			this.Close();
+		}
+	}
 }

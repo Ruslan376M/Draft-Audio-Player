@@ -39,6 +39,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.pitchTrackBar = new XComponent.SliderBar.MACTrackBar();
             this.equalizer = new System.Windows.Forms.Button();
+            this.mono = new System.Windows.Forms.Button();
+            this.stereo = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // musicTrackBar
@@ -216,6 +218,34 @@
             this.equalizer.UseVisualStyleBackColor = false;
             this.equalizer.Click += new System.EventHandler(this.equalizer_Click);
             // 
+            // mono
+            // 
+            this.mono.BackColor = System.Drawing.Color.Transparent;
+            this.mono.CausesValidation = false;
+            this.mono.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.mono.ForeColor = System.Drawing.Color.Transparent;
+            this.mono.Location = new System.Drawing.Point(405, 107);
+            this.mono.Name = "mono";
+            this.mono.Size = new System.Drawing.Size(113, 40);
+            this.mono.TabIndex = 28;
+            this.mono.Text = "Моно";
+            this.mono.UseVisualStyleBackColor = false;
+            this.mono.Click += new System.EventHandler(this.mono_Click);
+            // 
+            // stereo
+            // 
+            this.stereo.BackColor = System.Drawing.Color.Transparent;
+            this.stereo.CausesValidation = false;
+            this.stereo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.stereo.ForeColor = System.Drawing.Color.Transparent;
+            this.stereo.Location = new System.Drawing.Point(529, 107);
+            this.stereo.Name = "stereo";
+            this.stereo.Size = new System.Drawing.Size(113, 40);
+            this.stereo.TabIndex = 29;
+            this.stereo.Text = "Стерео";
+            this.stereo.UseVisualStyleBackColor = false;
+            this.stereo.Click += new System.EventHandler(this.stereo_Click);
+            // 
             // EffectsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -223,6 +253,8 @@
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.stereo);
+            this.Controls.Add(this.mono);
             this.Controls.Add(this.equalizer);
             this.Controls.Add(this.pitchValueLabel);
             this.Controls.Add(this.button2);
@@ -255,5 +287,7 @@
         public System.Windows.Forms.Label label3;
         public XComponent.SliderBar.MACTrackBar pitchTrackBar;
         private System.Windows.Forms.Button equalizer;
+        private System.Windows.Forms.Button mono;
+        private System.Windows.Forms.Button stereo;
     }
 }
