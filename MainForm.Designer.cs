@@ -39,6 +39,7 @@
             this.timerOfPlayback = new System.Windows.Forms.Timer(this.components);
             this.playButton = new System.Windows.Forms.Button();
             this.musicPanel = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
             this.durationLabel = new System.Windows.Forms.Label();
             this.musicControlsPanel = new System.Windows.Forms.Panel();
             this.randomizeButton = new System.Windows.Forms.Button();
@@ -63,7 +64,6 @@
             this.navigationEditorPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.navigationEditorIconLabel = new System.Windows.Forms.Label();
             this.navigationEditorTextLabel = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.coverPictureBox)).BeginInit();
             this.musicPanel.SuspendLayout();
             this.musicControlsPanel.SuspendLayout();
@@ -113,6 +113,7 @@
             this.volumeTrackBar.TrackLineSelectedColor = System.Drawing.Color.SteelBlue;
             this.volumeTrackBar.Value = 100;
             this.volumeTrackBar.Scroll += new System.EventHandler(this.volumeTrackBar_Scroll);
+            this.volumeTrackBar.MouseUp += new System.Windows.Forms.MouseEventHandler(this.volumeTrackBar_MouseUp);
             // 
             // musicTrackBar
             // 
@@ -212,6 +213,17 @@
             this.musicPanel.Name = "musicPanel";
             this.musicPanel.Size = new System.Drawing.Size(784, 91);
             this.musicPanel.TabIndex = 0;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Location = new System.Drawing.Point(747, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(27, 13);
+            this.label1.TabIndex = 17;
+            this.label1.Text = "99%";
+            this.label1.Visible = false;
             // 
             // durationLabel
             // 
@@ -578,17 +590,6 @@
             this.navigationEditorTextLabel.TabIndex = 1;
             this.navigationEditorTextLabel.Text = "Редактор";
             this.navigationEditorTextLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Location = new System.Drawing.Point(747, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(13, 13);
-            this.label1.TabIndex = 17;
-            this.label1.Text = "9";
-            this.label1.Visible = false;
             // 
             // MainForm
             // 

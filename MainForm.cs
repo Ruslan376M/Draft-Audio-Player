@@ -232,8 +232,8 @@ namespace Draft_Audio_Player_New_Design
             if (outputDevice != null)
                 outputDevice.Volume = volumeTrackBar.Value / 100f;
             label1.Visible = true;
-            label1.Location = new Point( (812 * volumeTrackBar.Value * volumeTrackBar.Width / volumeTrackBar.Maximum / 1000) + (volumeTrackBar.Location.X + 15) - ((volumeTrackBar.Value>9)? 19/2 : 13/2 ), 9);
-            label1.Text = volumeTrackBar.Value.ToString();
+            label1.Location = new Point( (820 * volumeTrackBar.Value * volumeTrackBar.Width / volumeTrackBar.Maximum / 1000) + (volumeTrackBar.Location.X + 15) - ((volumeTrackBar.Value>9)? 20/2 : 15/2 ), 9);
+            label1.Text = volumeTrackBar.Value.ToString() + "%";
         }
 
         private void forwardButton_Click(object sender, EventArgs e)
@@ -367,6 +367,9 @@ namespace Draft_Audio_Player_New_Design
             }
         }
 
-        
+        private void volumeTrackBar_MouseUp(object sender, MouseEventArgs e)
+        {
+            label1.Visible = false;
+        }
     }
 }
