@@ -39,7 +39,7 @@
             this.trackBar8 = new System.Windows.Forms.TrackBar();
             this.trackBar10 = new System.Windows.Forms.TrackBar();
             this.trackBar9 = new System.Windows.Forms.TrackBar();
-            this.button1 = new System.Windows.Forms.Button();
+            this.apply = new System.Windows.Forms.Button();
             this.closee = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -218,16 +218,16 @@
             this.trackBar9.TickStyle = System.Windows.Forms.TickStyle.None;
             this.trackBar9.ValueChanged += new System.EventHandler(this.band1_ValueChanged);
             // 
-            // button1
+            // apply
             // 
-            this.button1.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.button1.Location = new System.Drawing.Point(303, 322);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(247, 23);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "применить";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            this.apply.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.apply.Location = new System.Drawing.Point(303, 322);
+            this.apply.Name = "apply";
+            this.apply.Size = new System.Drawing.Size(247, 23);
+            this.apply.TabIndex = 4;
+            this.apply.Text = "применить";
+            this.apply.UseVisualStyleBackColor = true;
+            this.apply.Click += new System.EventHandler(this.apply_Click);
             // 
             // closee
             // 
@@ -297,7 +297,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.closee);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.apply);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Name = "EqualizerForm";
             this.Text = "Эквалайзер";
@@ -331,7 +331,7 @@
         private System.Windows.Forms.TrackBar trackBar8;
         private System.Windows.Forms.TrackBar trackBar10;
         private System.Windows.Forms.TrackBar trackBar9;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button apply;
         private System.Windows.Forms.Button closee;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;

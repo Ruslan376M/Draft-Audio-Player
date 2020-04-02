@@ -46,30 +46,41 @@ namespace Draft_Audio_Player_New_Design
 				filter.AverageGainDB = value;
 			}
 		}
-
-		private void button1_Click_1(object sender, EventArgs e)
+		private void closee_Click(object sender, EventArgs e)
 		{
-			
-			int filenamess = MusicListForm.currentTrackIndex;			
+			Stop();
+			this.Close();
+		}
+
+		private void apply_Click(object sender, EventArgs e)
+		{
+			Stop();
+			if (WasapiOut.IsSupportedOnCurrentPlatform)
+				_soundOut = new WasapiOut();
+			else
+				_soundOut = new DirectSoundOut();
+			int filenamess = MusicListForm.currentTrackIndex;
 			var source = CodecFactory.Instance.GetCodec(Program.musicFolderPath + "\\" + Program.fileQueue[filenamess])
 				.Loop()
 				.ChangeSampleRate(44100)
 				.ToSampleSource()
 				.AppendSource(Equalizer.Create10BandEqualizer, out _equalizer)
 				.ToWaveSource();
-			
+
 			MainForm.outputDevice.Stop();
 			_soundOut.Initialize(source);
 			_soundOut.Play();
-			
-
 		}
 
-
-		private void closee_Click(object sender, EventArgs e)
+		private void Stop()
 		{
-			_soundOut.Stop();
-			this.Close();
+			if (_soundOut != null)
+			{
+				_soundOut.Stop();
+				_soundOut.Dispose();
+				_equalizer.Dispose();
+				_soundOut = null;
+			}
 		}
 	}
 }
