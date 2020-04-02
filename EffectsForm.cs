@@ -81,11 +81,19 @@ namespace Draft_Audio_Player_New_Design
         private void resetButton_Click(object sender, EventArgs e)
         {
             is_fixed = false;
+            
             loopRangeBar.RangeMinimum = 0;
             minDurLabel.Text = ("00") + ":" + ("00");
-            loopRangeBar.RangeMaximum = loopRangeBar.TotalMaximum;
+            loopRangeBar.RangeMaximum = loopRangeBar.TotalMaximum = MainForm.maxDur; 
             maxDurLabel.Text = (loopRangeBar.TotalMaximum / 60).ToString("00") + ":" + (loopRangeBar.TotalMaximum % 60).ToString("00");
 
+        }
+
+        private void startLoopButton_Click(object sender, EventArgs e)
+        {
+
+            MusicListForm.currentTrackIndex -= 1;
+            Program.mainForm.forwardButton_Click(null, null);
         }
     }
 }

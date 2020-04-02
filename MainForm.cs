@@ -157,6 +157,7 @@ namespace Draft_Audio_Player_New_Design
             {
                 musicTrackBar.Value = 0;
                 durationOfPlayback.Text = fileReader.CurrentTime.Minutes.ToString("00") + ":" + fileReader.CurrentTime.Seconds.ToString("00");
+                Program.effectsForm.maxDurLabel.Text = maximumDuration.Text = fileReader.TotalTime.Minutes.ToString("00") + ":" + fileReader.TotalTime.Seconds.ToString("00");
             }
             
             musicTrackBar.Maximum = maxDur = fileReader.TotalTime.Minutes * 60 + fileReader.TotalTime.Seconds;
@@ -243,7 +244,7 @@ namespace Draft_Audio_Player_New_Design
                 outputDevice.Volume = volumeTrackBar.Value / 100f;
         }
 
-        private void forwardButton_Click(object sender, EventArgs e)
+        public void forwardButton_Click(object sender, EventArgs e)
         {
             if (MusicListForm.currentTrackIndex < Program.fileQueue.Count)
             {

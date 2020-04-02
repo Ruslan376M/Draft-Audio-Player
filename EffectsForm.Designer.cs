@@ -46,6 +46,7 @@
             this.minDurLabel = new System.Windows.Forms.Label();
             this.maxDurLabel = new System.Windows.Forms.Label();
             this.resetButton = new System.Windows.Forms.Button();
+            this.startLoopButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // musicTrackBar
@@ -312,6 +313,20 @@
             this.resetButton.UseVisualStyleBackColor = false;
             this.resetButton.Click += new System.EventHandler(this.resetButton_Click);
             // 
+            // startLoopButton
+            // 
+            this.startLoopButton.BackColor = System.Drawing.Color.Transparent;
+            this.startLoopButton.CausesValidation = false;
+            this.startLoopButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.startLoopButton.ForeColor = System.Drawing.Color.Transparent;
+            this.startLoopButton.Location = new System.Drawing.Point(119, 226);
+            this.startLoopButton.Name = "startLoopButton";
+            this.startLoopButton.Size = new System.Drawing.Size(150, 25);
+            this.startLoopButton.TabIndex = 35;
+            this.startLoopButton.Text = "Начать зацикливание";
+            this.startLoopButton.UseVisualStyleBackColor = false;
+            this.startLoopButton.Click += new System.EventHandler(this.startLoopButton_Click);
+            // 
             // EffectsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -319,6 +334,7 @@
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.startLoopButton);
             this.Controls.Add(this.resetButton);
             this.Controls.Add(this.maxDurLabel);
             this.Controls.Add(this.minDurLabel);
@@ -365,5 +381,6 @@
         public System.Windows.Forms.Label minDurLabel;
         public System.Windows.Forms.Label maxDurLabel;
         private System.Windows.Forms.Button resetButton;
+        private System.Windows.Forms.Button startLoopButton;
     }
 }
