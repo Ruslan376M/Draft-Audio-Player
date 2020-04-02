@@ -41,6 +41,11 @@
             this.equalizer = new System.Windows.Forms.Button();
             this.mono = new System.Windows.Forms.Button();
             this.stereo = new System.Windows.Forms.Button();
+            this.LoopLabel = new System.Windows.Forms.Label();
+            this.loopRangeBar = new Zzzz.ZzzzRangeBar();
+            this.minDurLabel = new System.Windows.Forms.Label();
+            this.maxDurLabel = new System.Windows.Forms.Label();
+            this.resetButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // musicTrackBar
@@ -246,6 +251,67 @@
             this.stereo.UseVisualStyleBackColor = false;
             this.stereo.Click += new System.EventHandler(this.stereo_Click);
             // 
+            // LoopLabel
+            // 
+            this.LoopLabel.AutoSize = true;
+            this.LoopLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.LoopLabel.Location = new System.Drawing.Point(12, 166);
+            this.LoopLabel.Name = "LoopLabel";
+            this.LoopLabel.Size = new System.Drawing.Size(139, 24);
+            this.LoopLabel.TabIndex = 30;
+            this.LoopLabel.Text = "Зацикливание";
+            // 
+            // loopRangeBar
+            // 
+            this.loopRangeBar.DivisionNum = 0;
+            this.loopRangeBar.HeightOfBar = 8;
+            this.loopRangeBar.HeightOfMark = 24;
+            this.loopRangeBar.HeightOfTick = 6;
+            this.loopRangeBar.InnerColor = System.Drawing.Color.SteelBlue;
+            this.loopRangeBar.Location = new System.Drawing.Point(49, 193);
+            this.loopRangeBar.Name = "loopRangeBar";
+            this.loopRangeBar.Orientation = Zzzz.ZzzzRangeBar.RangeBarOrientation.horizontal;
+            this.loopRangeBar.RangeMaximum = this.loopRangeBar.TotalMaximum;
+            this.loopRangeBar.RangeMinimum = 0;
+            this.loopRangeBar.ScaleOrientation = Zzzz.ZzzzRangeBar.TopBottomOrientation.bottom;
+            this.loopRangeBar.Size = new System.Drawing.Size(300, 27);
+            this.loopRangeBar.TabIndex = 31;
+            this.loopRangeBar.TotalMaximum = 10;
+            this.loopRangeBar.TotalMinimum = 0;
+            this.loopRangeBar.RangeChanging += new Zzzz.ZzzzRangeBar.RangeChangedEventHandler(this.loopRangeBar_RangeChanging);
+            // 
+            // minDurLabel
+            // 
+            this.minDurLabel.AutoSize = true;
+            this.minDurLabel.Location = new System.Drawing.Point(13, 223);
+            this.minDurLabel.Name = "minDurLabel";
+            this.minDurLabel.Size = new System.Drawing.Size(34, 13);
+            this.minDurLabel.TabIndex = 32;
+            this.minDurLabel.Text = "00:00";
+            // 
+            // maxDurLabel
+            // 
+            this.maxDurLabel.AutoSize = true;
+            this.maxDurLabel.Location = new System.Drawing.Point(348, 223);
+            this.maxDurLabel.Name = "maxDurLabel";
+            this.maxDurLabel.Size = new System.Drawing.Size(34, 13);
+            this.maxDurLabel.TabIndex = 33;
+            this.maxDurLabel.Text = "00:00";
+            // 
+            // resetButton
+            // 
+            this.resetButton.BackColor = System.Drawing.Color.Transparent;
+            this.resetButton.CausesValidation = false;
+            this.resetButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.resetButton.ForeColor = System.Drawing.Color.Transparent;
+            this.resetButton.Location = new System.Drawing.Point(279, 162);
+            this.resetButton.Name = "resetButton";
+            this.resetButton.Size = new System.Drawing.Size(70, 25);
+            this.resetButton.TabIndex = 34;
+            this.resetButton.Text = "Сбросить";
+            this.resetButton.UseVisualStyleBackColor = false;
+            this.resetButton.Click += new System.EventHandler(this.resetButton_Click);
+            // 
             // EffectsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -253,6 +319,11 @@
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.resetButton);
+            this.Controls.Add(this.maxDurLabel);
+            this.Controls.Add(this.minDurLabel);
+            this.Controls.Add(this.loopRangeBar);
+            this.Controls.Add(this.LoopLabel);
             this.Controls.Add(this.stereo);
             this.Controls.Add(this.mono);
             this.Controls.Add(this.equalizer);
@@ -289,5 +360,10 @@
         private System.Windows.Forms.Button equalizer;
         private System.Windows.Forms.Button mono;
         private System.Windows.Forms.Button stereo;
+        public System.Windows.Forms.Label LoopLabel;
+        private Zzzz.ZzzzRangeBar loopRangeBar;
+        public System.Windows.Forms.Label minDurLabel;
+        public System.Windows.Forms.Label maxDurLabel;
+        private System.Windows.Forms.Button resetButton;
     }
 }

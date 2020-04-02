@@ -130,6 +130,7 @@ namespace Draft_Audio_Player_New_Design
             hideCurrentForm = Program.aboutForm.Hide;
         }
 
+        public static int maxDur = 0;
         //Общая функция для запуска воспроизведения музыки с указанным индексом в fileQueue
         public void playMusic(int indexOfTrackInFileQueue)
         {
@@ -145,10 +146,21 @@ namespace Draft_Audio_Player_New_Design
                 outputDevice = new WaveOutEvent();
             else
                 outputDevice.Stop();
-            musicTrackBar.Value = 0;
-            musicTrackBar.Maximum = fileReader.TotalTime.Minutes * 60 + fileReader.TotalTime.Seconds;
+            if (EffectsForm.is_fixed == true)
+            {
+                musicTrackBar.Value = EffectsForm.minDur;
+                durationOfPlayback.Text = (EffectsForm.minDur / 60).ToString("00") + ":" + (EffectsForm.minDur % 60).ToString("00");
+                fileReader.Position += (musicTrackBar.Value - fileReader.CurrentTime.Minutes * 60 - fileReader.CurrentTime.Seconds) * fileReader.WaveFormat.AverageBytesPerSecond;
+
+            }
+            else
+            {
+                musicTrackBar.Value = 0;
+                durationOfPlayback.Text = fileReader.CurrentTime.Minutes.ToString("00") + ":" + fileReader.CurrentTime.Seconds.ToString("00");
+            }
+            
+            musicTrackBar.Maximum = maxDur = fileReader.TotalTime.Minutes * 60 + fileReader.TotalTime.Seconds;
             maximumDuration.Text = fileReader.TotalTime.Minutes.ToString("00") + ":" + fileReader.TotalTime.Seconds.ToString("00");
-            durationOfPlayback.Text = fileReader.CurrentTime.Minutes.ToString("00") + ":" + fileReader.CurrentTime.Seconds.ToString("00");
             outputDevice.Volume = volumeTrackBar.Value / 100f;
 
             var tagFile = TagLib.File.Create(Program.musicFolderPath + "\\" + Program.fileQueue[indexOfTrackInFileQueue]);
@@ -172,6 +184,11 @@ namespace Draft_Audio_Player_New_Design
         {
             musicTrackBar.Value = fileReader.CurrentTime.Minutes * 60 + fileReader.CurrentTime.Seconds;
             durationOfPlayback.Text = fileReader.CurrentTime.Minutes.ToString("00") + ":" + fileReader.CurrentTime.Seconds.ToString("00");
+            if(EffectsForm.is_fixed == true && musicTrackBar.Value == EffectsForm.maxDur)
+            {
+                MusicListForm.currentTrackIndex -= 1;
+                forwardButton_Click(null, null);
+            }
             if ((fileReader.CurrentTime.Seconds + fileReader.CurrentTime.Minutes * 60) == (fileReader.TotalTime.Minutes * 60 + fileReader.TotalTime.Seconds))
             {
                 durationOfPlayback.Text = "00:00";
@@ -232,7 +249,7 @@ namespace Draft_Audio_Player_New_Design
             {
                 if (MusicListForm.previousButton != -1)
                     MusicListForm.play[MusicListForm.previousButton].Text = "";
-                if (Program.is_random == true && Program.repeatMode != 2)
+                if (Program.is_random == true && Program.repeatMode != 2 && EffectsForm.is_fixed == false)
                 {
                     if (Program.excludeIndexes.Count > 0)
                         MusicListForm.currentTrackIndex = getRandomIndex();

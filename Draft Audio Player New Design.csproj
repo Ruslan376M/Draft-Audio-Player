@@ -84,6 +84,9 @@
     <Reference Include="UIAutomationProvider" />
     <Reference Include="WindowsBase" />
     <Reference Include="WindowsFormsIntegration" />
+    <Reference Include="ZzzzRangeBar">
+      <HintPath>..\..\Downloads\ZzzzRangeBar\ZzzzRangeBar\bin\Debug\ZzzzRangeBar.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AboutForm.cs">

@@ -65,6 +65,27 @@ namespace Draft_Audio_Player_New_Design
             }
         }
 
-        
+        public static int maxDur = 0;
+        public static int minDur = 0;
+        public static bool is_fixed = false;
+        private void loopRangeBar_RangeChanging(object sender, EventArgs e)
+        {
+            is_fixed = true;
+            loopRangeBar.TotalMaximum = MainForm.maxDur;
+            minDurLabel.Text = (loopRangeBar.RangeMinimum / 60).ToString("00") + ":" + (loopRangeBar.RangeMinimum % 60).ToString("00");
+            minDur = loopRangeBar.RangeMinimum;
+            maxDurLabel.Text = (loopRangeBar.RangeMaximum / 60).ToString("00") + ":" + (loopRangeBar.RangeMaximum % 60).ToString("00");
+            maxDur = loopRangeBar.RangeMaximum;
+        }
+
+        private void resetButton_Click(object sender, EventArgs e)
+        {
+            is_fixed = false;
+            loopRangeBar.RangeMinimum = 0;
+            minDurLabel.Text = ("00") + ":" + ("00");
+            loopRangeBar.RangeMaximum = loopRangeBar.TotalMaximum;
+            maxDurLabel.Text = (loopRangeBar.TotalMaximum / 60).ToString("00") + ":" + (loopRangeBar.TotalMaximum % 60).ToString("00");
+
+        }
     }
 }
