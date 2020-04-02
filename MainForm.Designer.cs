@@ -39,6 +39,8 @@
             this.timerOfPlayback = new System.Windows.Forms.Timer(this.components);
             this.playButton = new System.Windows.Forms.Button();
             this.musicPanel = new System.Windows.Forms.Panel();
+            this.volumeLabel = new System.Windows.Forms.Label();
+            this.durationLabel = new System.Windows.Forms.Label();
             this.musicControlsPanel = new System.Windows.Forms.Panel();
             this.randomizeButton = new System.Windows.Forms.Button();
             this.backwardButton = new System.Windows.Forms.Button();
@@ -111,6 +113,7 @@
             this.volumeTrackBar.TrackLineSelectedColor = System.Drawing.Color.SteelBlue;
             this.volumeTrackBar.Value = 100;
             this.volumeTrackBar.Scroll += new System.EventHandler(this.volumeTrackBar_Scroll);
+            this.volumeTrackBar.MouseUp += new System.Windows.Forms.MouseEventHandler(this.volumeTrackBar_MouseUp);
             // 
             // musicTrackBar
             // 
@@ -197,6 +200,8 @@
             // 
             // musicPanel
             // 
+            this.musicPanel.Controls.Add(this.volumeLabel);
+            this.musicPanel.Controls.Add(this.durationLabel);
             this.musicPanel.Controls.Add(this.musicControlsPanel);
             this.musicPanel.Controls.Add(this.maximumDuration);
             this.musicPanel.Controls.Add(this.durationOfPlayback);
@@ -209,6 +214,26 @@
             this.musicPanel.Name = "musicPanel";
             this.musicPanel.Size = new System.Drawing.Size(784, 91);
             this.musicPanel.TabIndex = 0;
+            // 
+            // volumeLabel
+            // 
+            this.volumeLabel.AutoSize = true;
+            this.volumeLabel.Location = new System.Drawing.Point(745, 10);
+            this.volumeLabel.Name = "volumeLabel";
+            this.volumeLabel.Size = new System.Drawing.Size(27, 13);
+            this.volumeLabel.TabIndex = 17;
+            this.volumeLabel.Text = "99%";
+            this.volumeLabel.Visible = false;
+            // 
+            // durationLabel
+            // 
+            this.durationLabel.AutoSize = true;
+            this.durationLabel.Location = new System.Drawing.Point(239, 48);
+            this.durationLabel.Name = "durationLabel";
+            this.durationLabel.Size = new System.Drawing.Size(34, 13);
+            this.durationLabel.TabIndex = 16;
+            this.durationLabel.Text = "00:00";
+            this.durationLabel.Visible = false;
             // 
             // musicControlsPanel
             // 
@@ -632,6 +657,8 @@
         public System.Windows.Forms.Label nameOfCurrentTrackLabel;
         public System.Windows.Forms.Timer timerOfPlayback;
         public System.Windows.Forms.Button playButton;
+        public System.Windows.Forms.Label volumeLabel;
+        public System.Windows.Forms.Label durationLabel;
     }
 }
 

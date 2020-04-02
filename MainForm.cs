@@ -230,18 +230,25 @@ namespace Draft_Audio_Player_New_Design
             if (musicIsPlaying != false)
                 outputDevice.Play();
             timerOfPlayback.Enabled = true;
+            durationLabel.Visible = false;
         }
 
         private void musicTrackBar_Scroll(object sender, EventArgs e)
         {
+            durationLabel.Visible = true;
             timerOfPlayback.Enabled = false;
             durationOfPlayback.Text = (musicTrackBar.Value / 60).ToString("00") + ":" + (musicTrackBar.Value % 60).ToString("00");
+            durationLabel.Location = new Point((musicTrackBar.Location.X + 15) + (91 * musicTrackBar.Width * musicTrackBar.Value / musicTrackBar.Maximum / 100) - (durationLabel.Width / 2), 48);
+            durationLabel.Text = (musicTrackBar.Value / 60).ToString("00") + ":" + (musicTrackBar.Value % 60).ToString("00");
         }
 
         private void volumeTrackBar_Scroll(object sender, EventArgs e)
         {
             if (outputDevice != null)
                 outputDevice.Volume = volumeTrackBar.Value / 100f;
+            volumeLabel.Visible = true;//820
+            volumeLabel.Location = new Point((8167 * volumeTrackBar.Value * volumeTrackBar.Width / volumeTrackBar.Maximum / 10000) + (volumeTrackBar.Location.X + 15) - ((volumeTrackBar.Value > 9) ? 20 / 2 : 15 / 2), 9);
+            volumeLabel.Text = volumeTrackBar.Value.ToString() + "%";
         }
 
         public void forwardButton_Click(object sender, EventArgs e)
@@ -365,6 +372,11 @@ namespace Draft_Audio_Player_New_Design
                 repeatButton.Text = "";
                 Program.repeatMode = 0;
             }
+        }
+
+        private void volumeTrackBar_MouseUp(object sender, MouseEventArgs e)
+        {
+            volumeLabel.Visible = false;
         }
     }
 }
