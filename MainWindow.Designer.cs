@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
             this.musicPanel = new System.Windows.Forms.Panel();
             this.centerMusicPanel = new System.Windows.Forms.Panel();
@@ -62,6 +63,9 @@
             this.navigationEditorPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.navigationEditorIconLabel = new System.Windows.Forms.Label();
             this.navigationEditorTextLabel = new System.Windows.Forms.Label();
+            this.timerOfPlayback = new System.Windows.Forms.Timer(this.components);
+            this.durationLabel = new System.Windows.Forms.Label();
+            this.volumeLabel = new System.Windows.Forms.Label();
             this.musicPanel.SuspendLayout();
             this.centerMusicPanel.SuspendLayout();
             this.musicControlsPanel.SuspendLayout();
@@ -80,7 +84,7 @@
             // 
             // musicPanel
             // 
-            this.musicPanel.BackColor = System.Drawing.Color.White;
+            this.musicPanel.BackColor = System.Drawing.Color.Gainsboro;
             this.musicPanel.Controls.Add(this.centerMusicPanel);
             this.musicPanel.Controls.Add(this.rightMusicPanel);
             this.musicPanel.Controls.Add(this.nameOfCurrentTrackLabel);
@@ -94,6 +98,7 @@
             // centerMusicPanel
             // 
             this.centerMusicPanel.BackColor = System.Drawing.Color.Transparent;
+            this.centerMusicPanel.Controls.Add(this.durationLabel);
             this.centerMusicPanel.Controls.Add(this.maximumDuration);
             this.centerMusicPanel.Controls.Add(this.durationOfPlayback);
             this.centerMusicPanel.Controls.Add(this.musicTrackBar);
@@ -264,6 +269,7 @@
             // rightMusicPanel
             // 
             this.rightMusicPanel.BackColor = System.Drawing.Color.Transparent;
+            this.rightMusicPanel.Controls.Add(this.volumeLabel);
             this.rightMusicPanel.Controls.Add(this.volumeTrackBar);
             this.rightMusicPanel.Dock = System.Windows.Forms.DockStyle.Right;
             this.rightMusicPanel.Location = new System.Drawing.Point(570, 0);
@@ -297,11 +303,15 @@
             this.volumeTrackBar.TrackLineSelectedColor = System.Drawing.Color.SteelBlue;
             this.volumeTrackBar.Value = 100;
             this.volumeTrackBar.Scroll += new System.EventHandler(this.volumeTrackBar_Scroll);
+            this.volumeTrackBar.MouseUp += new System.Windows.Forms.MouseEventHandler(this.volumeTrackBar_MouseUp);
             // 
             // nameOfCurrentTrackLabel
             // 
+            this.nameOfCurrentTrackLabel.AutoEllipsis = true;
             this.nameOfCurrentTrackLabel.BackColor = System.Drawing.Color.Transparent;
             this.nameOfCurrentTrackLabel.Dock = System.Windows.Forms.DockStyle.Left;
+            this.nameOfCurrentTrackLabel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.nameOfCurrentTrackLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.nameOfCurrentTrackLabel.Location = new System.Drawing.Point(90, 0);
             this.nameOfCurrentTrackLabel.Margin = new System.Windows.Forms.Padding(3);
             this.nameOfCurrentTrackLabel.Name = "nameOfCurrentTrackLabel";
@@ -330,7 +340,7 @@
             // 
             // mainWindowSplitContainer.Panel1
             // 
-            this.mainWindowSplitContainer.Panel1.BackColor = System.Drawing.Color.White;
+            this.mainWindowSplitContainer.Panel1.BackColor = System.Drawing.Color.Gainsboro;
             this.mainWindowSplitContainer.Panel1.Controls.Add(this.flowLayoutPanel1);
             this.mainWindowSplitContainer.Panel1.Controls.Add(this.navigationSettingsPanel);
             this.mainWindowSplitContainer.Panel1.Controls.Add(this.navigationAboutPanel);
@@ -603,6 +613,30 @@
             this.navigationEditorTextLabel.Text = "Редактор";
             this.navigationEditorTextLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // timerOfPlayback
+            // 
+            this.timerOfPlayback.Tick += new System.EventHandler(this.timerOfPlayback_Tick);
+            // 
+            // durationLabel
+            // 
+            this.durationLabel.AutoSize = true;
+            this.durationLabel.Location = new System.Drawing.Point(30, 59);
+            this.durationLabel.Name = "durationLabel";
+            this.durationLabel.Size = new System.Drawing.Size(34, 13);
+            this.durationLabel.TabIndex = 18;
+            this.durationLabel.Text = "00:00";
+            this.durationLabel.Visible = false;
+            // 
+            // volumeLabel
+            // 
+            this.volumeLabel.AutoSize = true;
+            this.volumeLabel.Location = new System.Drawing.Point(195, 6);
+            this.volumeLabel.Name = "volumeLabel";
+            this.volumeLabel.Size = new System.Drawing.Size(27, 13);
+            this.volumeLabel.TabIndex = 19;
+            this.volumeLabel.Text = "99%";
+            this.volumeLabel.Visible = false;
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -620,6 +654,7 @@
             this.centerMusicPanel.PerformLayout();
             this.musicControlsPanel.ResumeLayout(false);
             this.rightMusicPanel.ResumeLayout(false);
+            this.rightMusicPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.coverPictureBox)).EndInit();
             this.mainWindowSplitContainer.Panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.mainWindowSplitContainer)).EndInit();
@@ -638,7 +673,6 @@
 
         private System.Windows.Forms.Panel musicPanel;
         public System.Windows.Forms.PictureBox coverPictureBox;
-        private System.Windows.Forms.Label nameOfCurrentTrackLabel;
         private System.Windows.Forms.Panel centerMusicPanel;
         private System.Windows.Forms.Panel rightMusicPanel;
         public XComponent.SliderBar.MACTrackBar volumeTrackBar;
@@ -669,6 +703,10 @@
         private System.Windows.Forms.FlowLayoutPanel navigationEditorPanel;
         private System.Windows.Forms.Label navigationEditorIconLabel;
         private System.Windows.Forms.Label navigationEditorTextLabel;
+        public System.Windows.Forms.Timer timerOfPlayback;
+        public System.Windows.Forms.Label durationLabel;
+        public System.Windows.Forms.Label volumeLabel;
+        public System.Windows.Forms.Label nameOfCurrentTrackLabel;
     }
 }
 

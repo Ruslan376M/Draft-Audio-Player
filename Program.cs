@@ -19,6 +19,7 @@ namespace This_is_fine
         //Глобальное объявление классов
         public static ThemeControlClass themeControl;
         public static AudioControlClass audioControl;
+        public static FileSystemControlClass fileSystemControl;
 
         /// <summary>
         /// Главная точка входа для приложения.
@@ -29,8 +30,10 @@ namespace This_is_fine
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            themeControl = new ThemeControlClass();
-            themeControl.SetWhiteTheme();
+            fileSystemControl = new FileSystemControlClass();
+
+            //themeControl = new ThemeControlClass();
+            //themeControl.SetWhiteTheme();
             //audioControl = new AudioControlClass();
 
             musicListWindow = new MusicListWindow() { Dock = DockStyle.Fill, TopLevel = false };

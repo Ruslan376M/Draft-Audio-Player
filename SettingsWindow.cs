@@ -16,5 +16,22 @@ namespace This_is_fine
         {
             InitializeComponent();
         }
+        /// <summary>
+        /// 1. Открыть окно выбора папки
+        /// 2. Получить выбранную папку
+        /// 3. Проверить выбор папки
+        /// 4. Записать путь к папке в лейбл
+        /// 5. Сканировать папку на наличие файлов
+        /// </summary>
+        private void choosePathButton_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog musicFolderBrowserDialog = new FolderBrowserDialog();
+            musicFolderBrowserDialog.ShowDialog();
+            if (musicFolderBrowserDialog.SelectedPath != "")
+            {
+                folderLabel.Text = musicFolderBrowserDialog.SelectedPath;
+                Program.fileSystemControl.scanFolder(musicFolderBrowserDialog.SelectedPath);
+            }
+        }
     }
 }

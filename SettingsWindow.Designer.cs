@@ -51,6 +51,7 @@
             this.choosePathButton.TabStop = false;
             this.choosePathButton.Text = "Выбрать папку";
             this.choosePathButton.UseVisualStyleBackColor = false;
+            this.choosePathButton.Click += new System.EventHandler(this.choosePathButton_Click);
             // 
             // folderLabel
             // 
