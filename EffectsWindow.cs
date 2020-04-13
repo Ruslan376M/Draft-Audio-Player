@@ -265,6 +265,7 @@ namespace Music_Speed_And_Pitch_Changer
             Program.audioControl.equalizer = new Equalizer(Program.audioControl.waveProvider.ToSampleProvider(), Program.audioControl.bands);
             Program.audioControl.outputDevice.Stop();
             Program.audioControl.outputDevice.Init(Program.audioControl.equalizer);
+            Program.audioControl.outputDevice.Volume = Program.mainWindow.volumeTrackBar.Value / 100f;
             if (Program.musicListWindow.musicIsPlaying == true)
                 Program.audioControl.outputDevice.Play();
         }
