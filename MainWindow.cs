@@ -39,6 +39,13 @@ namespace Music_Speed_And_Pitch_Changer
             hamburgerButton.FlatAppearance.MouseDownBackColor = Program.themeControl.thirdColor;
             hamburgerButton.FlatAppearance.MouseOverBackColor = Program.themeControl.accentColor;
             navigationMusicPanel.ForeColor = Program.themeControl.secondColor;
+            if (Program.audioControl != null)
+            {
+                if (Program.audioControl.is_random == true)
+                    randomizeButton.BackColor = Program.themeControl.accentColor;
+                if (Program.audioControl.repeatMode != 0)
+                    repeatButton.BackColor = Program.themeControl.accentColor;
+            }
         }
         //Для открытия одной формы, нужно скрыть другую
         //Делегат, после показа новой формы, сохраняет в себе инструкцию для последующего её скрытия
