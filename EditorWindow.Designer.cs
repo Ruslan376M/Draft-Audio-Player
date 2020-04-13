@@ -1,4 +1,4 @@
-﻿namespace This_is_fine
+﻿namespace Music_Speed_And_Pitch_Changer
 {
     partial class EditorWindow
     {
@@ -28,10 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.SuspendLayout();
+            // 
+            // EditorWindow
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Name = "EditorWindow";
             this.Text = "ConvertionsWindow";
+            this.ResumeLayout(false);
+
         }
 
         #endregion

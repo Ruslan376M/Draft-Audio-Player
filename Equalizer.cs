@@ -1,14 +1,15 @@
 using NAudio.Dsp;
 using NAudio.Wave;
 
-namespace NAudioWpfDemo.EqualizationDemo
+namespace Music_Speed_And_Pitch_Changer
 {
-    /// <summary>
-    /// Basic example of a multi-band eq
-    /// uses the same settings for both channels in stereo audio
-    /// Call Update after you've updated the bands
-    /// Potentially to be added to NAudio in a future version
-    /// </summary>
+    public class EqualizerBand
+    {
+        public float Frequency { get; set; }
+        public float Gain { get; set; }
+        public float Bandwidth { get; set; }
+    }
+    
     public class Equalizer : ISampleProvider
     {
         private readonly ISampleProvider sourceProvider;
@@ -24,7 +25,7 @@ namespace NAudioWpfDemo.EqualizationDemo
             this.bands = bands;
             channels = sourceProvider.WaveFormat.Channels;
             bandCount = bands.Length;
-            filters = new BiQuadFilter[channels,bands.Length];
+            filters = new BiQuadFilter[channels, bands.Length];
             CreateFilters();
         }
 
@@ -63,8 +64,8 @@ namespace NAudioWpfDemo.EqualizationDemo
 
             for (int n = 0; n < samplesRead; n++)
             {
-                int ch = n % channels; 
-                
+                int ch = n % channels;
+
                 for (int band = 0; band < bandCount; band++)
                 {
                     buffer[offset + n] = filters[ch, band].Transform(buffer[offset + n]);

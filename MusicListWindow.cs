@@ -1,20 +1,44 @@
 ﻿using System;
-using System.IO;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.Reflection;
-using TagLib;
+using System.Windows.Forms;
 
-namespace This_is_fine
+namespace Music_Speed_And_Pitch_Changer
 {
     public partial class MusicListWindow : Form
     {
+        public void applyTheme()
+        {
+            this.BackColor = Program.themeControl.firstColor;
+            this.albumsButton.ForeColor = Program.themeControl.secondColor;
+            this.playlistsButton.ForeColor = Program.themeControl.secondColor;
+            this.allMusicButton.ForeColor = Program.themeControl.secondColor;
+            this.nowPlayingButton.ForeColor = Program.themeControl.secondColor;
+            this.button2.ForeColor = Program.themeControl.secondColor;
+            this.button1.ForeColor = Program.themeControl.secondColor;
+            this.nowPlayingButton.FlatAppearance.MouseDownBackColor = Program.themeControl.thirdColor;
+            this.allMusicButton.FlatAppearance.MouseDownBackColor = Program.themeControl.thirdColor;
+            this.playlistsButton.FlatAppearance.MouseDownBackColor = Program.themeControl.thirdColor;
+            this.albumsButton.FlatAppearance.MouseDownBackColor = Program.themeControl.thirdColor;
+            this.nowPlayingButton.FlatAppearance.MouseOverBackColor = Program.themeControl.accentColor;
+            this.allMusicButton.FlatAppearance.MouseOverBackColor = Program.themeControl.accentColor;
+            this.playlistsButton.FlatAppearance.MouseOverBackColor = Program.themeControl.accentColor;
+            this.albumsButton.FlatAppearance.MouseOverBackColor = Program.themeControl.accentColor;
+            for (int i = allMusicPaths.Count - 1; i >= 0; i--)
+            {
+
+                name[i].ForeColor = Program.themeControl.secondColor;
+                play[i].ForeColor = Program.themeControl.secondColor;
+                play[i].FlatAppearance.MouseDownBackColor = Program.themeControl.thirdColor;
+                play[i].FlatAppearance.MouseOverBackColor = Program.themeControl.accentColor;
+                duration[i].ForeColor = Program.themeControl.secondColor;
+                artist[i].ForeColor = Program.themeControl.secondColor;
+                album[i].ForeColor = Program.themeControl.secondColor;
+                genre[i].ForeColor = Program.themeControl.secondColor;
+            }
+        }
+
         Panel nowPlayingPanel = new Panel();
         Panel allMusicPanel = new Panel();
         Panel playListsPanel = new Panel();
@@ -27,6 +51,7 @@ namespace This_is_fine
             InitializeComponent();
             musicListWindowMainPanel.Controls.Add(allMusicPanel);
             toBeHiddenPanel = allMusicPanel;
+            applyTheme();
         }
 
         CheckBox[] checkBox;
@@ -139,11 +164,11 @@ namespace This_is_fine
                 play[i].BackColor = System.Drawing.Color.Transparent;
                 play[i].CausesValidation = false;
                 play[i].FlatAppearance.BorderSize = 0;
-                play[i].FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
-                play[i].FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+                play[i].FlatAppearance.MouseDownBackColor = Program.themeControl.thirdColor;
+                play[i].FlatAppearance.MouseOverBackColor = Program.themeControl.accentColor;
                 play[i].FlatStyle = System.Windows.Forms.FlatStyle.Flat;
                 play[i].Font = new System.Drawing.Font("Segoe MDL2 Assets", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                play[i].ForeColor = System.Drawing.Color.Black;
+                play[i].ForeColor = Program.themeControl.secondColor;
                 play[i].Location = new System.Drawing.Point(300, 0);
                 play[i].Name = i.ToString();
                 play[i].Size = new System.Drawing.Size(25, 25);
@@ -206,7 +231,7 @@ namespace This_is_fine
         {
             if (((Button)sender).Text == "" && musicIsPlaying == false)//Знак Play
             {
-                if (previousButtonIndex != Convert.ToInt32(((Button)sender).Name)) 
+                if (previousButtonIndex != Convert.ToInt32(((Button)sender).Name))
                 {
                     Program.audioControl.initMusicFile(Convert.ToInt32(((Button)sender).Name));
                     Program.audioControl.play();

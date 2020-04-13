@@ -1,4 +1,4 @@
-﻿namespace This_is_fine
+﻿namespace Music_Speed_And_Pitch_Changer
 {
     partial class MainWindow
     {
@@ -32,6 +32,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
             this.musicPanel = new System.Windows.Forms.Panel();
             this.centerMusicPanel = new System.Windows.Forms.Panel();
+            this.durationLabel = new System.Windows.Forms.Label();
             this.maximumDuration = new System.Windows.Forms.Label();
             this.durationOfPlayback = new System.Windows.Forms.Label();
             this.musicTrackBar = new XComponent.SliderBar.MACTrackBar();
@@ -42,6 +43,7 @@
             this.forwardButton = new System.Windows.Forms.Button();
             this.repeatButton = new System.Windows.Forms.Button();
             this.rightMusicPanel = new System.Windows.Forms.Panel();
+            this.volumeLabel = new System.Windows.Forms.Label();
             this.volumeTrackBar = new XComponent.SliderBar.MACTrackBar();
             this.nameOfCurrentTrackLabel = new System.Windows.Forms.Label();
             this.coverPictureBox = new System.Windows.Forms.PictureBox();
@@ -64,8 +66,6 @@
             this.navigationEditorIconLabel = new System.Windows.Forms.Label();
             this.navigationEditorTextLabel = new System.Windows.Forms.Label();
             this.timerOfPlayback = new System.Windows.Forms.Timer(this.components);
-            this.durationLabel = new System.Windows.Forms.Label();
-            this.volumeLabel = new System.Windows.Forms.Label();
             this.musicPanel.SuspendLayout();
             this.centerMusicPanel.SuspendLayout();
             this.musicControlsPanel.SuspendLayout();
@@ -109,6 +109,16 @@
             this.centerMusicPanel.Size = new System.Drawing.Size(340, 90);
             this.centerMusicPanel.TabIndex = 3;
             // 
+            // durationLabel
+            // 
+            this.durationLabel.AutoSize = true;
+            this.durationLabel.Location = new System.Drawing.Point(30, 59);
+            this.durationLabel.Name = "durationLabel";
+            this.durationLabel.Size = new System.Drawing.Size(34, 13);
+            this.durationLabel.TabIndex = 18;
+            this.durationLabel.Text = "00:00";
+            this.durationLabel.Visible = false;
+            // 
             // maximumDuration
             // 
             this.maximumDuration.AutoSize = true;
@@ -146,7 +156,7 @@
             this.musicTrackBar.TickColor = System.Drawing.Color.Transparent;
             this.musicTrackBar.TickHeight = 1;
             this.musicTrackBar.TickStyle = System.Windows.Forms.TickStyle.None;
-            this.musicTrackBar.TrackerColor = System.Drawing.Color.Transparent;
+            this.musicTrackBar.TrackerColor = System.Drawing.Color.SteelBlue;
             this.musicTrackBar.TrackerSize = new System.Drawing.Size(15, 15);
             this.musicTrackBar.TrackLineColor = System.Drawing.Color.Transparent;
             this.musicTrackBar.TrackLineHeight = 3;
@@ -167,9 +177,9 @@
             this.musicControlsPanel.Controls.Add(this.forwardButton);
             this.musicControlsPanel.Controls.Add(this.repeatButton);
             this.musicControlsPanel.ForeColor = System.Drawing.Color.White;
-            this.musicControlsPanel.Location = new System.Drawing.Point(36, 0);
+            this.musicControlsPanel.Location = new System.Drawing.Point(45, 0);
             this.musicControlsPanel.Name = "musicControlsPanel";
-            this.musicControlsPanel.Size = new System.Drawing.Size(268, 56);
+            this.musicControlsPanel.Size = new System.Drawing.Size(250, 50);
             this.musicControlsPanel.TabIndex = 9;
             // 
             // randomizeButton
@@ -182,7 +192,8 @@
             this.randomizeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.randomizeButton.Font = new System.Drawing.Font("Segoe MDL2 Assets", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.randomizeButton.ForeColor = System.Drawing.Color.Black;
-            this.randomizeButton.Location = new System.Drawing.Point(3, 3);
+            this.randomizeButton.Location = new System.Drawing.Point(0, 0);
+            this.randomizeButton.Margin = new System.Windows.Forms.Padding(0);
             this.randomizeButton.Name = "randomizeButton";
             this.randomizeButton.Size = new System.Drawing.Size(50, 50);
             this.randomizeButton.TabIndex = 17;
@@ -201,7 +212,8 @@
             this.backwardButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.backwardButton.Font = new System.Drawing.Font("Segoe MDL2 Assets", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.backwardButton.ForeColor = System.Drawing.Color.Black;
-            this.backwardButton.Location = new System.Drawing.Point(59, 3);
+            this.backwardButton.Location = new System.Drawing.Point(50, 0);
+            this.backwardButton.Margin = new System.Windows.Forms.Padding(0);
             this.backwardButton.Name = "backwardButton";
             this.backwardButton.Size = new System.Drawing.Size(50, 50);
             this.backwardButton.TabIndex = 15;
@@ -220,7 +232,8 @@
             this.playButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.playButton.Font = new System.Drawing.Font("Segoe MDL2 Assets", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.playButton.ForeColor = System.Drawing.Color.Black;
-            this.playButton.Location = new System.Drawing.Point(115, 3);
+            this.playButton.Location = new System.Drawing.Point(100, 0);
+            this.playButton.Margin = new System.Windows.Forms.Padding(0);
             this.playButton.Name = "playButton";
             this.playButton.Size = new System.Drawing.Size(50, 50);
             this.playButton.TabIndex = 18;
@@ -238,7 +251,8 @@
             this.forwardButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.forwardButton.Font = new System.Drawing.Font("Segoe MDL2 Assets", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.forwardButton.ForeColor = System.Drawing.Color.Black;
-            this.forwardButton.Location = new System.Drawing.Point(165, 3);
+            this.forwardButton.Location = new System.Drawing.Point(150, 0);
+            this.forwardButton.Margin = new System.Windows.Forms.Padding(0);
             this.forwardButton.Name = "forwardButton";
             this.forwardButton.Size = new System.Drawing.Size(50, 50);
             this.forwardButton.TabIndex = 14;
@@ -257,7 +271,8 @@
             this.repeatButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.repeatButton.Font = new System.Drawing.Font("Segoe MDL2 Assets", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.repeatButton.ForeColor = System.Drawing.Color.Black;
-            this.repeatButton.Location = new System.Drawing.Point(215, 3);
+            this.repeatButton.Location = new System.Drawing.Point(200, 0);
+            this.repeatButton.Margin = new System.Windows.Forms.Padding(0);
             this.repeatButton.Name = "repeatButton";
             this.repeatButton.Size = new System.Drawing.Size(50, 50);
             this.repeatButton.TabIndex = 16;
@@ -276,6 +291,16 @@
             this.rightMusicPanel.Name = "rightMusicPanel";
             this.rightMusicPanel.Size = new System.Drawing.Size(230, 90);
             this.rightMusicPanel.TabIndex = 2;
+            // 
+            // volumeLabel
+            // 
+            this.volumeLabel.AutoSize = true;
+            this.volumeLabel.Location = new System.Drawing.Point(195, 6);
+            this.volumeLabel.Name = "volumeLabel";
+            this.volumeLabel.Size = new System.Drawing.Size(27, 13);
+            this.volumeLabel.TabIndex = 19;
+            this.volumeLabel.Text = "99%";
+            this.volumeLabel.Visible = false;
             // 
             // volumeTrackBar
             // 
@@ -616,26 +641,6 @@
             // timerOfPlayback
             // 
             this.timerOfPlayback.Tick += new System.EventHandler(this.timerOfPlayback_Tick);
-            // 
-            // durationLabel
-            // 
-            this.durationLabel.AutoSize = true;
-            this.durationLabel.Location = new System.Drawing.Point(30, 59);
-            this.durationLabel.Name = "durationLabel";
-            this.durationLabel.Size = new System.Drawing.Size(34, 13);
-            this.durationLabel.TabIndex = 18;
-            this.durationLabel.Text = "00:00";
-            this.durationLabel.Visible = false;
-            // 
-            // volumeLabel
-            // 
-            this.volumeLabel.AutoSize = true;
-            this.volumeLabel.Location = new System.Drawing.Point(195, 6);
-            this.volumeLabel.Name = "volumeLabel";
-            this.volumeLabel.Size = new System.Drawing.Size(27, 13);
-            this.volumeLabel.TabIndex = 19;
-            this.volumeLabel.Text = "99%";
-            this.volumeLabel.Visible = false;
             // 
             // MainWindow
             // 

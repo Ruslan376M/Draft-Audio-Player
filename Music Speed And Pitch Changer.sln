@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29920.165
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "This is fine", "This is fine.csproj", "{AB714956-C3DE-49EC-B37B-ACA1E4F9986E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Music Speed And Pitch Changer", "Music Speed And Pitch Changer.csproj", "{AB714956-C3DE-49EC-B37B-ACA1E4F9986E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

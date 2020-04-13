@@ -1,32 +1,17 @@
 ﻿using System;
-using System.IO;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using NAudio.Wave;
 
 
-namespace This_is_fine
+namespace Music_Speed_And_Pitch_Changer
 {
     public partial class MainWindow : Form
     {
-        //Для открытия одной формы, нужно скрыть другую
-        //Делегат, после показа новой формы, сохраняет в себе инструкцию для последующего её скрытия
-
-        delegate void hideCurrentWindowDelegate();
-        hideCurrentWindowDelegate hideCurrentWindow;
-
-        public AudioControlClass audioControl;
-        /*private void applyTheme()
+        public void applyTheme()
         {
             this.BackColor = Program.themeControl.firstColor;
             this.ForeColor = Program.themeControl.secondColor;
-            musicPanel.BackColor = Program.themeControl.thirdColor;
+            musicPanel.BackColor = Program.themeControl.firstColor;
             musicPanel.ForeColor = Program.themeControl.secondColor;
             randomizeButton.ForeColor = Program.themeControl.secondColor;
             randomizeButton.FlatAppearance.MouseDownBackColor = Program.themeControl.thirdColor;
@@ -44,13 +29,25 @@ namespace This_is_fine
             repeatButton.FlatAppearance.MouseDownBackColor = Program.themeControl.thirdColor;
             repeatButton.FlatAppearance.MouseOverBackColor = Program.themeControl.accentColor;
             musicTrackBar.TrackLineSelectedColor = Program.themeControl.accentColor;
+            musicTrackBar.TrackerColor = Program.themeControl.accentColor;
+            musicTrackBar.TrackLineColor = Program.themeControl.thirdColor;
             volumeTrackBar.TrackLineSelectedColor = Program.themeControl.accentColor;
-            mainWindowSplitContainer.Panel1.BackColor = Program.themeControl.thirdColor;
+            volumeTrackBar.TrackerColor = Program.themeControl.accentColor;
+            volumeTrackBar.TrackLineColor = Program.themeControl.thirdColor;
+            mainWindowSplitContainer.Panel1.BackColor = Program.themeControl.firstColor;
             hamburgerButton.ForeColor = Program.themeControl.secondColor;
             hamburgerButton.FlatAppearance.MouseDownBackColor = Program.themeControl.thirdColor;
             hamburgerButton.FlatAppearance.MouseOverBackColor = Program.themeControl.accentColor;
             navigationMusicPanel.ForeColor = Program.themeControl.secondColor;
-        }*/
+        }
+        //Для открытия одной формы, нужно скрыть другую
+        //Делегат, после показа новой формы, сохраняет в себе инструкцию для последующего её скрытия
+
+        delegate void hideCurrentWindowDelegate();
+        hideCurrentWindowDelegate hideCurrentWindow;
+
+        public AudioControlClass audioControl;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -63,32 +60,85 @@ namespace This_is_fine
 
             //Первая инструкция для делегата на скрытие первой открытой формы
             hideCurrentWindow = Program.musicListWindow.Hide;
+            applyTheme();
         }
 
         private void randomizeButton_Click(object sender, EventArgs e)
         {
-            
+            if (Program.audioControl.is_random == false)
+            {
+                randomizeButton.BackColor = Program.themeControl.accentColor;
+                Program.audioControl.randomizeQueue(Program.audioControl.queue);
+                Program.audioControl.is_random = true;
+            }
+            else if (Program.audioControl.is_random == true)
+            {
+                randomizeButton.BackColor = Color.Transparent;
+                Program.audioControl.sortQueue(Program.audioControl.queue);
+                Program.audioControl.is_random = false;
+            }
         }
 
-        private void backwardButton_Click(object sender, EventArgs e)
+        public void backwardButton_Click(object sender, EventArgs e)
         {
+            if (Program.musicListWindow.previousButtonIndex != -1)
+            {
 
+                Program.audioControl.queue.IndexOf((short)Program.musicListWindow.previousButtonIndex);
+                if (Program.audioControl.queue.IndexOf((short)Program.musicListWindow.previousButtonIndex) - 1 >= 0)
+                {
+                    Program.musicListWindow.playButton_Click(Program.musicListWindow.play[Program.audioControl.queue[Program.audioControl.queue.IndexOf((short)Program.musicListWindow.previousButtonIndex) - 1]], null);
+                }
+                else if (Program.audioControl.queue.IndexOf((short)Program.musicListWindow.previousButtonIndex) - 1 < 0)
+                {
+                    Program.audioControl.initMusicFile(Program.audioControl.indexOfPlayingFile);
+                    Program.audioControl.play();
+                }
+            }
         }
 
         private void playButton_Click(object sender, EventArgs e)
         {
             if (Program.musicListWindow.previousButtonIndex != -1)
-            Program.musicListWindow.playButton_Click(Program.musicListWindow.play[Program.musicListWindow.previousButtonIndex], null);
+                Program.musicListWindow.playButton_Click(Program.musicListWindow.play[Program.musicListWindow.previousButtonIndex], null);
         }
 
-        private void forwardButton_Click(object sender, EventArgs e)
+        public void forwardButton_Click(object sender, EventArgs e)
         {
-
+            if (Program.musicListWindow.previousButtonIndex != -1)
+            {
+                Program.audioControl.queue.IndexOf((short)Program.musicListWindow.previousButtonIndex);
+                if (Program.audioControl.queue.IndexOf((short)Program.musicListWindow.previousButtonIndex) + 1 < Program.audioControl.queue.Count)
+                    Program.musicListWindow.playButton_Click(Program.musicListWindow.play[Program.audioControl.queue[Program.audioControl.queue.IndexOf((short)Program.musicListWindow.previousButtonIndex) + 1]], null);
+                else if (Program.audioControl.queue.IndexOf((short)Program.musicListWindow.previousButtonIndex) + 1 == Program.audioControl.queue.Count)
+                {
+                    if (Program.audioControl.repeatMode == 1)
+                        Program.musicListWindow.playButton_Click(Program.musicListWindow.play[Program.audioControl.queue[0]], null);
+                    else
+                        Program.audioControl.stop();
+                }
+            }
         }
 
         private void repeatButton_Click(object sender, EventArgs e)
         {
-
+            if (Program.audioControl.repeatMode == 0)
+            {
+                repeatButton.BackColor = Program.themeControl.accentColor;
+                Program.audioControl.repeatMode = 1;
+            }
+            else if (Program.audioControl.repeatMode == 1)
+            {
+                repeatButton.BackColor = Program.themeControl.accentColor;
+                repeatButton.Text = "";
+                Program.audioControl.repeatMode = 2;
+            }
+            else if (Program.audioControl.repeatMode == 2)
+            {
+                repeatButton.BackColor = Color.Transparent;
+                repeatButton.Text = "";
+                Program.audioControl.repeatMode = 0;
+            }
         }
 
         private void musicTrackBar_MouseUp(object sender, MouseEventArgs e)
@@ -137,11 +187,10 @@ namespace This_is_fine
                 {
                     Program.audioControl.fileReader.Position = Program.effectsWindow.loopRangeBar.RangeMinimum * Program.audioControl.fileReader.WaveFormat.AverageBytesPerSecond;
                 }
-                
             }
             musicTrackBar.Value = Program.audioControl.fileReader.CurrentTime.Minutes * 60 + Program.audioControl.fileReader.CurrentTime.Seconds;
             durationOfPlayback.Text = Program.audioControl.fileReader.CurrentTime.Minutes.ToString("00") + ":" + Program.audioControl.fileReader.CurrentTime.Seconds.ToString("00");
-            
+
         }
 
 

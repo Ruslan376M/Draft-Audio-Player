@@ -1,4 +1,4 @@
-﻿namespace This_is_fine
+﻿namespace Music_Speed_And_Pitch_Changer
 {
     partial class MusicListWindow
     {

@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace This_is_fine
+namespace Music_Speed_And_Pitch_Changer
 {
     static class Program
     {
@@ -32,9 +29,8 @@ namespace This_is_fine
 
             fileSystemControl = new FileSystemControlClass();
 
-            //themeControl = new ThemeControlClass();
-            //themeControl.SetWhiteTheme();
-            //audioControl = new AudioControlClass();
+            themeControl = new ThemeControlClass();
+
 
             musicListWindow = new MusicListWindow() { Dock = DockStyle.Fill, TopLevel = false };
             effectsWindow = new EffectsWindow() { Dock = DockStyle.Fill, TopLevel = false };
@@ -42,6 +38,9 @@ namespace This_is_fine
             settingsWindow = new SettingsWindow() { Dock = DockStyle.Fill, TopLevel = false };
             aboutWindow = new AboutWindow() { Dock = DockStyle.Fill, TopLevel = false };
             mainWindow = new MainWindow();
+
+
+            themeControl.SetWhiteTheme();
 
             Application.Run(mainWindow);
         }

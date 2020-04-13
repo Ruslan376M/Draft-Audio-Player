@@ -1,23 +1,88 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using NAudio.Wave;
+using System;
 using System.Windows.Forms;
-using NAudioWpfDemo.EqualizationDemo;
-using NAudio.Wave;
-using NAudio.Wave.SampleProviders;
 
-namespace This_is_fine
+namespace Music_Speed_And_Pitch_Changer
 {
     public partial class EffectsWindow : Form
     {
+        public void applyTheme()
+        {
+            this.BackColor = Program.themeControl.firstColor;
+            this.pitchLabel.ForeColor = Program.themeControl.secondColor;
+            this.minusPitchButton.ForeColor = Program.themeControl.secondColor;
+            this.minusPitchButton.FlatAppearance.MouseDownBackColor = Program.themeControl.firstColor;
+            this.plusPitchButton.ForeColor = Program.themeControl.secondColor;
+            this.plusPitchButton.FlatAppearance.MouseDownBackColor = Program.themeControl.firstColor;
+            this.pitchValueLabel.ForeColor = Program.themeControl.secondColor;
+            this.tempValueLabel.ForeColor = Program.themeControl.secondColor;
+            this.plusTempButton.ForeColor = Program.themeControl.secondColor;
+            this.plusTempButton.FlatAppearance.MouseDownBackColor = Program.themeControl.firstColor;
+            this.minusTempButton.ForeColor = Program.themeControl.secondColor;
+            this.minusTempButton.FlatAppearance.MouseDownBackColor = Program.themeControl.firstColor;
+            this.tempLabel.ForeColor = Program.themeControl.secondColor;
+            this.tempTrackBar.TrackLineSelectedColor = Program.themeControl.accentColor;
+            this.tempTrackBar.TrackerColor = Program.themeControl.accentColor;
+            this.tempTrackBar.TrackLineColor = Program.themeControl.thirdColor;
+            this.pitchTrackBar.TrackLineSelectedColor = Program.themeControl.accentColor;
+            this.pitchTrackBar.TrackerColor = Program.themeControl.accentColor;
+            this.pitchTrackBar.TrackLineColor = Program.themeControl.thirdColor;
+            this.maxDurLabel.ForeColor = Program.themeControl.secondColor;
+            this.minDurLabel.ForeColor = Program.themeControl.secondColor;
+            this.LoopLabel.ForeColor = Program.themeControl.secondColor;
+            this.loopRangeBar.InnerColor = Program.themeControl.accentColor;
+            this.resetButton.ForeColor = Program.themeControl.secondColor;
+            this.resetButton.FlatAppearance.MouseDownBackColor = Program.themeControl.firstColor;
+            this.label1.ForeColor = Program.themeControl.secondColor;
+            this.band1TrackBar.TrackerColor = Program.themeControl.accentColor;
+            this.band1TrackBar.TrackLineColor = Program.themeControl.thirdColor;
+            this.band1TrackBar.TrackLineSelectedColor = Program.themeControl.accentColor;
+            this.band2TrackBar.TrackLineSelectedColor = Program.themeControl.accentColor;
+            this.band2TrackBar.TrackerColor = Program.themeControl.accentColor;
+            this.band2TrackBar.TrackLineColor = Program.themeControl.thirdColor;
+            this.band3TrackBar.TrackLineSelectedColor = Program.themeControl.accentColor;
+            this.band3TrackBar.TrackerColor = Program.themeControl.accentColor;
+            this.band3TrackBar.TrackLineColor = Program.themeControl.thirdColor;
+            this.band4TrackBar.TrackLineSelectedColor = Program.themeControl.accentColor;
+            this.band4TrackBar.TrackerColor = Program.themeControl.accentColor;
+            this.band4TrackBar.TrackLineColor = Program.themeControl.thirdColor;
+            this.band8TrackBar.TrackLineSelectedColor = Program.themeControl.accentColor;
+            this.band8TrackBar.TrackerColor = Program.themeControl.accentColor;
+            this.band8TrackBar.TrackLineColor = Program.themeControl.thirdColor;
+            this.band7TrackBar.TrackLineSelectedColor = Program.themeControl.accentColor;
+            this.band7TrackBar.TrackerColor = Program.themeControl.accentColor;
+            this.band7TrackBar.TrackLineColor = Program.themeControl.thirdColor;
+            this.band6TrackBar.TrackLineSelectedColor = Program.themeControl.accentColor;
+            this.band6TrackBar.TrackerColor = Program.themeControl.accentColor;
+            this.band6TrackBar.TrackLineColor = Program.themeControl.thirdColor;
+            this.band5TrackBar.TrackLineSelectedColor = Program.themeControl.accentColor;
+            this.band5TrackBar.TrackerColor = Program.themeControl.accentColor;
+            this.band5TrackBar.TrackLineColor = Program.themeControl.thirdColor;
+            this.band10TrackBar.TrackLineSelectedColor = Program.themeControl.accentColor;
+            this.band10TrackBar.TrackerColor = Program.themeControl.accentColor;
+            this.band10TrackBar.TrackLineColor = Program.themeControl.thirdColor;
+            this.band9TrackBar.TrackLineSelectedColor = Program.themeControl.accentColor;
+            this.band9TrackBar.TrackerColor = Program.themeControl.accentColor;
+            this.band9TrackBar.TrackLineColor = Program.themeControl.thirdColor;
+            this.label9.ForeColor = Program.themeControl.secondColor;
+            this.label10.ForeColor = Program.themeControl.secondColor;
+            this.label11.ForeColor = Program.themeControl.secondColor;
+            this.label12.ForeColor = Program.themeControl.secondColor;
+            this.label13.ForeColor = Program.themeControl.secondColor;
+            this.label14.ForeColor = Program.themeControl.secondColor;
+            this.label15.ForeColor = Program.themeControl.secondColor;
+            this.label16.ForeColor = Program.themeControl.secondColor;
+            this.label17.ForeColor = Program.themeControl.secondColor;
+            this.label18.ForeColor = Program.themeControl.secondColor;
+            this.label19.ForeColor = Program.themeControl.secondColor;
+            this.label20.ForeColor = Program.themeControl.secondColor;
+            this.resetEqualizerButton.ForeColor = Program.themeControl.secondColor;
+            this.resetEqualizerButton.FlatAppearance.MouseDownBackColor = Program.themeControl.firstColor;
+        }
         public EffectsWindow()
         {
             InitializeComponent();
+            applyTheme();
         }
 
         private void pitchTrackBar_ValueChanged(object sender, decimal value)
@@ -99,7 +164,7 @@ namespace This_is_fine
             Program.audioControl.outputDevice.Stop();
             Program.audioControl.outputDevice.Init(Program.audioControl.equalizer);
             if (Program.musicListWindow.musicIsPlaying == true)
-                Program.audioControl.outputDevice.Play(); 
+                Program.audioControl.outputDevice.Play();
         }
 
         private void band3TrackBar_MouseUp(object sender, MouseEventArgs e)

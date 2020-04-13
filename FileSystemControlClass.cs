@@ -1,11 +1,8 @@
-﻿using System;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
-namespace This_is_fine
+namespace Music_Speed_And_Pitch_Changer
 {
     public class FileSystemControlClass
     {
@@ -29,15 +26,16 @@ namespace This_is_fine
                 allMusicPaths.AddRange(Directory.GetFileSystemEntries(musicFolderPath, "*.wav", SearchOption.AllDirectories));
                 allMusicPaths.AddRange(Directory.GetFileSystemEntries(musicFolderPath, "*.wma", SearchOption.AllDirectories));
                 allMusicPaths.AddRange(Directory.GetFileSystemEntries(musicFolderPath, "*.aac", SearchOption.AllDirectories));
-                
+
                 for (int i = 0; i < allMusicPaths.Count; i++)
                     allMusicPaths[i] = allMusicPaths[i].Remove(0, musicFolderPath.Length + 1);
 
                 sortAllMusicList("name");
 
-                Program.musicListWindow.initMusicPanels(allMusicPaths, null , null );
-                Program.audioControl = new AudioControlClass(allMusicPaths, path);
+
             });
+            Program.musicListWindow.initMusicPanels(allMusicPaths, null, null);
+            Program.audioControl = new AudioControlClass(allMusicPaths, path);
         }
 
         /// <summary>

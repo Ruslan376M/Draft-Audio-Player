@@ -1,4 +1,4 @@
-﻿namespace This_is_fine
+﻿namespace Music_Speed_And_Pitch_Changer
 {
     partial class EffectsWindow
     {
@@ -323,9 +323,9 @@
             this.band1TrackBar.TickColor = System.Drawing.Color.Transparent;
             this.band1TrackBar.TickHeight = 1;
             this.band1TrackBar.TickStyle = System.Windows.Forms.TickStyle.None;
-            this.band1TrackBar.TrackerColor = System.Drawing.Color.Transparent;
+            this.band1TrackBar.TrackerColor = System.Drawing.Color.White;
             this.band1TrackBar.TrackerSize = new System.Drawing.Size(15, 15);
-            this.band1TrackBar.TrackLineColor = System.Drawing.Color.Transparent;
+            this.band1TrackBar.TrackLineColor = System.Drawing.Color.White;
             this.band1TrackBar.TrackLineHeight = 3;
             this.band1TrackBar.TrackLineSelectedColor = System.Drawing.Color.SteelBlue;
             this.band1TrackBar.Value = 0;
@@ -715,7 +715,7 @@
             this.resetEqualizerButton.CausesValidation = false;
             this.resetEqualizerButton.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
             this.resetEqualizerButton.FlatAppearance.BorderSize = 2;
-            this.resetEqualizerButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
+            this.resetEqualizerButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
             this.resetEqualizerButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
             this.resetEqualizerButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.resetEqualizerButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
