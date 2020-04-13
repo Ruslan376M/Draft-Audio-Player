@@ -251,7 +251,7 @@ namespace Music_Speed_And_Pitch_Changer
         private void resetEqualizerButton_Click(object sender, EventArgs e)
         {
             for (int i = 0; i < 10; i++)
-                Program.audioControl.bands[0].Gain = 0;
+                Program.audioControl.bands[i].Gain = 0;
             band1TrackBar.Value = 0;
             band2TrackBar.Value = 0;
             band3TrackBar.Value = 0;
