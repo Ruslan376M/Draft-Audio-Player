@@ -112,7 +112,7 @@
             // durationLabel
             // 
             this.durationLabel.AutoSize = true;
-            this.durationLabel.Location = new System.Drawing.Point(30, 59);
+            this.durationLabel.Location = new System.Drawing.Point(33, 59);
             this.durationLabel.Name = "durationLabel";
             this.durationLabel.Size = new System.Drawing.Size(34, 13);
             this.durationLabel.TabIndex = 18;
@@ -145,6 +145,7 @@
             this.musicTrackBar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(123)))), ((int)(((byte)(125)))), ((int)(((byte)(123)))));
             this.musicTrackBar.IndentHeight = 6;
             this.musicTrackBar.Location = new System.Drawing.Point(36, 59);
+            this.musicTrackBar.Margin = new System.Windows.Forms.Padding(0);
             this.musicTrackBar.Maximum = 100;
             this.musicTrackBar.Minimum = 0;
             this.musicTrackBar.MinimumSize = new System.Drawing.Size(100, 27);
@@ -161,7 +162,7 @@
             this.musicTrackBar.TrackLineColor = System.Drawing.Color.Transparent;
             this.musicTrackBar.TrackLineHeight = 3;
             this.musicTrackBar.TrackLineSelectedColor = System.Drawing.Color.SteelBlue;
-            this.musicTrackBar.Value = 100;
+            this.musicTrackBar.Value = 0;
             this.musicTrackBar.Scroll += new System.EventHandler(this.musicTrackBar_Scroll);
             this.musicTrackBar.MouseUp += new System.Windows.Forms.MouseEventHandler(this.musicTrackBar_MouseUp);
             // 

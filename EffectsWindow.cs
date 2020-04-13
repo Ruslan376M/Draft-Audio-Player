@@ -93,7 +93,8 @@ namespace Music_Speed_And_Pitch_Changer
 
         private void tempTrackBar_ValueChanged(object sender, decimal value)
         {
-            Program.audioControl.tempSet(tempTrackBar.Value);
+            if (tempTrackBar.Value != 0)
+                Program.audioControl.tempSet(tempTrackBar.Value);
             tempValueLabel.Text = tempTrackBar.Value.ToString() + "%";
         }
 

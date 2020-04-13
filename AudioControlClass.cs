@@ -77,11 +77,9 @@ namespace Music_Speed_And_Pitch_Changer
             Program.mainWindow.maximumDuration.Text = Program.audioControl.fileReader.TotalTime.Minutes.ToString("00") + ":" + Program.audioControl.fileReader.TotalTime.Seconds.ToString("00");
             SoundTouchProcessor soundProcessor = new SoundTouchProcessor();
             SampleToWaveProvider waveProviderBuffer = new SampleToWaveProvider(fileReader.ToSampleProvider());
-            waveProvider = new SoundTouchWaveProvider(waveProviderBuffer, soundProcessor)
-            {
-                Pitch = Math.Pow(2, (pitch) / 12),
-                Tempo = temp / 100
-            };
+            waveProvider = new SoundTouchWaveProvider(waveProviderBuffer, soundProcessor);
+            waveProvider.Pitch = Math.Pow(2, (pitch) / 12);
+            waveProvider.Tempo = temp / 100;
             equalizer = new Equalizer(waveProvider.ToSampleProvider(), bands);
             outputDevice.Init(equalizer);
 

@@ -161,7 +161,7 @@ namespace Music_Speed_And_Pitch_Changer
             durationLabel.Visible = true;
             timerOfPlayback.Enabled = false;
             durationOfPlayback.Text = (musicTrackBar.Value / 60).ToString("00") + ":" + (musicTrackBar.Value % 60).ToString("00");
-            durationLabel.Location = new Point((musicTrackBar.Location.X + 15) + (91 * musicTrackBar.Width * musicTrackBar.Value / musicTrackBar.Maximum / 100) - (durationLabel.Width / 2), 48);
+            durationLabel.Location = new Point(Convert.ToInt32((((float)(musicTrackBar.Width-25)/ (float)(musicTrackBar.Maximum))* musicTrackBar.Value)) + (musicTrackBar.Location.X - 3), 48);
             durationLabel.Text = (musicTrackBar.Value / 60).ToString("00") + ":" + (musicTrackBar.Value % 60).ToString("00");
         }
 
